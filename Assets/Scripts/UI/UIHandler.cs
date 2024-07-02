@@ -35,7 +35,7 @@ namespace Match3
 
             public void UpdateButtonState()
             {
-                BuyButton.SetEnabled(GameManager.Instance.Coins >= LinkedItem.Price);
+                BuyButton.SetEnabled(GameManager.Instance.Stars >= LinkedItem.Price);
             }
         }
 
@@ -53,6 +53,9 @@ namespace Match3
         //public Camera PortraitCameraPrefab;
 
         public Sprite CoinSprite;
+        public Sprite YellowStarSprite;
+        private Texture2D YellowStarTexture;
+        private StyleBackground YellowStarStyle;
 
         public VisualTreeAsset ShopItemEntryTemplate;
         public VisualTreeAsset BonusItemTemplate;
@@ -64,7 +67,8 @@ namespace Match3
 
         private VisualElement m_GemGoalContent;
         private Label m_MoveCounter;
-        private Label m_LevelName;
+
+        //private Label m_LevelName;
 
         private VisualElement m_BottomBarRoot;
 
@@ -73,8 +77,9 @@ namespace Match3
         private VisualElement m_EndTitleContent;
         private VisualElement m_WinTitle;
         private VisualElement m_LoseTitle;
-        
-        
+
+        private ProgressBar m_ScoreBar;
+
         private VisualElement m_EndScreen;
 
         private VisualElement m_CharacterPortrait;
@@ -97,7 +102,6 @@ namespace Match3
         private Slider m_SFXVolumeSlider;
     
         // End Screen
-        private Label m_CoinLabel;
         private Label m_LiveLabel;
         private Label m_StarLabel;
     
@@ -106,7 +110,9 @@ namespace Match3
         private ScrollView m_ShopScrollView;
 
         private List<ShopEntry> m_ShopEntries = new();
-    
+
+        private VisualElement[] m_Stars = new VisualElement[3];
+
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
 
         private class DebugGemButton
@@ -140,15 +146,41 @@ namespace Match3
 
             m_Document.panelSettings.match = Screen.orientation == ScreenOrientation.Portrait ? 1.0f : 0.0f;
 
-            m_LevelName = m_Document.rootVisualElement.Q<Label>("LevelName");
+            //m_LevelName = m_Document.rootVisualElement.Q<Label>("LevelName");
             
             m_GemGoalContent = m_Document.rootVisualElement.Q<VisualElement>("GoalContainer");
             m_MoveCounter = m_Document.rootVisualElement.Q<Label>("MoveCounter");
+            m_ScoreBar = m_Document.rootVisualElement.Q<ProgressBar>("ScoreBar");
+            for (int i = 0; i < 3; i++) 
+            {
+                m_Stars[i] = m_Document.rootVisualElement.Q<VisualElement>("Star" + (i+1).ToString());
+            }
+
+
+            // Sprite'ý Texture2D'ye dönüþtür
+            YellowStarTexture = SpriteToTexture2D(YellowStarSprite);
+
+           
+            // Texture2D'yi StyleBackground'a dönüþtür ve uygulayýn
+            if (YellowStarTexture != null)
+            {
+                YellowStarStyle = new StyleBackground(YellowStarTexture);
+            }
+            else
+            {
+                Debug.LogError("Texture2D conversion failed.");
+            }
+
             
+                
+
             m_EndTitleContent = m_Document.rootVisualElement.Q<VisualElement>("EndTitleContent");
             m_WinTitle = m_EndTitleContent.Q<VisualElement>("WinTitle");
             m_LoseTitle = m_EndTitleContent.Q<VisualElement>("LoseTitle");
             
+            
+            
+
             m_EndScreen = m_Document.rootVisualElement.Q<VisualElement>("EndScreen");
 
             m_CharacterPortrait = m_Document.rootVisualElement.Q<VisualElement>("MiddleTopSection");
@@ -172,7 +204,6 @@ namespace Match3
             };
             
             
-            m_CoinLabel = m_Document.rootVisualElement.Q<Label>("CoinLabel");
             m_LiveLabel = m_Document.rootVisualElement.Q<Label>("LiveLabel");
             m_StarLabel = m_Document.rootVisualElement.Q<Label>("StarLabel");
 
@@ -261,7 +292,7 @@ namespace Match3
                 newShopEntry.BuyButton.clicked += () =>
                 {
                     newShopEntry.LinkedItem.Buy();
-                    GameManager.Instance.ChangeCoins(-newShopEntry.LinkedItem.Price);
+                    GameManager.Instance.ChangeStars(-newShopEntry.LinkedItem.Price);
                 
                     UpdateTopBarData();
                     UpdateShopEntry();
@@ -316,10 +347,62 @@ namespace Match3
             ApplySafeArea(m_EndScreen);
         }
     
+        public void UpdateScore(int score)
+        {
+            m_ScoreBar.value = score;
+
+
+            if(score >= LevelData.Instance.TargetScore * 0.33)
+            {
+                m_Stars[0].style.backgroundImage = YellowStarStyle;
+            }
+            if(score >= LevelData.Instance.TargetScore * 0.66)
+            {
+                m_Stars[1].style.backgroundImage = YellowStarStyle;
+            }
+            if (score >= LevelData.Instance.TargetScore)
+            {
+                m_Stars[2].style.backgroundImage = YellowStarStyle;
+            }
+
+
+
+
+
+        }
+
+        
+
+        // Sprite'ý Texture2D'ye dönüþtürme yöntemi
+        private Texture2D SpriteToTexture2D(Sprite sprite)
+        {
+            if (sprite == null) return null;
+
+            // Sprite'ýn tam boyutunda bir Texture2D oluþturun
+            Texture2D texture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height, TextureFormat.RGBA32, false);
+
+            // Sprite'ýn atlasýndaki texture'un piksellerini al
+            Color[] pixels = sprite.texture.GetPixels((int)sprite.textureRect.x,
+                                                      (int)sprite.textureRect.y,
+                                                      (int)sprite.textureRect.width,
+                                                      (int)sprite.textureRect.height);
+            // Texture2D'yi bu piksellerle doldur
+            texture.SetPixels(pixels);
+            texture.Apply();
+
+            return texture;
+        }
+
         public void Init()
         {
-            m_LevelName.text = LevelData.Instance.LevelName;
-            
+            //m_LevelName.text = LevelData.Instance.LevelName;
+
+            if (LevelData.Instance != null)
+            {
+                m_ScoreBar.highValue = LevelData.Instance.TargetScore;
+                LevelData.Instance.OnScoreChanged += UpdateScore;
+            }
+
             m_WinTitle.style.scale = Vector2.zero;
             m_LoseTitle.style.scale = Vector2.zero;
 
@@ -363,7 +446,9 @@ namespace Match3
                 }
             };
 
+
             m_MoveCounter.text = LevelData.Instance.RemainingMove.ToString();
+
             LevelData.Instance.OnMoveHappened += remaining =>
             {
                 m_MoveCounter.text = remaining.ToString();
@@ -380,6 +465,7 @@ namespace Match3
 
             m_ShopRoot.style.display = DisplayStyle.None;
         }
+
 
         public void Display(bool displayed)
         {
@@ -610,7 +696,7 @@ namespace Match3
 
         public void UpdateTopBarData()
         {
-            m_CoinLabel.text = GameManager.Instance.Coins.ToString();
+
             m_LiveLabel.text = GameManager.Instance.Lives.ToString();
             m_StarLabel.text = GameManager.Instance.Stars.ToString();
         }

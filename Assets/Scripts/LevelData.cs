@@ -21,6 +21,8 @@ namespace Match3
 
         public string LevelName = "Level";
         public int MaxMove;
+        public int TargetScore;
+        [HideInInspector] public int CurrentScore;
         public int LowMoveTrigger = 10;
         public GemGoal[] Goals;
         
@@ -33,18 +35,23 @@ namespace Match3
 
         public delegate void GoalChangeDelegate(int gemType,int newAmount);
         public delegate void MoveNotificationDelegate(int moveRemaining);
+        public delegate void ScoreChangeDelegate(int score);
+
 
         public Action OnAllGoalFinished;
         public Action OnNoMoveLeft;
     
         public GoalChangeDelegate OnGoalChanged;
         public MoveNotificationDelegate OnMoveHappened;
+        public ScoreChangeDelegate OnScoreChanged;
 
         public int RemainingMove { get; private set; }
         public int GoalLeft { get; private set; }
 
         private int m_StartingWidth;
         private int m_StartingHeight;
+        
+
 
         private void Awake()
         {
@@ -72,9 +79,12 @@ namespace Match3
                 GameManager.Instance.ComputeCamera();
             }
         }
-
+        
         public bool Matched(Gem gem)
         {
+            CurrentScore += gem.GemScore;
+            OnScoreChanged.Invoke(CurrentScore);
+
             foreach (var goal in Goals)
             {
                 if (goal.Gem.GemType == gem.GemType)
@@ -83,7 +93,7 @@ namespace Match3
                         return false;
                 
                     UIHandler.Instance.AddMatchEffect(gem);
-                
+                    
                     goal.Count -= 1;
                     OnGoalChanged?.Invoke(gem.GemType, goal.Count);
 
@@ -92,6 +102,10 @@ namespace Match3
                         GoalLeft -= 1;
                         if (GoalLeft == 0)
                         {
+                            // Elinde kalan hamel sayýsýna göre ekstra puan kazandýrýr
+                            CurrentScore += RemainingMove * 30;
+                            OnScoreChanged.Invoke(CurrentScore);
+
                             GameManager.Instance.WinStar();
                             GameManager.Instance.Board.ToggleInput(false);
                             OnAllGoalFinished?.Invoke();

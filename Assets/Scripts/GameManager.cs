@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.VFX;
 
 namespace Match3
@@ -66,7 +67,6 @@ namespace Match3
         public InputAction ClickPosition;
         public GameSettings Settings;
 
-        public int Coins { get; private set; } = 0;
         public int Stars { get; private set; }
         public int Lives { get; private set; } = 5;
 
@@ -241,18 +241,29 @@ namespace Match3
             }
         }
 
-        public void ChangeCoins(int amount)
+        public void ChangeStars(int amount)
         {
-            Coins += amount;
-            if (Coins < 0)
-                Coins = 0;
+            Stars += amount;
+            if (Stars < 0)
+                Stars = 0;
         
             UIHandler.Instance.UpdateTopBarData();
         }
 
         public void WinStar()
         {
-            Stars += 1;
+            if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.33)
+            {
+                Stars += 1;
+            }
+            if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.66)
+            {
+                Stars += 1;
+            }
+            if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore)
+            {
+                Stars += 1;
+            }
         }
 
         public void AddLive(int amount)

@@ -41,8 +41,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 296
     y: -791
-    width: 4645
-    height: 2928
+    width: 4646
+    height: 2934
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2129,7 +2129,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 0
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
@@ -4181,7 +4181,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"42dd346b733da1c46b67bb6ee1332cbe","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"4164125c65c1414428ddd1553c1247df","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mainTexture
@@ -14600,7 +14600,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"da811850ce91cb44d92626ba63b44e21","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":2800000,"guid":"a50633badd0a78c4aa1d86a1f5f6c0eb","type":3}}'
     m_Space: 2147483647
   m_Property:
     name: mainTexture
@@ -15552,7 +15552,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615486}
   - {fileID: 8926484042661615487}
   m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_MasterSlot: {fileID: 8926484042661615485}
   m_MasterData:
@@ -15561,7 +15561,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":2.0,"y":3.0}'
+      m_SerializableObject: '{"x":5.0,"y":6.0}'
     m_Space: 2147483647
   m_Property:
     name: flipBookSize

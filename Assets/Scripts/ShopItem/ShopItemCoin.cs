@@ -9,7 +9,7 @@ namespace Match3
     
         public override void Buy()
         {
-            GameManager.Instance.ChangeCoins(CoinAmount);
+            GameManager.Instance.ChangeStars(CoinAmount);
         }
     }
 }

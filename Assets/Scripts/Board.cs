@@ -575,8 +575,18 @@ namespace Match3
                     FindAllPossibleMatch();
                     m_BoardChanged = false;
                 }
-            
-                var match = m_PossibleSwaps[m_PickedSwap];
+
+                PossibleSwap match = new PossibleSwap();
+
+                if(m_PossibleSwaps.Count!=0 && m_PickedSwap < m_PossibleSwaps.Count)
+                {
+                    match = m_PossibleSwaps[m_PickedSwap];
+                }
+                else
+                {
+                    Debug.LogWarning("m_PossibleSwaps.Count: " + m_PossibleSwaps.Count + "    m_PickedSwap value: " + m_PickedSwap);
+                }
+                
                 if (m_HintIndicator.activeSelf)
                 {
                     var startPos = m_Grid.GetCellCenterWorld(match.StartPosition);
@@ -833,7 +843,6 @@ namespace Match3
                         //we only spawn coins for non bonus match
                         if (match.DeletedCount >= 4 && !match.ForcedDeletion)
                         {
-                            GameManager.Instance.ChangeCoins(1);
                             GameManager.Instance.PoolSystem.PlayInstanceAt(GameManager.Instance.Settings.VisualSettings.CoinVFX,
                                 gem.transform.position);
                         }

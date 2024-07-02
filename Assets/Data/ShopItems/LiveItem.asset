@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSprite: {fileID: 21300000, guid: c2804d3b17a42e549a7a781417fe2036, type: 3}
   ItemName: Live
-  Price: 50
+  Price: 10

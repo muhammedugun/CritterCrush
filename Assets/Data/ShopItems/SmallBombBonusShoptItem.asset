@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemSprite: {fileID: 21300000, guid: c0227704aa781d5449b9eed7d70b2655, type: 3}
   ItemName: Bomb
-  Price: 20
+  Price: 1
   BonusItem: {fileID: 11400000, guid: c306e67a2c8a5604197f03d4cdc9b674, type: 2}

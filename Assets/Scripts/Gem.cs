@@ -36,6 +36,8 @@ namespace Match3
         public float FallTime => m_FallTime;
         public State CurrentState => m_CurrentState;
         public int HitPoint => m_HitPoints;
+
+        public int GemScore;
     
         //If this is set to true, the Use function will be called when swapping or double clicking the gem.
         //Not used in this base class, but useful for BonusGem.
@@ -49,6 +51,18 @@ namespace Match3
         private float m_FallTime = 0.0f;
 
         private State m_CurrentState = State.Still;
+
+        private void Awake()
+        {
+            if (GemType >= 0 && GemType <= 5)
+                GemScore = 30;
+            else if (GemType == -1 || GemType == -5 || GemType == -4 || GemType == 99)
+                GemScore = 120;
+            else if (GemType == -2)
+                GemScore = 240;
+            else if (GemType == -3)
+                GemScore = 480;
+        }
 
         public virtual void Init(Vector3Int startIdx)
         {
