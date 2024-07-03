@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: SparkleVariation9
+  m_Controller: {fileID: 9100000, guid: 54da4a7af21494ccd89f555858e0fdae, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e2dec1e0f98ae4747aeed7295f68f0a7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f300ddddb4b5c47aebae9cb6dfb01122, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 586d8c46bb4684a21979496887cabe2a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 586d8c46bb4684a21979496887cabe2a, type: 2}

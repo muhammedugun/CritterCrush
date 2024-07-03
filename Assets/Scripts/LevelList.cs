@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Match3.LevelData;
+
 
 #if UNITY_EDITOR
 using System;
@@ -11,12 +13,20 @@ using UnityEditor.SceneManagement;
 
 namespace Match3
 {
+    [Serializable]
+    public struct LevelGoals
+    {
+        public GemGoal[] Goals;
+    }
+
     [CreateAssetMenu]
     public class LevelList : ScriptableObject
     {
 #if UNITY_EDITOR
         public SceneAsset[] Scenes;
 #endif
+
+        public LevelGoals[] Goals;
 
         [HideInInspector] public int[] SceneList;
 

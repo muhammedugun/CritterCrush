@@ -1,0 +1,6 @@
+.LockIcon {
+    background-image: url('/path/to/lock-icon.png');
+    width: 24px;
+    height: 24px;
+    visibility: hidden;
+}

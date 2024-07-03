@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FaceCatTigerVariation2
+  m_Controller: {fileID: 9100000, guid: cc8fa2f67ff7c4546ac7a192a4f92798, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 5b2382cade9cf44cfbce55717bd05af5, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d97951981a1074e66acf440f7ec6a9a8, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fce1791517fd243e79a141433142c0e4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fce1791517fd243e79a141433142c0e4, type: 2}

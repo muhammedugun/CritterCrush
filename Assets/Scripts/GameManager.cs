@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.VFX;
 
@@ -252,18 +253,27 @@ namespace Match3
 
         public void WinStar()
         {
+            string input = SceneManager.GetActiveScene().name;
+            string levelNumber = input.Substring("Level".Length);
+            int levelIndex = int.Parse(levelNumber) - 1;
+            int earnedStarCount=0;
+
             if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.33)
             {
-                Stars += 1;
+                earnedStarCount = 1;
+                
             }
             if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.66)
             {
-                Stars += 1;
+                earnedStarCount = 2;
             }
             if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore)
             {
-                Stars += 1;
+                earnedStarCount = 3;
             }
+
+            StarManager.AddStarCount(earnedStarCount);
+            LevelCompletion.CompleteLevel(levelIndex, earnedStarCount);
         }
 
         public void AddLive(int amount)

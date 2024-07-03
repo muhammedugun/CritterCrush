@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: BubbleVariation5
+  m_Controller: {fileID: 9100000, guid: b98e80d2352784753af98eda56a30df0, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 76853c9989adc43bc9e30d3fb20f684b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cd5a01ae2b3224466b781cf9cf303326, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0d3f6da93d7334b07ab5abf322acd7ec, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0d3f6da93d7334b07ab5abf322acd7ec, type: 2}

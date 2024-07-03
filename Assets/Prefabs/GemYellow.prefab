@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1890678711
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e5a8df9d9008d7447a029fca0b1d7cef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e921a6ff8a8175345bfeb48e7548f451, type: 3}
   m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,3 +102,4 @@ MonoBehaviour:
   - {fileID: 8519149161829645249, guid: f4f22f7bed44e2f4abeb41e8a2af3af6, type: 3}
   UISprite: {fileID: 21300000, guid: 5ff8a02039afdf0459efd7df27d9c5db, type: 3}
   SpeedMultiplier: 1
+  GemScore: 0

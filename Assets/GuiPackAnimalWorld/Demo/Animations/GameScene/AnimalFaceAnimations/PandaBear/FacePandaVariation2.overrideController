@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FacePandaVariation2
+  m_Controller: {fileID: 9100000, guid: eee8b338a068b49a69e1e06936490655, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1dd7e22a880434b88a7198859fd70c6a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 62954f1482d29459194ade7809f66001, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ddda68674b46c436fb66853cc2fecadd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ddda68674b46c436fb66853cc2fecadd, type: 2}

@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FullscreenPopup
+  m_Controller: {fileID: 9100000, guid: f43cfc0272a3b41cbab0283f404ae52b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d3112d8e56ebb482481615b689e0a28f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5e375e7b97b994dd59d51256a82828c1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 36435e2c758354705b61a9a34df0dbaa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d2d1566fd44684036b1c14ad181868cf, type: 2}

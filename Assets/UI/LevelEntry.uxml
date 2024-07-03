@@ -1,5 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/LevelEntry.uss?fileID=7433441132597879392&amp;guid=54aabc71f6ce91c4d9d87a0ec5771ada&amp;type=3#LevelEntry" />
     <ui:VisualElement name="LevelEntry" class="level-entry">
-        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="LevelNumber" />
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" name="LevelNumber" style="-unity-slice-scale: 1px; flex-direction: column; top: 25%;" />
+        <ui:VisualElement name="StarsContainer" style="flex-grow: 0; flex-shrink: 0; top: -80%; width: 100%; height: 100%; justify-content: space-around; align-items: flex-start; flex-direction: row;">
+            <ui:VisualElement name="Star1" class="Star" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI/Yellow/Double/star.png?fileID=2800000&amp;guid=092b677f1590bcc498441ef7f13c7155&amp;type=3#star&quot;); width: 25%; height: 25%; flex-shrink: 0; top: 0; align-items: stretch; justify-content: flex-start;" />
+            <ui:VisualElement name="Star2" class="Star" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI/Yellow/Double/star.png?fileID=2800000&amp;guid=092b677f1590bcc498441ef7f13c7155&amp;type=3#star&quot;); width: 25%; height: 25%; flex-shrink: 0; top: 0;" />
+            <ui:VisualElement name="Star3" class="Star" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI/Yellow/Double/star.png?fileID=2800000&amp;guid=092b677f1590bcc498441ef7f13c7155&amp;type=3#star&quot;); width: 25%; height: 25%; flex-shrink: 0; top: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="LockIcon" class="LockIcon" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI/Icons/locked.png?fileID=2800000&amp;guid=482f8f89689ac004696ce65f84c3375c&amp;type=3#locked&quot;); flex-shrink: 0; width: 70%; height: 70%; top: -175%; align-items: stretch; justify-content: flex-start; flex-direction: column; flex-wrap: nowrap; flex-basis: auto; align-self: center;" />
     </ui:VisualElement>
 </ui:UXML>

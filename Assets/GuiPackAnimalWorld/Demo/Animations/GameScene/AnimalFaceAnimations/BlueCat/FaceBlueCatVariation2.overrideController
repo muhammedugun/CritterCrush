@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FaceBlueCatVariation2
+  m_Controller: {fileID: 9100000, guid: f1c1abaf232c54a679d183b95053401b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 1848b1b953d064eeab441863d23e6756, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3cee0b6fa554443dfa63b2a904576009, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3c330d7932e9643aea2cd2322789d77f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3c330d7932e9643aea2cd2322789d77f, type: 2}

@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FaceFrogVariation3
+  m_Controller: {fileID: 9100000, guid: 0a2fb0655d0cd419486678808258ff5a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 0264a253cbb1c4632bd84fb2806d3f0d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 908aa61af6725471fb5cd07171e74ed2, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ec40fbe94a981405bb772bd6a3fb2462, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ec40fbe94a981405bb772bd6a3fb2462, type: 2}

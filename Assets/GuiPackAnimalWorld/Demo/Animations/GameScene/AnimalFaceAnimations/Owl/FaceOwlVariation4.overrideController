@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FaceOwlVariation4
+  m_Controller: {fileID: 9100000, guid: 6cf6df328c1bc402aba539605b7c3c47, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c46181d82addf45c49d937955fd15d56, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9e5499f5726a24b829db473d38b8301e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8021d31a4c3fc4cf7a4cf69fd620b71c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8021d31a4c3fc4cf7a4cf69fd620b71c, type: 2}

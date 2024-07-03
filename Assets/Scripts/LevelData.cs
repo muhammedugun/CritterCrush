@@ -102,7 +102,7 @@ namespace Match3
                         GoalLeft -= 1;
                         if (GoalLeft == 0)
                         {
-                            // Elinde kalan hamel sayýsýna göre ekstra puan kazandýrýr
+                            // Elinde kalan hamle sayýsýna göre ekstra puan kazandýrýr
                             CurrentScore += RemainingMove * 30;
                             OnScoreChanged.Invoke(CurrentScore);
 

@@ -1,0 +1,14 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: FaceBirdYellowVariation2
+  m_Controller: {fileID: 9100000, guid: 42804aa7231754506b915f650af43356, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 586ceff02b8dc4cb18ec0b95d3fe7061, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f18bdc9d0fbc149f1ba99bc287aaea6c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7c52d634e4e16455f84980ed9801da3c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7c52d634e4e16455f84980ed9801da3c, type: 2}

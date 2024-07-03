@@ -730,7 +730,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: d9ec7a548efa8bd45935c66a44b3a019, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: e5a8df9d9008d7447a029fca0b1d7cef, type: 3}
+    m_Data: {fileID: 21300000, guid: e921a6ff8a8175345bfeb48e7548f451, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 1705f3e21bc7daf40be633145f112027, type: 3}
   - m_RefCount: 1
@@ -796,7 +796,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 655724003, guid: a9c8cfc3870a27845a9cb541600ec23b, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -1039917297, guid: a9c8cfc3870a27845a9cb541600ec23b, type: 3}
+    m_Data: {fileID: 21300000, guid: 509da5a6edd98c245b469316d371e124, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 1837102471, guid: a9c8cfc3870a27845a9cb541600ec23b, type: 3}
   - m_RefCount: 1
@@ -861,6 +861,24 @@ Tilemap:
       e30: 0
       e31: 0
       e32: 0
+      e33: 1
+  - m_RefCount: 0
+    m_Data:
+      e00: -1.0286362e+19
+      e01: NaN
+      e02: 1.5136714e-23
+      e03: 0
+      e10: 9.5e-44
+      e11: 8e-45
+      e12: 4.5905e-41
+      e13: 0
+      e20: NaN
+      e21: 0
+      e22: -1.0286345e+19
+      e23: 0
+      e30: 0
+      e31: 7.34684e-40
+      e32: 9.5e-44
       e33: 1
   m_TileColorArray:
   - m_RefCount: 57
@@ -983,7 +1001,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &6781726039517375742
+--- !u!114 &1959257504650281024
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
