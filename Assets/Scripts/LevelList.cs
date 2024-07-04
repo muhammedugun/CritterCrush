@@ -27,6 +27,8 @@ namespace Match3
 #endif
 
         public LevelGoals[] Goals;
+        public int[] TargetScore;
+        public int[] MaxMove;
 
         [HideInInspector] public int[] SceneList;
 
@@ -41,6 +43,14 @@ namespace Match3
 #endif
             }
         }
+
+        public static int GetSceneIndex()
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            string sceneNumber = SceneManager.GetActiveScene().name.Substring(5, sceneName.Length - 5);
+            return int.Parse(sceneNumber) - 1;
+        }
+
 
         public void LoadLevel(int levelNumber)
         {

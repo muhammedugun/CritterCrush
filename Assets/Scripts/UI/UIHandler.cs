@@ -150,6 +150,7 @@ namespace Match3
             
             m_GemGoalContent = m_Document.rootVisualElement.Q<VisualElement>("GoalContainer");
             m_MoveCounter = m_Document.rootVisualElement.Q<Label>("MoveCounter");
+
             m_ScoreBar = m_Document.rootVisualElement.Q<ProgressBar>("ScoreBar");
             for (int i = 0; i < 3; i++) 
             {
@@ -347,31 +348,7 @@ namespace Match3
             ApplySafeArea(m_EndScreen);
         }
     
-        public void UpdateScore(int score)
-        {
-            m_ScoreBar.value = score;
-
-
-            if(score >= LevelData.Instance.TargetScore * 0.33)
-            {
-                m_Stars[0].style.backgroundImage = YellowStarStyle;
-            }
-            if(score >= LevelData.Instance.TargetScore * 0.66)
-            {
-                m_Stars[1].style.backgroundImage = YellowStarStyle;
-            }
-            if (score >= LevelData.Instance.TargetScore)
-            {
-                m_Stars[2].style.backgroundImage = YellowStarStyle;
-            }
-
-
-
-
-
-        }
-
-        
+      
 
         // Sprite'ý Texture2D'ye dönüþtürme yöntemi
         private Texture2D SpriteToTexture2D(Sprite sprite)
@@ -400,7 +377,7 @@ namespace Match3
             if (LevelData.Instance != null)
             {
                 m_ScoreBar.highValue = LevelData.Instance.TargetScore;
-                LevelData.Instance.OnScoreChanged += UpdateScore;
+
             }
 
             m_WinTitle.style.scale = Vector2.zero;

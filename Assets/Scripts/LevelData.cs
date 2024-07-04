@@ -11,7 +11,8 @@ namespace Match3
     public class LevelData : MonoBehaviour
     {
         public static LevelData Instance { get; private set; }
-    
+        private LevelList _levelList;
+
         [Serializable]
         public class GemGoal
         {
@@ -20,8 +21,8 @@ namespace Match3
         }
 
         public string LevelName = "Level";
-        public int MaxMove;
-        public int TargetScore;
+        [HideInInspector] public int MaxMove;
+        [HideInInspector] public int TargetScore;
         [HideInInspector] public int CurrentScore;
         public int LowMoveTrigger = 10;
         public GemGoal[] Goals;
@@ -48,6 +49,7 @@ namespace Match3
         public int RemainingMove { get; private set; }
         public int GoalLeft { get; private set; }
 
+
         private int m_StartingWidth;
         private int m_StartingHeight;
         
@@ -56,6 +58,13 @@ namespace Match3
         private void Awake()
         {
             Instance = this;
+            var levelDataProvider = FindObjectOfType<LevelDataProvider>();
+
+            _levelList = levelDataProvider.levelList;
+
+            MaxMove = _levelList.MaxMove[LevelList.GetSceneIndex()];
+            TargetScore = _levelList.TargetScore[LevelList.GetSceneIndex()];
+
             RemainingMove = MaxMove;
             GoalLeft = Goals.Length;
             GameManager.Instance.StartLevel();
@@ -83,7 +92,7 @@ namespace Match3
         public bool Matched(Gem gem)
         {
             CurrentScore += gem.GemScore;
-            OnScoreChanged.Invoke(CurrentScore);
+            EventBus<int>.Publish(EventType.ScoreChanged, CurrentScore);
 
             foreach (var goal in Goals)
             {
@@ -95,6 +104,7 @@ namespace Match3
                     UIHandler.Instance.AddMatchEffect(gem);
                     
                     goal.Count -= 1;
+                    EventBus<int>.Publish(EventType.GoalCountChanged, goal.Count);
                     OnGoalChanged?.Invoke(gem.GemType, goal.Count);
 
                     if (goal.Count == 0)
@@ -104,7 +114,7 @@ namespace Match3
                         {
                             // Elinde kalan hamle sayýsýna göre ekstra puan kazandýrýr
                             CurrentScore += RemainingMove * 30;
-                            OnScoreChanged.Invoke(CurrentScore);
+                            EventBus<int>.Publish(EventType.ScoreChanged, CurrentScore);
 
                             GameManager.Instance.WinStar();
                             GameManager.Instance.Board.ToggleInput(false);
@@ -133,6 +143,7 @@ namespace Match3
         
         
             RemainingMove = Mathf.Max(0, RemainingMove - 1);
+            EventBus<int>.Publish(EventType.Moved, RemainingMove);
             OnMoveHappened?.Invoke(RemainingMove);
 
             if (prev > LowMoveTrigger && RemainingMove <= LowMoveTrigger)
