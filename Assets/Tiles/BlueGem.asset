@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a11575aeb75f4b47aa5e777e84540c2, type: 3}
   m_Name: BlueGem
   m_EditorClassIdentifier: 
-  PreviewEditorSprite: {fileID: 21300000, guid: 34229840e6a46ab45aea9151ca7df4e5, type: 3}
+  PreviewEditorSprite: {fileID: 21300000, guid: faeb80b97de69db43ac8593d713cc1ed, type: 3}
   PlacedGem: {fileID: 4895668700877159741, guid: 43d36d7d927fcb64dbb4058c6d88becd, type: 3}

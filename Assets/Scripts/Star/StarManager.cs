@@ -5,21 +5,6 @@ using UnityEngine.UI;
 
 public class StarManager : MonoBehaviour
 {
-
-    [SerializeField] private Text _starCountText;
-
-    private void Start()
-    {
-        if(_starCountText!=null)
-        {
-            _starCountText.text = GetStarCount().ToString();
-        }
-        else
-        {
-            Debug.LogWarning("StarCountText atanmamýþ!");
-        }
-    }
-
     public static void AddStarCount(int count)
     {
         int currentStarCount = GetStarCount();
@@ -31,4 +16,5 @@ public class StarManager : MonoBehaviour
     {
         return PlayerPrefs.GetInt("StarCount", 0);
     }
+
 }

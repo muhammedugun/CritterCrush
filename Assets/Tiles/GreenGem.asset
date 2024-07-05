@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a11575aeb75f4b47aa5e777e84540c2, type: 3}
   m_Name: GreenGem
   m_EditorClassIdentifier: 
-  PreviewEditorSprite: {fileID: 21300000, guid: 4164125c65c1414428ddd1553c1247df, type: 3}
+  PreviewEditorSprite: {fileID: 21300000, guid: 703c41856348fba4683c8a6f7e5eb7f5, type: 3}
   PlacedGem: {fileID: 6307004918233370529, guid: 35f15072bcb3d3e41bf28a8a56bc6749, type: 3}

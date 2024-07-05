@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4cbf1914eab0e2547b559b8c13462cbf, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   - {fileID: 701145286679865675, guid: 23b89d4933186fe42b62461fed0dc73e, type: 3}
   UISprite: {fileID: 21300000, guid: 81f8cf05ae9961b4abfca62c818cef0f, type: 3}
   SpeedMultiplier: 1
+  GemScore: 0
   CanBeDestroyedWithAdjacentMatch: 1
   HealthStates:
   - {fileID: 21300000, guid: d02021592ca34a84b995269818c778a7, type: 3}

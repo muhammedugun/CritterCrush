@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4cbf1914eab0e2547b559b8c13462cbf, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 1890678711
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4000efab261551842933882182237a1a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63fa0544ee6d8984f82840b0e4200db9, type: 3}
   m_Color: {r: 0.990566, g: 0.9241891, b: 0.90334636, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,8 +100,9 @@ MonoBehaviour:
   GemType: -4
   MatchEffectPrefabs:
   - {fileID: 6740787936956792315, guid: 7ad7d152397dd88418f6ad937eab3285, type: 3}
-  UISprite: {fileID: 21300000, guid: c0227704aa781d5449b9eed7d70b2655, type: 3}
+  UISprite: {fileID: 21300000, guid: 139746c1e1b9c439f9c4d6900d32459d, type: 3}
   SpeedMultiplier: 1
+  GemScore: 0
   Shapes:
   - CanMirror: 0
     CanRotate: 0

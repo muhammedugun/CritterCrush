@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a11575aeb75f4b47aa5e777e84540c2, type: 3}
   m_Name: RedGem
   m_EditorClassIdentifier: 
-  PreviewEditorSprite: {fileID: 21300000, guid: e1b658847f46e984a85c93c31f5d042b, type: 3}
+  PreviewEditorSprite: {fileID: 21300000, guid: 6233ba0dc46ba1845822cda1e9b274f7, type: 3}
   PlacedGem: {fileID: 6434786641028643310, guid: b17f6d1923843db4d9bbf34b516f6dfc, type: 3}

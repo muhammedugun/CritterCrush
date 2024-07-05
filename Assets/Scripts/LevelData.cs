@@ -101,7 +101,7 @@ namespace Match3
                     if (goal.Count == 0)
                         return false;
                 
-                    UIHandler.Instance.AddMatchEffect(gem);
+                    
                     
                     goal.Count -= 1;
                     EventBus<int>.Publish(EventType.GoalCountChanged, goal.Count);
@@ -146,14 +146,11 @@ namespace Match3
             EventBus<int>.Publish(EventType.Moved, RemainingMove);
             OnMoveHappened?.Invoke(RemainingMove);
 
-            if (prev > LowMoveTrigger && RemainingMove <= LowMoveTrigger)
-            {
-                UIHandler.Instance.TriggerCharacterAnimation(UIHandler.CharacterAnimation.LowMove);
-            }
 
             if (RemainingMove <= 0)
             {
                 OnNoMoveLeft();
+                EventBus.Publish(EventType.MoveCountOver);
             }
         }
     }

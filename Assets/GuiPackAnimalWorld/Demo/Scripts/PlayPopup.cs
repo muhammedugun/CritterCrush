@@ -23,9 +23,16 @@ namespace Ricimi
 
         public SceneTransition playButton;
 
+        [HideInInspector] public int levelIndex;
 
         [SerializeField] private LevelList _levelList;
         [SerializeField] private GameObject _goals;
+        [SerializeField] private Text _headlineText;
+
+        private void Start()
+        {
+            _headlineText.text="Play level "+(levelIndex+1).ToString();
+        }
 
         public void UpdateGoals(int levelIndex)
         {

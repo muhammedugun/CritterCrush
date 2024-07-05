@@ -41,7 +41,7 @@ namespace Ricimi
             
 
              _levelIndex = _levelNumber -1;
-            starsObtained = LevelStars.GetStars(_levelIndex);
+             starsObtained = LevelStars.GetStars(_levelIndex);
 
 
         }
@@ -58,6 +58,7 @@ namespace Ricimi
             playPopup.Open();
             playPopup.SetAchievedStars(starsObtained);
             playPopup.UpdateGoals(_levelIndex);
+            playPopup.levelIndex = _levelIndex;
             
         }
     }

@@ -6,7 +6,7 @@ namespace Match3
     /// Allow to use a BonusGem as a BonusItem (item listed on a bar on screen, usually bought in the Shop)
     /// </summary>
     [CreateAssetMenu(fileName = "Bonus Gem Item", menuName = "2D Match/Bonus Items/Bonus Gem Item")]
-    public class BonusGemBonusItem : BonusItem
+    public class BonusGemBonusItem : BoosterItem
     {
         public BonusGem UsedBonusGem;
 

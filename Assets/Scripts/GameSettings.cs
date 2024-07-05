@@ -33,7 +33,7 @@ namespace Match3
         public AnimationCurve MatchFlyCurve;
         public AnimationCurve CoinFlyCurve;
 
-        public GameObject BonusModePrefab;
+        public GameObject BoosterModePrefab;
         
         public GameObject HintPrefab;
 

@@ -55,10 +55,10 @@ namespace Match3
         }
 
         [System.Serializable]
-        public class BonusItemEntry
+        public class BoosterItemEntry
         {
             public int Amount;
-            public BonusItem Item;
+            public BoosterItem Item;
         }
     
         private static GameManager s_Instance;
@@ -73,7 +73,7 @@ namespace Match3
 
         public SoundData Volumes => m_SoundData;
 
-        public List<BonusItemEntry> BonusItems = new();
+        public List<BoosterItemEntry> BoosterItems = new();
 
         public VFXPoolSystem PoolSystem { get; private set; } = new();
 
@@ -82,7 +82,7 @@ namespace Match3
         private AudioSource MusicSourceBackground;
         private Queue<AudioSource> m_SFXSourceQueue = new();
 
-        private GameObject m_BonusModePrefab;
+        private GameObject m_BoosterModePrefab;
     
         private VisualEffect m_WinEffect;
         private VisualEffect m_LoseEffect;
@@ -118,10 +118,10 @@ namespace Match3
                     m_SFXSourceQueue.Enqueue(sourceInst);
                 }
 
-                if (Settings.VisualSettings.BonusModePrefab != null)
+                if (Settings.VisualSettings.BoosterModePrefab != null)
                 {
-                    m_BonusModePrefab = Instantiate(Settings.VisualSettings.BonusModePrefab);
-                    m_BonusModePrefab.SetActive(false);
+                    m_BoosterModePrefab = Instantiate(Settings.VisualSettings.BoosterModePrefab);
+                    m_BoosterModePrefab.SetActive(false);
                 }
 
                 m_WinEffect = Instantiate(Settings.VisualSettings.WinEffect, transform);
@@ -147,8 +147,8 @@ namespace Match3
         public void StartLevel()
         {
             GetReferences();
-            UIHandler.Instance.Display(true);
-            
+          
+
             m_WinEffect.gameObject.SetActive(false);
             m_LoseEffect.gameObject.SetActive(false);
             
@@ -221,19 +221,10 @@ namespace Match3
             m_LoseEffect.gameObject.SetActive(false);
             
             SwitchMusic(Instance.Settings.SoundSettings.MenuSound);
-            UIHandler.Instance.Display(false);
         }
 
         private void Update()
         {
-            //In the editor or a development build, F12 can open a debug menu to add any gem anywhere, but in final build
-            //we do not need to test for that.
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-            if (Keyboard.current.f12Key.wasPressedThisFrame)
-            {
-                UIHandler.Instance.ToggleDebugMenu();
-            }
-#endif
 
             if (MusicSourceActive.volume < 1.0f)
             {
@@ -248,7 +239,7 @@ namespace Match3
             if (Stars < 0)
                 Stars = 0;
         
-            UIHandler.Instance.UpdateTopBarData();
+       
         }
 
         public void WinStar()
@@ -308,9 +299,9 @@ namespace Match3
             UpdateVolumes();
         }
 
-        public void AddBonusItem(BonusItem item)
+        public void AddBoosterItem(BoosterItem item)
         {
-            var existingItem = BonusItems.Find(entry => entry.Item == item);
+            var existingItem = BoosterItems.Find(entry => entry.Item == item);
 
             if (existingItem != null)
             {
@@ -318,34 +309,38 @@ namespace Match3
             }
             else
             {
-                BonusItems.Add(new BonusItemEntry()
+                BoosterItems.Add(new BoosterItemEntry()
                 {
                     Amount = 1,
                     Item = item
                 });
             }
             
-            UIHandler.Instance.UpdateBottomBar();
+           
         }
 
-        public void ActivateBonusItem(BonusItem item)
+        public void ActivateBoosterItem(BoosterItem item)
         {
             LevelData.Instance.DarkenBackground(item != null);
-            m_BonusModePrefab?.SetActive(item != null);
-            Board.ActivateBonusItem(item);
+            m_BoosterModePrefab?.SetActive(item != null);
+            Board.ActivateBoosterItem(item);
         }
 
-        public void UseBonusItem(BonusItem item, Vector3Int cell)
+        public void DeactiveBoosterItem()
         {
-            var existingItem = BonusItems.Find(entry => entry.Item == item);
+            Board.DeactiveBoosterItem();
+        }
+
+        public void UseBoosterItem(BoosterItem item, Vector3Int cell)
+        {
+            var existingItem = BoosterItems.Find(entry => entry.Item == item);
             if(existingItem == null) return;
         
             existingItem.Item.Use(cell);
             existingItem.Amount -= 1;
             
-            m_BonusModePrefab?.SetActive(false);
-            UIHandler.Instance.UpdateBottomBar();
-            UIHandler.Instance.DeselectBonusItem();
+            m_BoosterModePrefab?.SetActive(false);
+
         }
 
         public AudioSource PlaySFX(AudioClip clip)
@@ -357,18 +352,6 @@ namespace Match3
             source.Play();
 
             return source;
-        }
-
-        public void WinTriggered()
-        {
-            PlaySFX(Settings.SoundSettings.WinVoice);
-            m_WinEffect.gameObject.SetActive(true);
-        }
-
-        public void LooseTriggered()
-        {
-            PlaySFX(Settings.SoundSettings.LooseVoice);
-            m_LoseEffect.gameObject.SetActive(true);
         }
 
         void SwitchMusic(AudioClip music)

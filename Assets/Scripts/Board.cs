@@ -77,11 +77,11 @@ namespace Match3
         private bool m_SwipeQueued;
         private Vector3Int m_StartSwipe;
         private Vector3Int m_EndSwipe;
-        private bool m_IsHoldingTouch;
+
 
         private float m_LastClickTime = 0.0f;
 
-        private BonusItem m_ActivatedBonus;
+        public BoosterItem m_ActivatedBooster;
 
         private VisualEffect m_GemHoldVFXInstance;
         private VisualEffect m_HoldTrailInstance;
@@ -158,20 +158,6 @@ namespace Match3
             m_VisualSettingReference = GameManager.Instance.Settings.VisualSettings;
             m_LastClickTime = Time.time;
 
-            UIHandler.Instance.Init();
-
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-            foreach (var bonus in GameManager.Instance.Settings.BonusSettings.Bonuses)
-            {
-                UIHandler.Instance.RegisterGemToDebug(bonus);
-            }
-        
-            foreach (var gem in GameManager.Instance.Board.ExistingGems)
-            {
-                UIHandler.Instance.RegisterGemToDebug(gem);
-            }
-#endif
-            
             //fill a lookup of gem type to gem
             m_GemLookup = new Dictionary<int, Gem>();
             foreach (var gem in ExistingGems)
@@ -199,17 +185,11 @@ namespace Match3
                 m_HoldTrailInstance.gameObject.SetActive(false);
             }
 
-            ToggleInput(false);
-            //we wait couple of frames before fading in, as UI was just init yet so animation would not play
-            StartCoroutine(WaitToFadeIn());
+            ToggleInput(true);
+
         }
 
-        IEnumerator WaitToFadeIn()
-        {
-            yield return null;
-            yield return null;
-            UIHandler.Instance.FadeIn(() => { ToggleInput(true); });
-        }
+
 
         //Called by Gem Placer to create a placement cell
         public static void RegisterCell(Vector3Int cellPosition, Gem startingGem = null)
@@ -494,7 +474,7 @@ namespace Match3
             //this will set to false if ANYTHING happen.
             //only increment when the board is still and nothing happens
             //the starting value is if we have a bonus item or not (if we have one, this cannot increment)
-            bool incrementHintTimer = m_ActivatedBonus == null;
+            bool incrementHintTimer = m_ActivatedBooster == null;
 
             if (m_TickingCells.Count > 0)
             {
@@ -565,7 +545,6 @@ namespace Match3
                 {
                     //this stop the end to be called in a loop. Input is still disabled to user cannot interact with board
                     m_FinalStretch = false;
-                    UIHandler.Instance.ShowEnd();
                     return;
                 }
                 
@@ -1038,13 +1017,6 @@ namespace Match3
             m_CellToMatchCheck.Clear();
         }
 
-        void DrawDebugCross(Vector3 center)
-        {
-            Debug.DrawLine(center + Vector3.left * 0.5f + Vector3.up * 0.5f,
-                center + Vector3.right * 0.5f + Vector3.down * 0.5f);
-            Debug.DrawLine(center + Vector3.left * 0.5f - Vector3.up * 0.5f,
-                center + Vector3.right * 0.5f - Vector3.down * 0.5f);
-        }
 
         //if gemPrefab is null, will pick a random gem from the existing one
         Gem NewGemAt(Vector3Int cell, Gem gemPrefab)
@@ -1297,7 +1269,6 @@ namespace Match3
                         finalMatch.AddGem(CellContent[cell].ContainingGem);
                 }
 
-                UIHandler.Instance.TriggerCharacterAnimation(UIHandler.CharacterAnimation.Match);
             }
 
             return true;
@@ -1324,35 +1295,15 @@ namespace Match3
         
             if (pressedThisFrame)
             {
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-                //if the debug menu is open we instantiate the selected gem in the click cell
-                if (UIHandler.Instance.DebugMenuOpen)
-                {
-                    if (UIHandler.Instance.SelectedDebugGem != null)
-                    {
-                        var clickedCell = m_Grid.WorldToCell(Camera.main.ScreenToWorldPoint(clickPos));
-                        if (CellContent.TryGetValue(clickedCell, out var cellContent))
-                        {
-                            if (cellContent.ContainingGem != null)
-                            {
-                                Destroy(cellContent.ContainingGem.gameObject);
-                            }
 
-                            NewGemAt(clickedCell, UIHandler.Instance.SelectedDebugGem);
-                        }
-                    }
-                
-                    return;
-                }
-#endif
                 //if we had an activated bonus, clicking somewhere will use it 
-                if (m_ActivatedBonus != null)
+                if (m_ActivatedBooster != null)
                 {
                     var clickedCell = m_Grid.WorldToCell(mainCam.ScreenToWorldPoint(clickPos));
                     if (CellContent.TryGetValue(clickedCell, out var content) && content.ContainingGem != null)
                     {
-                        GameManager.Instance.UseBonusItem(m_ActivatedBonus, clickedCell);
-                        m_ActivatedBonus = null;
+                        GameManager.Instance.UseBoosterItem(m_ActivatedBooster, clickedCell);
+                        m_ActivatedBooster = null;
                         return;
                     }
                 }
@@ -1379,16 +1330,9 @@ namespace Match3
             }
             else if (releasedThisFrame)
             {
-                m_IsHoldingTouch = false;
                 if(m_GemHoldVFXInstance != null) m_GemHoldVFXInstance.gameObject.SetActive(false);
                 if(m_HoldTrailInstance != null) m_HoldTrailInstance.gameObject.SetActive(false);
                 
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-                if (UIHandler.Instance.DebugMenuOpen)
-                {
-                    return;
-                }
-#endif
                 float clickDelta = Time.time - m_LastClickTime;
                 m_LastClickTime = Time.time;
 
@@ -1459,9 +1403,14 @@ namespace Match3
             }
         }
 
-        public void ActivateBonusItem(BonusItem item)
+        public void ActivateBoosterItem(BoosterItem item)
         {
-            m_ActivatedBonus = item;
+            m_ActivatedBooster = item;
+        }
+
+        public void DeactiveBoosterItem()
+        {
+            m_ActivatedBooster = null;
         }
 
         void FindAllPossibleMatch()
