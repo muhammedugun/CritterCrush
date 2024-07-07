@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 38961360862223401}
   - component: {fileID: 3083563272854598365}
   - component: {fileID: 4895668700877159741}
+  - component: {fileID: 7960575298182529661}
+  - component: {fileID: 5980383499308571034}
   m_Layer: 0
   m_Name: GemBlue
-  m_TagString: Untagged
+  m_TagString: GridObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,3 +105,36 @@ MonoBehaviour:
   UISprite: {fileID: 21300000, guid: faeb80b97de69db43ac8593d713cc1ed, type: 3}
   SpeedMultiplier: 1
   GemScore: 0
+--- !u!95 &7960575298182529661
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951016854026316291}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 835bcc0ce89cbeb40b2949f2756beed1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5980383499308571034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951016854026316291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a26295fb0f21a4c9774b6a080883c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

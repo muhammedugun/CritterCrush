@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 4525821054390271282}
   - component: {fileID: 7950763806552190659}
   - component: {fileID: 6307004918233370529}
+  - component: {fileID: 7934169180471211995}
+  - component: {fileID: -6136909098825171538}
   m_Layer: 0
   m_Name: GemGreen
-  m_TagString: Untagged
+  m_TagString: GridObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,3 +105,36 @@ MonoBehaviour:
   UISprite: {fileID: 21300000, guid: 703c41856348fba4683c8a6f7e5eb7f5, type: 3}
   SpeedMultiplier: 1
   GemScore: 0
+--- !u!95 &7934169180471211995
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457649193239531400}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0a2fb0655d0cd419486678808258ff5a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-6136909098825171538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457649193239531400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a26295fb0f21a4c9774b6a080883c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7805701772922581740}
   m_Layer: 0
   m_Name: VerticalBonus
-  m_TagString: Untagged
+  m_TagString: GridObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   GemType: -5
   MatchEffectPrefabs:
   - {fileID: 3471883154185988548, guid: ccec8ec025fa440449c7cafbd8bc2954, type: 3}
-  UISprite: {fileID: 21300000, guid: 8ede225d5857bc147950445f1be8d25c, type: 3}
+  UISprite: {fileID: 21300000, guid: 548064cff3c6cc4468080f876a10826b, type: 3}
   SpeedMultiplier: 1
   GemScore: 0
   Shapes:

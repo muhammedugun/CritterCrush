@@ -819,12 +819,6 @@ namespace Match3
                         j--;
 
                         match.DeletedCount += 1;
-                        //we only spawn coins for non bonus match
-                        if (match.DeletedCount >= 4 && !match.ForcedDeletion)
-                        {
-                            GameManager.Instance.PoolSystem.PlayInstanceAt(GameManager.Instance.Settings.VisualSettings.CoinVFX,
-                                gem.transform.position);
-                        }
                     
                         if (match.SpawnedBonus != null && match.OriginPoint == gemIdx)
                         {

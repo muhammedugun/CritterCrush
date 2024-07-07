@@ -49,6 +49,8 @@ namespace Ricimi
                 _goals.transform.GetChild(i).gameObject.SetActive(true);
                 var image = _goals.transform.GetChild(i).GetChild(0).GetChild(0).GetComponent<Image>();
                 image.sprite = _levelList.Goals[levelIndex].Goals[i].Gem.UISprite;
+                var goalCountText = _goals.transform.GetChild(i).GetChild(1).GetComponent<Text>();
+                goalCountText.text = "x " + _levelList.Goals[levelIndex].Goals[i].Count.ToString();
             }
         }
 

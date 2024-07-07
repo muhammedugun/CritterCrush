@@ -37,8 +37,6 @@ namespace Match3
         
         public GameObject HintPrefab;
 
-        public VisualEffect CoinVFX;
-
         public VisualEffect WinEffect;
         public VisualEffect LoseEffect;
     }
@@ -87,7 +85,6 @@ namespace Match3
         
         public AudioClip SwipSound;
         public AudioClip FallSound;
-        public AudioClip CoinSound;
 
         public AudioClip WinVoice;
         public AudioClip LooseVoice;

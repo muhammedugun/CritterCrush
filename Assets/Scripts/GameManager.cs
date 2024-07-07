@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.VFX;
+
 
 namespace Match3
 {
@@ -84,8 +83,6 @@ namespace Match3
 
         private GameObject m_BoosterModePrefab;
     
-        private VisualEffect m_WinEffect;
-        private VisualEffect m_LoseEffect;
         
         private SoundData m_SoundData = new();
 
@@ -124,8 +121,6 @@ namespace Match3
                     m_BoosterModePrefab.SetActive(false);
                 }
 
-                m_WinEffect = Instantiate(Settings.VisualSettings.WinEffect, transform);
-                m_LoseEffect = Instantiate(Settings.VisualSettings.LoseEffect, transform);
 
                 LoadSoundData();
             }
@@ -149,8 +144,7 @@ namespace Match3
             GetReferences();
           
 
-            m_WinEffect.gameObject.SetActive(false);
-            m_LoseEffect.gameObject.SetActive(false);
+
             
             LevelData.Instance.OnAllGoalFinished += () =>
             {
@@ -169,7 +163,6 @@ namespace Match3
                 SwitchMusic(LevelData.Instance.Music);
             }
 
-            PoolSystem.AddNewInstance(Settings.VisualSettings.CoinVFX, 12);
 
             //we delay the board init to leave enough time for all the tile to init
             StartCoroutine(DelayedInit());
@@ -217,8 +210,6 @@ namespace Match3
         public void MainMenuOpened()
         {
             PoolSystem.Clean();
-            m_WinEffect.gameObject.SetActive(false);
-            m_LoseEffect.gameObject.SetActive(false);
             
             SwitchMusic(Instance.Settings.SoundSettings.MenuSound);
         }
@@ -249,6 +240,7 @@ namespace Match3
             int levelIndex = int.Parse(levelNumber) - 1;
             int earnedStarCount=0;
 
+            
             if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.33)
             {
                 earnedStarCount = 1;

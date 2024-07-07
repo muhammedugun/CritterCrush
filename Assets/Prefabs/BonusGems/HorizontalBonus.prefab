@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7805701772922581740}
   m_Layer: 0
   m_Name: HorizontalBonus
-  m_TagString: Untagged
+  m_TagString: GridObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   GemType: -1
   MatchEffectPrefabs:
   - {fileID: 3471883154185988548, guid: addb7bf41e8911e48befe3c8fdaf48b1, type: 3}
-  UISprite: {fileID: 21300000, guid: a3c042e7079c8fc4b8d2ead6d6113868, type: 3}
+  UISprite: {fileID: 21300000, guid: 941bfac123b15de4a9ba7550aeaaf761, type: 3}
   SpeedMultiplier: 1
   GemScore: 0
   Shapes:

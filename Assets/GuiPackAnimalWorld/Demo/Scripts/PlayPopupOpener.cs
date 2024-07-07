@@ -13,37 +13,16 @@ namespace Ricimi
     // editor).
     public class PlayPopupOpener : PopupOpener
     {
-        
-
-        private int _levelNumber;
+        [HideInInspector] public int levelIndex;
 
         private int starsObtained;
 
-        private int _levelIndex;
-
+        
         protected override void Start()
         {
             base.Start();
 
-            string input = transform.parent.name;
-
-            string digitsOnly = new string(input.Where(char.IsDigit).ToArray());
-
-            if (int.TryParse(digitsOnly, out int result))
-            {
-                _levelNumber = result;
-            }
-            else
-            {
-                Debug.LogWarning("Level number tanýmlama baþarýsýz oldu.");
-            }
-
-            
-
-             _levelIndex = _levelNumber -1;
-             starsObtained = LevelStars.GetStars(_levelIndex);
-
-
+             starsObtained = LevelStars.GetStars(levelIndex);
         }
 
         public override void OpenPopup()
@@ -54,11 +33,13 @@ namespace Ricimi
             popup.transform.SetParent(m_canvas.transform, false);
 
             var playPopup = popup.GetComponent<PlayPopup>();
-            playPopup.playButton.scene = "Level" + _levelNumber;
+            playPopup.playButton.scene = "Level" + (levelIndex+1).ToString();
+            Debug.LogWarning("levelIndex" + levelIndex);
             playPopup.Open();
+            Debug.LogWarning("starsObtained" + starsObtained);
             playPopup.SetAchievedStars(starsObtained);
-            playPopup.UpdateGoals(_levelIndex);
-            playPopup.levelIndex = _levelIndex;
+            playPopup.UpdateGoals(levelIndex);
+            playPopup.levelIndex = levelIndex;
             
         }
     }

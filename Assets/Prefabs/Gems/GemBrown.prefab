@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 360718551892467635}
   - component: {fileID: 2670256946490198802}
   - component: {fileID: 1992002514194045819}
+  - component: {fileID: -3980144969530507588}
+  - component: {fileID: -5906053314277884663}
   m_Layer: 0
   m_Name: GemBrown
-  m_TagString: Untagged
+  m_TagString: GridObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,3 +105,36 @@ MonoBehaviour:
   UISprite: {fileID: 21300000, guid: c4bf9a855c0d64a4a8badf050d5171cb, type: 3}
   SpeedMultiplier: 1
   GemScore: 0
+--- !u!95 &-3980144969530507588
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529176525874886647}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 097e75fd22def0d40a9c6c4961231096, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-5906053314277884663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529176525874886647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9a26295fb0f21a4c9774b6a080883c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

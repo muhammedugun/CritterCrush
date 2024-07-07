@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public enum EventType
 {
-    ScoreChanged, Moved, GoalCountChanged, MoveCountOver
+    ScoreChanged, Moved, GoalCountChanged, MoveCountOver, AllGoalCompleted
 }
 
 

@@ -21,11 +21,11 @@ public class ScoreBar : MonoBehaviour
     public void UpdateBar(int score)
     {
 
-        int sceneIndex = LevelList.GetSceneIndex();
+        _scoreBar.fillAmount = (score / (float)LevelData.Instance.TargetScore);
 
-        _scoreBar.fillAmount = (score / (float)_levelList.TargetScore[0]);
-        
-        
+        Debug.LogWarning("LevelData.Instance.CurrentScore: " + LevelData.Instance.CurrentScore);
+        Debug.LogWarning("LevelData.Instance.TargetScore: " + LevelData.Instance.TargetScore);
+
         if (score >= LevelData.Instance.TargetScore * 0.33)
         {
             _stars.GetChild(0).GetComponent<Image>().sprite = _goldStarSprite;

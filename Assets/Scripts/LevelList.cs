@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 using static Match3.LevelData;
 
 
 #if UNITY_EDITOR
-using System;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;

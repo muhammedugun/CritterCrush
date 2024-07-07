@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Match3
 {
@@ -64,6 +65,7 @@ namespace Match3
 
             MaxMove = _levelList.MaxMove[LevelList.GetSceneIndex()];
             TargetScore = _levelList.TargetScore[LevelList.GetSceneIndex()];
+            
 
             RemainingMove = MaxMove;
             GoalLeft = Goals.Length;
@@ -118,6 +120,12 @@ namespace Match3
 
                             GameManager.Instance.WinStar();
                             GameManager.Instance.Board.ToggleInput(false);
+                            EventBus.Publish(EventType.AllGoalCompleted);
+
+                            string levelName = SceneManager.GetActiveScene().name;
+                            int levelNumber = int.Parse(levelName.Substring(5, levelName.Length - 5))+1;
+                            PlayerPrefs.SetInt("isLevel"+ levelNumber + "Active", 1);
+
                             OnAllGoalFinished?.Invoke();
                         }
                     }
