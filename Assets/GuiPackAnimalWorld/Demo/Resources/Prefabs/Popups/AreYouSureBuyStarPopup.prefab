@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 8243541100952065796}
   - component: {fileID: 5505304518609196949}
   m_Layer: 5
-  m_Name: AreYouSurePopup
+  m_Name: AreYouSureBuyStarPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -884,7 +884,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Stay
+  m_Text: Yes
 --- !u!114 &11495706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,10 +967,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 16477522e7e2e4c22ba19ccc2994af77, type: 3}
-    m_FontSize: 55
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 4
     m_MaxSize: 55
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -978,7 +978,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0.9
-  m_Text: "If you leave the level \nyou will lose 1      "
+  m_Text: "You don't have enough        \nDo you want to buy stars?"
 --- !u!1 &143754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,7 +1862,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Okey
+  m_Text: No
 --- !u!114 &11411778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1978,8 +1978,9 @@ GameObject:
   - component: {fileID: 9514056}
   - component: {fileID: 11463898}
   - component: {fileID: 8270578}
+  - component: {fileID: 7620110994958463615}
   m_Layer: 5
-  m_Name: StayButton
+  m_Name: YesButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2059,6 +2060,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8270578}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7620110994958463615}
+        m_TargetAssemblyTypeName: Ricimi.PopupOpener, Assembly-CSharp
+        m_MethodName: OpenPopup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2164,6 +2177,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7620110994958463615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPrefab: {fileID: 127650, guid: 6aa36d34e8c9c44f8b7819012041d5bf, type: 3}
 --- !u!1 &179172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,7 +2469,7 @@ GameObject:
   - component: {fileID: 11405932}
   - component: {fileID: 8257874}
   m_Layer: 5
-  m_Name: OkeyButton
+  m_Name: NoButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2508,18 +2534,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8243541100952065796}
-        m_TargetAssemblyTypeName: LifeManager, Assembly-CSharp
-        m_MethodName: AddLifeCount
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: -1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 11447932}
         m_TargetAssemblyTypeName: 
         m_MethodName: Close
@@ -2535,18 +2549,6 @@ MonoBehaviour:
       - m_Target: {fileID: 8257874}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5505304518609196949}
-        m_TargetAssemblyTypeName: GameSceneManager, Assembly-CSharp
-        m_MethodName: QuitLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2761,8 +2763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 234, y: -313}
-  m_SizeDelta: {x: 100.8, y: 79.8}
+  m_AnchoredPosition: {x: 313, y: -238}
+  m_SizeDelta: {x: 83.16, y: 80.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4620480301154860480
 CanvasRenderer:
@@ -2792,7 +2794,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8720bd517acc948a4bcf545fb1afb4ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3561ab231ac304a6c8ab49ab7fa10f15, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -56,7 +56,7 @@ namespace Ricimi
             Invoke("InvokeOnClickAction", 0.1f);
         }
 
-        private void InvokeOnClickAction()
+        public void InvokeOnClickAction()
         {
             m_OnClick.Invoke();
         }

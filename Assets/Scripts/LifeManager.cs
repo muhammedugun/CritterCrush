@@ -14,17 +14,18 @@ public class LifeManager : MonoBehaviour
     /// </summary>
     public static void DecreaseHealthOne()
     {
-        AddHeartCount(-1);
+        AddLifeCount(-1);
     }
 
-    public static void AddHeartCount(int count)
+    public static void AddLifeCount(int count)
     {
-        int currentHeartCount = GetHeartCount();
+        int currentHeartCount = GetLifeCount();
         currentHeartCount += count;
+        currentHeartCount = Mathf.Clamp(currentHeartCount, 0, 5);
         PlayerPrefs.SetInt("LifeCount", currentHeartCount);
     }
 
-    public static int GetHeartCount()
+    public static int GetLifeCount()
     {
         return PlayerPrefs.GetInt("LifeCount", 0);
     }
