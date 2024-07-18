@@ -2048,6 +2048,8 @@ GameObject:
   - component: {fileID: 11411076}
   - component: {fileID: 9522044}
   - component: {fileID: 1540445572180494115}
+  - component: {fileID: 2173912654410873992}
+  - component: {fileID: 8440142371152510238}
   m_Layer: 5
   m_Name: LivesShopPopupPortrait
   m_TagString: Untagged
@@ -2133,6 +2135,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _starCountText: {fileID: 11404640}
+--- !u!114 &2173912654410873992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc6c6243bab28546b2c8e1589058ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buyButtonText: {fileID: 11431640}
+  _starShopPopupOpener: {fileID: 8440142371152510238}
+--- !u!114 &8440142371152510238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPrefab: {fileID: 127650, guid: 6aa36d34e8c9c44f8b7819012041d5bf, type: 3}
 --- !u!1 &128570
 GameObject:
   m_ObjectHideFlags: 0
@@ -9842,7 +9871,7 @@ GameObject:
   - component: {fileID: 11477116}
   - component: {fileID: 8218614}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BuyButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9912,6 +9941,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8218614}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2173912654410873992}
+        m_TargetAssemblyTypeName: LivesShopPopup, Assembly-CSharp
+        m_MethodName: BuyLive
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10179,6 +10220,7 @@ GameObject:
   - component: {fileID: 9598648}
   - component: {fileID: 11467286}
   - component: {fileID: 8236410}
+  - component: {fileID: 7179514105072630381}
   m_Layer: 5
   m_Name: Coins Button
   m_TagString: Untagged
@@ -10249,6 +10291,18 @@ MonoBehaviour:
       - m_Target: {fileID: 8236410}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7179514105072630381}
+        m_TargetAssemblyTypeName: Ricimi.PopupOpener, Assembly-CSharp
+        m_MethodName: OpenPopup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10354,6 +10408,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7179514105072630381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 163580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPrefab: {fileID: 127650, guid: 6aa36d34e8c9c44f8b7819012041d5bf, type: 3}
 --- !u!1 &164074
 GameObject:
   m_ObjectHideFlags: 0
@@ -15514,7 +15581,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 657e5cbbacea645f29fb6b77a311840f, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

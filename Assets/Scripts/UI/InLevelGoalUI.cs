@@ -1,19 +1,25 @@
 using Match3;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InLevelGoalUI : MonoBehaviour
 {
-    [SerializeField] private GameObject _goals;
+    public GameObject _goals;
     private LevelList _levelList;
+    [SerializeField] private bool _isWinPopUp;
+    private GameObject _otherGoals;
 
     private void Start()
     {
+        if (_isWinPopUp)
+        {
+            _otherGoals = GameObject.Find("Manager").GetComponent<InLevelGoalUI>()._goals;
+        }
         _levelList = FindObjectOfType<LevelDataProvider>().levelList;
         UpdateGoalSprite();
         EventBus<int>.Subscribe(EventType.GoalCountChanged, UpdateGoalCount);
+        
+        
     }
 
     public void UpdateGoalSprite()
@@ -35,6 +41,11 @@ public class InLevelGoalUI : MonoBehaviour
             image.sprite = _levelList.Goals[levelIndex].Goals[i].Gem.UISprite;
 
             _goals.transform.GetChild(i).GetChild(2).GetComponent<Text>().text = "/"+_levelList.Goals[levelIndex].Goals[i].Count.ToString();
+            if(_isWinPopUp)
+            {
+                _goals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text = _otherGoals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text;
+                _goals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>().sprite = _otherGoals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>().sprite;
+            }
         }
     }
 

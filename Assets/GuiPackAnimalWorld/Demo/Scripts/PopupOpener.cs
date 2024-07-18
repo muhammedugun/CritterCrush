@@ -12,6 +12,8 @@ namespace Ricimi
     {
         public GameObject popupPrefab;
 
+        [HideInInspector]public GameObject popup;
+
         protected Canvas m_canvas;
 
         protected virtual void Start()
@@ -21,7 +23,7 @@ namespace Ricimi
 
         public virtual void OpenPopup()
         {
-            var popup = Instantiate(popupPrefab) as GameObject;
+            popup = Instantiate(popupPrefab) as GameObject;
             popup.SetActive(true);
             popup.transform.localScale = Vector3.zero;
             popup.transform.SetParent(m_canvas.transform, false);

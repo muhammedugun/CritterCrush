@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Match3;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
@@ -561,9 +562,28 @@ namespace Match3
                 {
                     match = m_PossibleSwaps[m_PickedSwap];
                 }
+
+                //Hiçbir olasý hamle yoksa
                 else
                 {
                     Debug.LogWarning("m_PossibleSwaps.Count: " + m_PossibleSwaps.Count + "    m_PickedSwap value: " + m_PickedSwap);
+
+                    bool isThereBoosterInGrid = false;
+                    foreach (var cell in CellContent.Values)
+                    {
+                        if (cell.ContainingGem is BonusGem)
+                        {
+                            isThereBoosterInGrid = true;
+                        }
+                    }
+                    //Booster kalmadýysa
+                    if(!isThereBoosterInGrid && !BoosterManager.IsThereAnyBooster())
+                    {
+                        Debug.LogWarning("Hiçbir olasý hamle ve booster (Hem gridte hem aþaðýda) kalmadýðý için oyun bitti");
+                        EventBus.Publish(EventType.BoosterAndSwapsOverInLevel);
+
+                    }
+
                 }
                 
                 if (m_HintIndicator.activeSelf)
@@ -1486,6 +1506,7 @@ namespace Match3
                         }
                     }
                 }
+
             }
 
 

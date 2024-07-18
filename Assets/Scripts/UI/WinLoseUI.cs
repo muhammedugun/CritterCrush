@@ -11,21 +11,30 @@ public class WinLoseUI : MonoBehaviour
     {
         _popupOpener = GetComponent<PopupOpener>();
         EventBus.Subscribe(EventType.MoveCountOver, OpenLosePopup);
+        EventBus.Subscribe(EventType.BoosterAndSwapsOverInLevel, OpenLosePopup);
         EventBus.Subscribe(EventType.AllGoalCompleted, OpenWinPopup);
     }
 
     private void OpenWinPopup()
     {
         _popupOpener.popupPrefab = _winPopupPrefab;
-        _popupOpener.OpenPopup();
-        DeactiveOtherObject();
+        if(_popupOpener.popup==null)
+        {
+            _popupOpener.OpenPopup();
+            DeactiveOtherObject();
+        }
+       
     }
 
     private void OpenLosePopup()
     {
         _popupOpener.popupPrefab = _losePopupPrefab;
-        _popupOpener.OpenPopup();
-        DeactiveOtherObject();
+        if (_popupOpener.popup == null)
+        {
+            _popupOpener.OpenPopup();
+            DeactiveOtherObject();
+        }
+            
     }
 
     /// <summary>

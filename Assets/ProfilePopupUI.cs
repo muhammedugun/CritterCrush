@@ -13,6 +13,9 @@ public class ProfilePopupUI : MonoBehaviour
     [SerializeField] private Sprite[] _boosterSprites;
     [SerializeField] private Sprite[] _avatarsSprites;
     [SerializeField] private Image _avatarImage;
+    [SerializeField] private Text _lastLevelText, _scoreText, _levelPercentileText;
+    [SerializeField] private LevelList _levelList;
+    [SerializeField] private InputField _nameInputField;
 
 
     private void Start()
@@ -34,13 +37,55 @@ public class ProfilePopupUI : MonoBehaviour
             }
 
         }
-
+        UpdateLastLevel();
+        UpdateScore();
+        UpdateLevelPercentile();
+        UpdateName();
 
     }
-
     private void UpdateAvatar()
     {
         _avatarImage.sprite = _avatarsSprites[AvatarSelectionUI.GetCurrentAvatar()];
+    }
+
+    private int GetLastActiveLevelNumber()
+    {
+        for (int i = 1; i <= _levelList.SceneCount; i++)
+        {
+            if (PlayerPrefs.GetInt("isLevel" + i + "Active", 0) == 0)
+                return i - 1;
+        }
+        return _levelList.SceneCount;
+    }
+
+    void UpdateLastLevel()
+    {
+        int lastActiveLevelNumber = GetLastActiveLevelNumber();
+        _lastLevelText.text = lastActiveLevelNumber.ToString();
+    }
+
+    void UpdateScore()
+    {
+        _scoreText.text = ScoreManager.GetTotalScore(_levelList.SceneCount).ToString();
+    }
+
+    private void UpdateLevelPercentile()
+    {
+        int lastActiveLevelNumber = GetLastActiveLevelNumber();
+        int levelCount = _levelList.SceneCount;
+       _levelPercentileText.text = (lastActiveLevelNumber * 100 / levelCount).ToString() + "%";
+    }
+
+    public void SaveName()
+    {
+        if(!string.IsNullOrWhiteSpace(_nameInputField.text))
+            PlayerPrefs.SetString("Name", _nameInputField.text);
+    }
+
+    private void UpdateName()
+    {
+        _nameInputField.text = PlayerPrefs.GetString("Name", _nameInputField.text);
+
     }
 
 

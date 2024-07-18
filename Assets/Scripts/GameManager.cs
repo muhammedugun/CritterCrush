@@ -143,7 +143,7 @@ namespace Match3
         {
             GetReferences();
           
-
+            
 
             
             LevelData.Instance.OnAllGoalFinished += () =>
@@ -240,7 +240,8 @@ namespace Match3
             int levelIndex = int.Parse(levelNumber) - 1;
             int earnedStarCount=0;
 
-            
+            ScoreManager.SetLevelScore(levelIndex+1, LevelData.Instance.CurrentScore);
+
             if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.33)
             {
                 earnedStarCount = 1;

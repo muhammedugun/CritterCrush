@@ -18,8 +18,18 @@ public class InLevelBoosterUI : MonoBehaviour
 
     public void UseBooster(int boosterIndex)
     {
-        if(GameManager.Instance.Board.m_ActivatedBooster==null)
+        if (BoosterManager.GetBoosterCount(boosterIndex) <= 0)
         {
+            Debug.LogWarning("Yeterli Booster Yok");
+        }
+        else
+        {
+            Debug.LogWarning("Mevcut Booster Sayýsý: " + BoosterManager.GetBoosterCount(boosterIndex));
+        }
+
+        if(GameManager.Instance.Board.m_ActivatedBooster==null && BoosterManager.GetBoosterCount(boosterIndex)>0)
+        {
+            BoosterManager.AddBoosterCount(boosterIndex ,-1);
             var item = GameManager.Instance.BoosterItems[boosterIndex];
             GameManager.Instance.ActivateBoosterItem(item.Item);
         }

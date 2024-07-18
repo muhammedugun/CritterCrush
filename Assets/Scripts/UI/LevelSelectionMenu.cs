@@ -9,19 +9,19 @@ public class LevelSelectionMenu : MonoBehaviour
     [SerializeField] private GameObject _levels;
     [SerializeField] private LevelList _levelList;
     [SerializeField] private GameObject _activeLevelPrefab, _lastActiveLevelPrefab;
+    [SerializeField] private RectTransform _contentTransform;
+    [SerializeField] private float[] _levelsFocusPosY;
 
     private void Start()
     {
-        
         PlayerPrefs.SetInt("isLevel" + 1 + "Active", 1);
-        PlayerPrefs.SetInt("isLevel" + 2 + "Active", 1);
-        PlayerPrefs.SetInt("isLevel" + 3 + "Active", 1);
+
         UpdateActiveLevels();
         UpdateLastActiveLevel();
 
         StartCoroutine(ExecuteNextFrame());
 
-        
+        SetCameraPosition();
     }
 
     private IEnumerator ExecuteNextFrame()
@@ -128,4 +128,22 @@ public class LevelSelectionMenu : MonoBehaviour
 
     }
 
+    private int GetLastActiveLevelNumber()
+    {
+        for (int i = 1; i <= _levelList.SceneCount; i++)
+        {
+            if(PlayerPrefs.GetInt("isLevel" + i + "Active", 0)==0)
+                return i-1;
+        }
+        return _levelList.SceneCount;
+    }
+
+    
+    private void SetCameraPosition()
+    {
+        int lastActiveLevelNumber = GetLastActiveLevelNumber();
+        float lastActiveLevelHeight = _levelsFocusPosY[lastActiveLevelNumber - 1];
+        _contentTransform.localPosition = new Vector3(_contentTransform.position.x, lastActiveLevelHeight, _contentTransform.position.z);
+
+    }
 }

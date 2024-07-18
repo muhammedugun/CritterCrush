@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf15de8e9fcfb3547b1b078b101a65c3, type: 3}
   m_Name: SmallBombBonus
   m_EditorClassIdentifier: 
-  DisplaySprite: {fileID: 21300000, guid: c0227704aa781d5449b9eed7d70b2655, type: 3}
+  DisplaySprite: {fileID: 21300000, guid: 139746c1e1b9c439f9c4d6900d32459d, type: 3}
   NeedTarget: 1
   UsedBonusGem: {fileID: 2763895232013849139, guid: 30ab97e6fbed5c148b887ea91e6b0216, type: 3}
