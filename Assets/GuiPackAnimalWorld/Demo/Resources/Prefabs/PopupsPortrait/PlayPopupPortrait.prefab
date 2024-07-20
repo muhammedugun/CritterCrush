@@ -6452,7 +6452,6 @@ GameObject:
   - component: {fileID: 22492616}
   - component: {fileID: 9536936}
   - component: {fileID: 11494158}
-  - component: {fileID: 11422740}
   - component: {fileID: 8247630}
   m_Layer: 5
   m_Name: Booster Button
@@ -6520,18 +6519,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11422740}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OpenPopup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 8247630}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
@@ -6544,19 +6531,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &11422740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 130560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 127650, guid: 05fe5a802ea854a809e6b6e7283051cb, type: 3}
 --- !u!82 &8247630
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10090,7 +10064,6 @@ GameObject:
   - component: {fileID: 22475324}
   - component: {fileID: 9577780}
   - component: {fileID: 11420476}
-  - component: {fileID: 11440188}
   - component: {fileID: 8245682}
   m_Layer: 5
   m_Name: Booster Button
@@ -10158,19 +10131,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11440188}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OpenPopup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8245682}
+      - m_Target: {fileID: 8247630}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -10182,19 +10143,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &11440188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 188598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 127650, guid: 7a0c90a005bbb4981801eb8c185e4388, type: 3}
 --- !u!82 &8245682
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10749,7 +10697,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8c52306a35ae8144592f1b2834b9f962, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c4fb8a68119c84ae58af37d7e2dade58, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10995,7 +10943,6 @@ GameObject:
   - component: {fileID: 6341026065784837889}
   - component: {fileID: 4276778182330646673}
   - component: {fileID: 6732763429160132889}
-  - component: {fileID: 3259568261931838510}
   - component: {fileID: 6088493902552109837}
   m_Layer: 5
   m_Name: Booster Button
@@ -11063,19 +11010,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3259568261931838510}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OpenPopup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 6088493902552109837}
+      - m_Target: {fileID: 8247630}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -11087,19 +11022,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3259568261931838510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633930948450303022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 127650, guid: 05fe5a802ea854a809e6b6e7283051cb, type: 3}
 --- !u!82 &6088493902552109837
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11361,7 +11283,6 @@ GameObject:
   - component: {fileID: 2709992203773511937}
   - component: {fileID: 2940234260537117562}
   - component: {fileID: 2649027782928043683}
-  - component: {fileID: 567937328042346528}
   - component: {fileID: 1854883725935918953}
   m_Layer: 5
   m_Name: Booster Button
@@ -11429,19 +11350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 567937328042346528}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OpenPopup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1854883725935918953}
+      - m_Target: {fileID: 8247630}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -11453,19 +11362,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &567937328042346528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1114604090947777740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 127650, guid: 05fe5a802ea854a809e6b6e7283051cb, type: 3}
 --- !u!82 &1854883725935918953
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12034,7 +11930,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5f238c18c8bd9164da615c5e93a4b4de, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9728ccd18ed7c4689809739a30d54fc0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13199,7 +13095,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c0227704aa781d5449b9eed7d70b2655, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 139746c1e1b9c439f9c4d6900d32459d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13557,7 +13453,6 @@ GameObject:
   - component: {fileID: 558709415144774447}
   - component: {fileID: 6038421719748126307}
   - component: {fileID: 2967140974404458327}
-  - component: {fileID: 6115733624754791314}
   - component: {fileID: 482843347822100505}
   m_Layer: 5
   m_Name: Booster Button
@@ -13625,19 +13520,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6115733624754791314}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: OpenPopup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 482843347822100505}
+      - m_Target: {fileID: 8247630}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
         m_Mode: 1
@@ -13649,19 +13532,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &6115733624754791314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8512783579679020352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 127650, guid: 05fe5a802ea854a809e6b6e7283051cb, type: 3}
 --- !u!82 &482843347822100505
 AudioSource:
   m_ObjectHideFlags: 0

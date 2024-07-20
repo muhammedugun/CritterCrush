@@ -84,7 +84,7 @@ namespace Match3
         private GameObject m_BoosterModePrefab;
     
         
-        private SoundData m_SoundData = new();
+        public SoundData m_SoundData = new();
 
         private void Awake()
         {

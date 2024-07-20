@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 109460, guid: bf38aa1a676af4fc885aa9b8a529e016, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &33208287
 AudioSource:
   m_ObjectHideFlags: 0
@@ -336,6 +337,61 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &43816802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43816804}
+  - component: {fileID: 43816803}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &43816803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43816802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f938d9a6d4b88647bd9ad32d863be01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _avatarsSprites:
+  - {fileID: 21300000, guid: 4fe2e4f34a04f40daa6cc87bc60a5311, type: 3}
+  - {fileID: 21300000, guid: 2417c196a99c2418b88f5e486edd9fcc, type: 3}
+  - {fileID: 21300000, guid: ff77df300de4d408aa7c591f849214b0, type: 3}
+  - {fileID: 21300000, guid: f4740c94ee1744f3c93578b6a9d8cb75, type: 3}
+  - {fileID: 21300000, guid: eb873c3f4759343e0ab8f8ff99995f09, type: 3}
+  - {fileID: 21300000, guid: 7eaf37b6519504526acfbbd66584ee49, type: 3}
+  - {fileID: 21300000, guid: b2d0d379537114d5e902648671e047c5, type: 3}
+  - {fileID: 21300000, guid: da266ea4448be46529f28d3d511e0dfb, type: 3}
+  - {fileID: 21300000, guid: 739de52e4e8994b9c8af513bee678708, type: 3}
+  _avatarImage: {fileID: 1584484868}
+--- !u!4 &43816804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43816802}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &48231165
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,6 +726,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: a5dd007a9fd67489db1fd0c88f6ac34a, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &267934542
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6198,6 +6255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 74cfb54ccc50e41b68af329b18c8747c, type: 3}
+  popup: {fileID: 0}
 --- !u!114 &746291730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18568,3 +18626,4 @@ SceneRoots:
   - {fileID: 2062960143}
   - {fileID: 263688213}
   - {fileID: 675833146}
+  - {fileID: 43816804}

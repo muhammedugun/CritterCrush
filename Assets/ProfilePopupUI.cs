@@ -1,7 +1,4 @@
 using Match3;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,7 +40,7 @@ public class ProfilePopupUI : MonoBehaviour
         UpdateName();
 
     }
-    private void UpdateAvatar()
+    public void UpdateAvatar()
     {
         _avatarImage.sprite = _avatarsSprites[AvatarSelectionUI.GetCurrentAvatar()];
     }

@@ -2162,6 +2162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 6aa36d34e8c9c44f8b7819012041d5bf, type: 3}
+  popup: {fileID: 0}
 --- !u!1 &128570
 GameObject:
   m_ObjectHideFlags: 0
@@ -10421,6 +10422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 6aa36d34e8c9c44f8b7819012041d5bf, type: 3}
+  popup: {fileID: 0}
 --- !u!1 &164074
 GameObject:
   m_ObjectHideFlags: 0
@@ -16156,7 +16158,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 17, y: 5}
-  m_SizeDelta: {x: 80, y: 81}
+  m_SizeDelta: {x: 88.704, y: 70.224}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &22274980
 CanvasRenderer:
@@ -16186,7 +16188,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c3e331568a02c4872a4029e1c1a3de36, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8720bd517acc948a4bcf545fb1afb4ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16275,7 +16277,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Free coins
+  m_Text: Free lives
 --- !u!114 &11406180
 MonoBehaviour:
   m_ObjectHideFlags: 0
