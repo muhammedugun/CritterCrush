@@ -24,6 +24,7 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         if (instance != null && instance != this)

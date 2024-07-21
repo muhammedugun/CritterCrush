@@ -1,16 +1,18 @@
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 
 
 public enum EventType
 {
-    ScoreChanged, Moved, GoalCountChanged, MoveCountOver, AllGoalCompleted, BoosterAndSwapsOverInLevel
+    ScoreChanged, Moved, GoalCountChanged, MoveCountOver, AllGoalCompleted, BoosterAndSwapsOverInLevel, BoosterUsed
 }
 
 
 public class EventBus
 {
-    private static readonly IDictionary<EventType, UnityEvent> Events = new Dictionary<EventType, UnityEvent>();
+    private readonly static IDictionary<EventType, UnityEvent> Events = new Dictionary<EventType, UnityEvent>();
+
 
     public static void Subscribe(EventType eventType, UnityAction listener)
     {
@@ -57,7 +59,8 @@ public class EventBus
 
 public class EventBus<T0>
 {
-    private static readonly IDictionary<EventType, UnityEvent<T0>> Events = new Dictionary<EventType, UnityEvent<T0>>();
+    private readonly static IDictionary<EventType, UnityEvent<T0>> Events = new Dictionary<EventType, UnityEvent<T0>>();
+
 
     public static void Subscribe(EventType eventType, UnityAction<T0> listener)
     {
@@ -95,7 +98,8 @@ public class EventBus<T0>
 
 public class EventBus<T0, T1>
 {
-    private static readonly IDictionary<EventType, UnityEvent<T0, T1>> Events = new Dictionary<EventType, UnityEvent<T0, T1>>();
+    private readonly static IDictionary<EventType, UnityEvent<T0, T1>> Events = new Dictionary<EventType, UnityEvent<T0, T1>>();
+
 
     public static void Subscribe(EventType eventType, UnityAction<T0, T1> listener)
     {

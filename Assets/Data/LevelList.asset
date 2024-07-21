@@ -37,91 +37,125 @@ MonoBehaviour:
   - Goals:
     - Gem: {fileID: 4895668700877159741, guid: 43d36d7d927fcb64dbb4058c6d88becd, type: 3}
       Count: 12
+      TargetCount: 12
   - Goals:
     - Gem: {fileID: 6434786641028643310, guid: b17f6d1923843db4d9bbf34b516f6dfc, type: 3}
       Count: 10
+      TargetCount: 0
     - Gem: {fileID: 6307004918233370529, guid: 35f15072bcb3d3e41bf28a8a56bc6749, type: 3}
       Count: 10
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 6307004918233370529, guid: 35f15072bcb3d3e41bf28a8a56bc6749, type: 3}
       Count: 10
+      TargetCount: 0
     - Gem: {fileID: 4895668700877159741, guid: 43d36d7d927fcb64dbb4058c6d88becd, type: 3}
       Count: 5
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 6307004918233370529, guid: 35f15072bcb3d3e41bf28a8a56bc6749, type: 3}
       Count: 10
+      TargetCount: 0
     - Gem: {fileID: 4895668700877159741, guid: 43d36d7d927fcb64dbb4058c6d88becd, type: 3}
       Count: 10
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 6
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 4
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 3
+      TargetCount: 0
     - Gem: {fileID: 6434786641028643310, guid: b17f6d1923843db4d9bbf34b516f6dfc, type: 3}
       Count: 8
+      TargetCount: 0
     - Gem: {fileID: 5351256133368140760, guid: bf4ae0826872fe344be0c1b4ecc9fb16, type: 3}
       Count: 8
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 3
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 7805701772922581740, guid: 0060243b43e180d4691da3a5d51dfca2, type: 3}
       Count: 3
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 7805701772922581740, guid: d3d488c116784e14f8d9926759659256, type: 3}
       Count: 3
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 2
+      TargetCount: 0
     - Gem: {fileID: 6434786641028643310, guid: b17f6d1923843db4d9bbf34b516f6dfc, type: 3}
       Count: 8
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 7805701772922581740, guid: d3d488c116784e14f8d9926759659256, type: 3}
       Count: 2
+      TargetCount: 0
     - Gem: {fileID: 7805701772922581740, guid: 0060243b43e180d4691da3a5d51dfca2, type: 3}
       Count: 2
+      TargetCount: 0
     - Gem: {fileID: 5351256133368140760, guid: bf4ae0826872fe344be0c1b4ecc9fb16, type: 3}
       Count: 8
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 3
+      TargetCount: 0
     - Gem: {fileID: 7805701772922581740, guid: 0060243b43e180d4691da3a5d51dfca2, type: 3}
       Count: 2
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 7805701772922581740, guid: 0060243b43e180d4691da3a5d51dfca2, type: 3}
       Count: 2
+      TargetCount: 0
     - Gem: {fileID: 7805701772922581740, guid: d3d488c116784e14f8d9926759659256, type: 3}
       Count: 2
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 4
+      TargetCount: 0
     - Gem: {fileID: 1992002514194045819, guid: 1056e37fff3c9344ebb2cc6165e18d8d, type: 3}
       Count: 8
+      TargetCount: 0
     - Gem: {fileID: 6307004918233370529, guid: 35f15072bcb3d3e41bf28a8a56bc6749, type: 3}
       Count: 8
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 7805701772922581740, guid: 0060243b43e180d4691da3a5d51dfca2, type: 3}
       Count: 4
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2763895232013849139, guid: 30ab97e6fbed5c148b887ea91e6b0216, type: 3}
       Count: 2
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 5
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 6
+      TargetCount: 0
   - Goals:
     - Gem: {fileID: 7805701772922581740, guid: 0060243b43e180d4691da3a5d51dfca2, type: 3}
       Count: 3
+      TargetCount: 0
     - Gem: {fileID: 6307004918233370529, guid: 35f15072bcb3d3e41bf28a8a56bc6749, type: 3}
       Count: 7
+      TargetCount: 0
     - Gem: {fileID: 5351256133368140760, guid: bf4ae0826872fe344be0c1b4ecc9fb16, type: 3}
       Count: 7
+      TargetCount: 0
   TargetScore: e8030000d00700009411000070170000581b000028230000d80e000094110000b80b0000881300002823000010270000342100007017000094110000a00f000070170000384a0000204e0000a00f0000
   MaxMove: 0f00000014000000190000001e0000001e00000028000000190000001e000000140000001e0000002300000023000000280000001900000019000000140000001e000000320000003200000013000000
   SceneList: 030000000400000005000000060000000700000008000000090000000a0000000b0000000c000000

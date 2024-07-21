@@ -7613,6 +7613,7 @@ GameObject:
   - component: {fileID: 11495050}
   - component: {fileID: 11441534}
   - component: {fileID: 8211978}
+  - component: {fileID: 5016239064035508295}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -7814,6 +7815,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5016239064035508295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPrefab: {fileID: 127650, guid: 8489c04c1fa484ac4accb7c0d42a834a, type: 3}
+  popup: {fileID: 0}
 --- !u!1 &151262
 GameObject:
   m_ObjectHideFlags: 0

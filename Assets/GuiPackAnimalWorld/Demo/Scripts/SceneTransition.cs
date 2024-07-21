@@ -2,7 +2,9 @@
 // This code can only be used under the standard Unity Asset Store End User License Agreement.
 // A Copy of the Asset Store EULA is available at http://unity3d.com/company/legal/as_terms.
 
+using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Ricimi
 {
@@ -14,9 +16,41 @@ namespace Ricimi
         public float duration = 1.0f;
         public Color color = Color.black;
 
+        private PopupOpener _popupOpener;
+
         public void PerformTransition()
         {
-            Transition.LoadLevel(scene, duration, color);
+            if(IsLevelWithNumber(scene))
+            {
+                if(LifeManager.GetLifeCount() > 0)
+                {
+                    Debug.LogWarning("Hayat " + LifeManager.GetLifeCount());
+                    Transition.LoadLevel(scene, duration, color);
+                }
+                else
+                {
+                    if(TryGetComponent<PopupOpener>(out _popupOpener))
+                    {
+                        _popupOpener.OpenPopup();
+                    }
+                    Debug.LogWarning("Hayat yok");
+                }
+            }
+            else
+            {
+                Transition.LoadLevel(scene, duration, color);
+            }
+            
+        }
+
+        /// <summary>
+        /// Gidilecek olan sahnenin bir Level sahnesi olup olmadýðýný kontrol eder.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool IsLevelWithNumber(string input)
+        {
+            return Regex.IsMatch(input, @"^Level\d+$");
         }
     }
 }

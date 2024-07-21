@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.VFX;
+using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using Random = UnityEngine.Random;
 
 namespace Match3
@@ -101,6 +102,7 @@ namespace Match3
 
         //---- interaction
         public Vector3 m_StartClickPosition;
+
 
         // Start is called before the first frame update
         void Awake()
@@ -1288,6 +1290,8 @@ namespace Match3
             return true;
         }
 
+        [HideInInspector] public int boosterIndex = -1;
+
         void CheckInput()
         {
             if (!m_InputEnabled)
@@ -1317,6 +1321,14 @@ namespace Match3
                     if (CellContent.TryGetValue(clickedCell, out var content) && content.ContainingGem != null)
                     {
                         GameManager.Instance.UseBoosterItem(m_ActivatedBooster, clickedCell);
+
+                        if(boosterIndex != -1)
+                        {
+                            BoosterManager.AddBoosterCount(boosterIndex, -1);
+                            EventBus<int>.Publish(EventType.BoosterUsed, boosterIndex);
+                        }
+                            
+
                         m_ActivatedBooster = null;
                         return;
                     }

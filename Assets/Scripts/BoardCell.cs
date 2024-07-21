@@ -23,7 +23,7 @@ namespace Match3
         public bool CanBeMoved => !Locked && ContainingGem != null && ContainingGem.CanMove;
         
         public bool Locked = false;
-        
+
 
         public bool CanMatch()
         {

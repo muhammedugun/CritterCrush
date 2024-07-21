@@ -64,9 +64,12 @@ public class WinLoseUI : MonoBehaviour
         }
 
         var hintLight = GameObject.Find("HintLight(Clone)");
-        hintLight.SetActive(false);
-        result.Add(hintLight.gameObject);
-
+        if(hintLight!=null)
+        {
+            hintLight.SetActive(false);
+            result.Add(hintLight.gameObject);
+        }
+            
         // Devre dýþý býrakýlan tüm objeleri içeren listeyi döndür
         return result;
     }

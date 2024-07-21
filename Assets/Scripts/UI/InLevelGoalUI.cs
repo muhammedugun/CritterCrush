@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class InLevelGoalUI : MonoBehaviour
 {
     public GameObject _goals;
-    private LevelList _levelList;
+    private LevelData _leveldata;
     [SerializeField] private bool _isWinPopUp;
     private GameObject _otherGoals;
 
@@ -15,16 +15,17 @@ public class InLevelGoalUI : MonoBehaviour
         {
             _otherGoals = GameObject.Find("Manager").GetComponent<InLevelGoalUI>()._goals;
         }
-        _levelList = FindObjectOfType<LevelDataProvider>().levelList;
+
+        _leveldata = FindObjectOfType<LevelDataProvider>().levelData;
+
+        EventBus.Subscribe(EventType.GoalCountChanged, UpdateGoalCount);
+
         UpdateGoalSprite();
-        EventBus<int>.Subscribe(EventType.GoalCountChanged, UpdateGoalCount);
-        
         
     }
 
     public void UpdateGoalSprite()
     {
-        int levelIndex = LevelList.GetSceneIndex();
 
         for (int i = 0; i < _goals.transform.childCount; i++)
         {
@@ -32,16 +33,16 @@ public class InLevelGoalUI : MonoBehaviour
         }
 
 
-        int length = _levelList.Goals[levelIndex].Goals.Length;
+        int length = _leveldata.Goals.Length;
 
         for (int i = 0; i < length; i++)
         {
             _goals.transform.GetChild(i).gameObject.SetActive(true);
             var image = _goals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>();
-            image.sprite = _levelList.Goals[levelIndex].Goals[i].Gem.UISprite;
+            image.sprite = _leveldata.Goals[i].Gem.UISprite;
 
-            _goals.transform.GetChild(i).GetChild(2).GetComponent<Text>().text = "/"+_levelList.Goals[levelIndex].Goals[i].Count.ToString();
-            if(_isWinPopUp)
+            _goals.transform.GetChild(i).GetChild(2).GetComponent<Text>().text = "/" + _leveldata.levelGoalCounts[i].ToString();
+            if (_isWinPopUp)
             {
                 _goals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text = _otherGoals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text;
                 _goals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>().sprite = _otherGoals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>().sprite;
@@ -49,19 +50,19 @@ public class InLevelGoalUI : MonoBehaviour
         }
     }
 
-    public void UpdateGoalCount(int count)
-    {
-        int levelIndex = LevelList.GetSceneIndex();
-        int length = _levelList.Goals[levelIndex].Goals.Length;
-
-        for (int i = 0; i < length; i++)
+        public void UpdateGoalCount()
         {
-            int currentCount = _levelList.Goals[levelIndex].Goals[i].Count - count;
-            _goals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text = currentCount.ToString();
+            int length = _leveldata.Goals.Length;
+
+            for (int i = 0; i < length; i++)
+            {
+
+                int currentCount = _leveldata.Goals[i].TargetCount - _leveldata.levelGoalCounts[i];
+                _goals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text = currentCount.ToString();
 
 
+            }
         }
-    }
 
-
+    
 }

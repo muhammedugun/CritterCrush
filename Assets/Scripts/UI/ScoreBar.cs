@@ -23,9 +23,6 @@ public class ScoreBar : MonoBehaviour
 
         _scoreBar.fillAmount = (score / (float)LevelData.Instance.TargetScore);
 
-        Debug.LogWarning("LevelData.Instance.CurrentScore: " + LevelData.Instance.CurrentScore);
-        Debug.LogWarning("LevelData.Instance.TargetScore: " + LevelData.Instance.TargetScore);
-
         if (score >= LevelData.Instance.TargetScore * 0.33)
         {
             _stars.GetChild(0).GetComponent<Image>().sprite = _goldStarSprite;
