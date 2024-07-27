@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+
 
 namespace Match3
 {
@@ -53,7 +53,7 @@ namespace Match3
         public MoveNotificationDelegate OnMoveHappened;
         public ScoreChangeDelegate OnScoreChanged;
 
-        public int RemainingMove { get; private set; }
+        public int RemainingMove { get; set; }
         public int GoalLeft { get; private set; }
 
 
@@ -111,7 +111,7 @@ namespace Match3
             }
         }
         
-        public bool Matched(Gem gem)
+        public bool Matched(Gem gem, int matchCount = 0)
         {
             CurrentScore += gem.GemScore;
             EventBus<int>.Publish(EventType.ScoreChanged, CurrentScore);
@@ -119,6 +119,7 @@ namespace Match3
             int index = 0;
             foreach (var goal in Goals)
             {
+                
                 if (goal.Gem.GemType == gem.GemType)
                 {
                     if (levelGoalCounts[index] == 0)
@@ -127,6 +128,7 @@ namespace Match3
                     levelGoalCounts[index] -= 1;
 
                     EventBus.Publish(EventType.GoalCountChanged);
+                    EventBus<Gem, int>.Publish(EventType.GoalCountChanged, gem, matchCount);
                     OnGoalChanged?.Invoke(gem.GemType, levelGoalCounts[index]);
 
                     if (levelGoalCounts[index] == 0)

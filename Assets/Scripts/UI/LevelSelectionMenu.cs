@@ -14,6 +14,8 @@ public class LevelSelectionMenu : MonoBehaviour
 
     private void Start()
     {
+        LifeManager.LifeLoadControl();
+
         PlayerPrefs.SetInt("isLevel" + 1 + "Active", 1);
 
         UpdateActiveLevels();

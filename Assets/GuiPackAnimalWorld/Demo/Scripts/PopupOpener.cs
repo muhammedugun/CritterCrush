@@ -29,5 +29,13 @@ namespace Ricimi
             popup.transform.SetParent(m_canvas.transform, false);
             popup.GetComponent<Popup>().Open();
         }
+
+        public void ClosePopup()
+        {
+            popup.GetComponent<Popup>().RemoveBackground();
+        }
+
+
+
     }
 }

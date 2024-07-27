@@ -10,6 +10,7 @@ public class StarManager : MonoBehaviour
         int currentStarCount = GetStarCount();
         currentStarCount += count;
         PlayerPrefs.SetInt("StarCount", currentStarCount);
+        PlayerPrefs.Save();
     }
 
     public static int GetStarCount()

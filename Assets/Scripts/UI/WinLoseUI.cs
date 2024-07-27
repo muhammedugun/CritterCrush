@@ -1,3 +1,4 @@
+using GoogleMobileAds.Api;
 using Match3;
 using Ricimi;
 using System.Collections.Generic;
@@ -6,7 +7,9 @@ using UnityEngine;
 public class WinLoseUI : MonoBehaviour
 {
     [SerializeField] private GameObject _winPopupPrefab, _losePopupPrefab;
+    
     private PopupOpener _popupOpener;
+    private List<GameObject> _deactiveObjects;
     void Start()
     {
         _popupOpener = GetComponent<PopupOpener>();
@@ -32,9 +35,18 @@ public class WinLoseUI : MonoBehaviour
         if (_popupOpener.popup == null)
         {
             _popupOpener.OpenPopup();
-            DeactiveOtherObject();
+            _deactiveObjects = DeactiveOtherObject();
         }
             
+    }
+
+
+    public void CloseLosePopup()
+    {
+        _popupOpener.ClosePopup();
+        _popupOpener.popup.SetActive(false);
+        ActiveOtherObject(_deactiveObjects);
+
     }
 
     /// <summary>

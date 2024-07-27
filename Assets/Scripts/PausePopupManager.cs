@@ -18,6 +18,7 @@ public class PausePopupManager : MonoBehaviour
     {
         GameSceneManager.PauseLevel(ref deactivedObjects);
     }
+
     public void ResumeLevel()
     {
         GameSceneManager.ResumeLevel(ref deactivedObjects);

@@ -19,6 +19,7 @@ public class LifeCounterUI : MonoBehaviour
             }
             
             int lifeCount = LifeManager.GetLifeCount();
+
             for (int i = 1; i < lifeCount+1; i++)
             {
                 

@@ -16,8 +16,8 @@ namespace Ricimi
         [HideInInspector] public int levelIndex;
 
         private int starsObtained;
+        PlayPopup playPopup;
 
-        
         protected override void Start()
         {
             base.Start();
@@ -32,7 +32,7 @@ namespace Ricimi
             popup.transform.localScale = Vector3.zero;
             popup.transform.SetParent(m_canvas.transform, false);
 
-            var playPopup = popup.GetComponent<PlayPopup>();
+            playPopup = popup.GetComponent<PlayPopup>();
             playPopup.playButton.scene = "Level" + (levelIndex+1).ToString();
             Debug.LogWarning("levelIndex" + levelIndex);
             playPopup.Open();
@@ -42,5 +42,11 @@ namespace Ricimi
             playPopup.levelIndex = levelIndex;
             
         }
+
+        public void ClosePopup()
+        {
+            playPopup.RemoveBackground();
+        }
+
     }
 }

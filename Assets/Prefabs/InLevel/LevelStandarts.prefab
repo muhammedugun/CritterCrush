@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 109460, guid: 31db42cfa2d3d4fa0b910c5a6543a9ed, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &8830957238998567655
 AudioSource:
   m_ObjectHideFlags: 0
@@ -403,6 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 1f83c98f3941d47848d90170b4180f16, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &6508843681183185470
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1980,6 +1982,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 109460, guid: edbcf344cfd8c4b6e97278c57d9f3a54, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &6201712667659910720
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3744,6 +3747,7 @@ MonoBehaviour:
   HoldTrailPrefab: {fileID: 3411754766572351756, guid: 021bbf96a19906642a0e41fb58b29fc4, type: 3}
   m_ActivatedBooster: {fileID: 0}
   m_StartClickPosition: {x: 0, y: 0, z: 0}
+  boosterIndex: -1
 --- !u!1 &3396120107347596489
 GameObject:
   m_ObjectHideFlags: 0
@@ -5016,6 +5020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 109460, guid: 31db42cfa2d3d4fa0b910c5a6543a9ed, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &4532500318469634054
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6161,6 +6166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f00f520497a60464092f141a78c4ecee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelGoalCounts: 
   LevelName: Level
   MaxMove: 15
   TargetScore: 1000
@@ -6169,6 +6175,7 @@ MonoBehaviour:
   Goals:
   - Gem: {fileID: 4895668700877159741, guid: 43d36d7d927fcb64dbb4058c6d88becd, type: 3}
     Count: 12
+    TargetCount: 0
   BorderMargin: 0.3
   Background: {fileID: 0}
   Music: {fileID: 8300000, guid: 800028ab827bd554284b052dc022f8bb, type: 3}
@@ -6926,6 +6933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 756e7e69f04b64b7b94807a0c15009d2, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &7801182160770178417
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7800,6 +7808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelList: {fileID: 11400000, guid: cc433e188d8e43c47ba845bac2a704e4, type: 2}
+  levelData: {fileID: 0}
 --- !u!114 &2596628257538454168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7813,6 +7822,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _goals: {fileID: 3396120107347596489}
+  _isWinPopUp: 0
+  gemUIObject: {fileID: 1188103275791077891, guid: 56f32592752e61743905f3ac5742947d, type: 3}
+  duration: 1
+  canvas: {fileID: 3797788601487626974}
 --- !u!114 &4249914420518330951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7866,6 +7879,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 0}
+  popup: {fileID: 0}
 --- !u!1 &7793332941638842991
 GameObject:
   m_ObjectHideFlags: 0
@@ -8252,6 +8266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 109460, guid: ff6bb630b3dc3464a869b1e1bd1196e8, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &1551437707438213560
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9052,7 +9067,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 867880795
+  m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &8066716221429207545

@@ -68,7 +68,7 @@ namespace Ricimi
             m_background.transform.SetSiblingIndex(transform.GetSiblingIndex());
         }
 
-        private void RemoveBackground()
+        public void RemoveBackground()
         {
             var image = m_background.GetComponent<Image>();
             if (image != null)

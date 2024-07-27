@@ -7,7 +7,10 @@ namespace Match3
     {
         private void Awake()
         {
-            if(PlayerPrefs.GetInt("isPlayingFirstTime", 1) == 1)
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+
+            if (PlayerPrefs.GetInt("isPlayingFirstTime", 1) == 1)
             {
                 PlayerPrefs.SetInt("isPlayingFirstTime", 0);
                 LifeManager.AddLifeCount(5);
@@ -18,8 +21,6 @@ namespace Match3
                 BoosterManager.AddBoosterCount(4, 7);
             }
 
-            QualitySettings.vSyncCount = 0;
-            Application.targetFrameRate = 60;
 
             SceneManager.LoadScene(1, LoadSceneMode.Single);
         }

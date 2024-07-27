@@ -15549,6 +15549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 6aa36d34e8c9c44f8b7819012041d5bf, type: 3}
+  popup: {fileID: 0}
 --- !u!114 &718515404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23512,6 +23513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: a5dd007a9fd67489db1fd0c88f6ac34a, type: 3}
+  popup: {fileID: 0}
 --- !u!82 &923032602
 AudioSource:
   m_ObjectHideFlags: 0
@@ -28167,6 +28169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 6aa36d34e8c9c44f8b7819012041d5bf, type: 3}
+  popup: {fileID: 0}
 --- !u!114 &1228303298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32699,7 +32702,7 @@ GameObject:
   - component: {fileID: 1547602907}
   - component: {fileID: 1547602906}
   - component: {fileID: 1547602905}
-  - component: {fileID: 1547602904}
+  - component: {fileID: 1547602908}
   m_Layer: 5
   m_Name: RemoveAds
   m_TagString: Untagged
@@ -32730,20 +32733,6 @@ RectTransform:
   m_AnchoredPosition: {x: 137, y: -17}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1547602904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1547602902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3053ad4fbf70042abacd658763f6689d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupPrefab: {fileID: 127650, guid: c07c7c146d3560e419a658ecc7df0416, type: 3}
-  levelIndex: 0
 --- !u!82 &1547602905
 AudioSource:
   m_ObjectHideFlags: 0
@@ -32868,8 +32857,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1547602904}
-        m_TargetAssemblyTypeName: Ricimi.PlayPopupOpener, Assembly-CSharp
+      - m_Target: {fileID: 1547602908}
+        m_TargetAssemblyTypeName: Ricimi.PopupOpener, Assembly-CSharp
         m_MethodName: OpenPopup
         m_Mode: 1
         m_Arguments:
@@ -32901,6 +32890,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1547602908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547602902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729d3571ed7354ba184275ba6042151c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPrefab: {fileID: 127650, guid: c07c7c146d3560e419a658ecc7df0416, type: 3}
+  popup: {fileID: 0}
 --- !u!1 &1554521924
 GameObject:
   m_ObjectHideFlags: 0
@@ -37941,6 +37944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 8489c04c1fa484ac4accb7c0d42a834a, type: 3}
+  popup: {fileID: 0}
 --- !u!114 &1834744429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40301,6 +40305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popupPrefab: {fileID: 127650, guid: 8489c04c1fa484ac4accb7c0d42a834a, type: 3}
+  popup: {fileID: 0}
 --- !u!114 &2028616183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41470,7 +41475,6 @@ GameObject:
   - component: {fileID: 2073590963}
   - component: {fileID: 2073590962}
   - component: {fileID: 2073590964}
-  - component: {fileID: 2073590966}
   - component: {fileID: 2073590965}
   m_Layer: 0
   m_Name: Manager
@@ -41560,18 +41564,6 @@ MonoBehaviour:
   _lives: {fileID: 1834744427}
   _lifeSprite: {fileID: 21300000, guid: 8720bd517acc948a4bcf545fb1afb4ca, type: 3}
   _greyLifeSprite: {fileID: 0}
---- !u!114 &2073590966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073590961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d45c400cb3aa104fa35490852f94639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2085669224
 GameObject:
   m_ObjectHideFlags: 0

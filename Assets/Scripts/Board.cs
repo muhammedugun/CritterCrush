@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.VFX;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using Random = UnityEngine.Random;
 
 namespace Match3
@@ -854,7 +853,7 @@ namespace Match3
                         //
                         if (gem.CurrentState != Gem.State.Disappearing)
                         {
-                            LevelData.Instance.Matched(gem);
+                            LevelData.Instance.Matched(gem, match.MatchingGem.Count);
                             
                             foreach (var matchEffectPrefab in gem.MatchEffectPrefabs)
                             {
@@ -868,7 +867,7 @@ namespace Match3
                     }
                     else if(gem.CurrentState != Gem.State.Disappearing)
                     {
-                        LevelData.Instance.Matched(gem);
+                        LevelData.Instance.Matched(gem, match.MatchingGem.Count);
                         
                         foreach (var matchEffectPrefab in gem.MatchEffectPrefabs)
                         {

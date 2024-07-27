@@ -65,17 +65,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101878}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 22406644}
+  m_Father: {fileID: 22447424}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8, y: 10}
-  m_SizeDelta: {x: 135.04, y: 107}
+  m_AnchoredPosition: {x: 117, y: 3}
+  m_SizeDelta: {x: 111, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &22255534
 CanvasRenderer:
@@ -298,6 +298,18 @@ MonoBehaviour:
       - m_Target: {fileID: 19823170}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2173912654410873992}
+        m_TargetAssemblyTypeName: LivesShopPopup, Assembly-CSharp
+        m_MethodName: FreeLiveButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -720,21 +732,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11488622}
-        m_TargetAssemblyTypeName: Ricimi.SpriteSwapper, Assembly-CSharp
-        m_MethodName: SwapSprite
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11487854}
-        m_TargetAssemblyTypeName: Ricimi.SpriteSwapper, Assembly-CSharp
-        m_MethodName: SwapSprite
+      - m_Target: {fileID: 2173912654410873992}
+        m_TargetAssemblyTypeName: LivesShopPopup, Assembly-CSharp
+        m_MethodName: NotificationButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1041,6 +1041,18 @@ MonoBehaviour:
       - m_Target: {fileID: 19871638}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2173912654410873992}
+        m_TargetAssemblyTypeName: LivesShopPopup, Assembly-CSharp
+        m_MethodName: FreeLiveButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1472,7 +1484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8720bd517acc948a4bcf545fb1afb4ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 995a2a628dbfb4d26bac8bf99aa306b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1663,8 +1675,8 @@ RectTransform:
   - {fileID: 22414276}
   - {fileID: 22411138}
   - {fileID: 22447748}
+  - {fileID: 22402732}
   - {fileID: 22406246}
-  - {fileID: 22406644}
   - {fileID: 22494088}
   - {fileID: 22447562}
   - {fileID: 22490338}
@@ -2147,8 +2159,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc6c6243bab28546b2c8e1589058ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clockPrefab: {fileID: 358354258174086342, guid: 5d7bba7892c8dd340bc72680080a2392, type: 3}
+  _pulseAC: {fileID: 9100000, guid: b84aa1f9d329e4d3680c76003e7cbc4f, type: 2}
+  _lifeSprite: {fileID: 21300000, guid: 8720bd517acc948a4bcf545fb1afb4ca, type: 3}
+  _lives: {fileID: 123510}
   _buyButtonText: {fileID: 11431640}
+  _timeText: {fileID: 11402202}
   _starShopPopupOpener: {fileID: 8440142371152510238}
+  _enabledSprite: {fileID: 21300000, guid: 66231f12707b047caa4b727ee444ca6c, type: 3}
+  _disabledSprite: {fileID: 21300000, guid: e01949608c52544a980406979236dfea, type: 3}
+  _notificationImage: {fileID: 11410266}
+  _notificationSlider: {fileID: 11435732}
 --- !u!114 &8440142371152510238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9210,7 +9231,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8720bd517acc948a4bcf545fb1afb4ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 995a2a628dbfb4d26bac8bf99aa306b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9762,103 +9783,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &162544
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 22458892}
-  - component: {fileID: 22236568}
-  - component: {fileID: 11410686}
-  - component: {fileID: 9542390}
-  m_Layer: 5
-  m_Name: Clock
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &22458892
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162544}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 22406644}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25, y: -23}
-  m_SizeDelta: {x: 96.198, y: 96}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &22236568
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162544}
-  m_CullTransparentMesh: 0
---- !u!114 &11410686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad089ab163f89412398579e71d8ea175, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!95 &9542390
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 162544}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8843ca5b6b2b247b6a62c214126ed628, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &162582
 GameObject:
   m_ObjectHideFlags: 0
@@ -15989,65 +15913,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &173926
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 22406644}
-  - component: {fileID: 9526106}
-  m_Layer: 5
-  m_Name: Life Animation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &22406644
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173926}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 22402732}
-  - {fileID: 22458892}
-  m_Father: {fileID: 22447424}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 125, y: 3}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &9526106
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173926}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b84aa1f9d329e4d3680c76003e7cbc4f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &174252
 GameObject:
   m_ObjectHideFlags: 0
@@ -16729,7 +16594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 13:45:12
+  m_Text: 00:00
 --- !u!1 &184484
 GameObject:
   m_ObjectHideFlags: 0
@@ -18242,7 +18107,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8720bd517acc948a4bcf545fb1afb4ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 995a2a628dbfb4d26bac8bf99aa306b8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
