@@ -17,7 +17,6 @@ public class SettingsPopup : MonoBehaviour
     void Start()
     {
         _musicManager = FindObjectOfType<MusicManager>();
-        AudioListener.volume = PlayerPrefs.GetFloat("SoundVolume", 1f);
         UpdateSFXButtonSprite();
         UpdateMusicButtonSprite();
         UpdateNotificationButtonSprite();

@@ -19,12 +19,14 @@ public class GameSceneManager : MonoBehaviour
     public static void RestartLevel()
     {
         Time.timeScale = 1f;
+        LifeManager.DecreaseHealthOne();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public static void QuitLevel()
     {
         Time.timeScale = 1f;
+        LifeManager.DecreaseHealthOne();
         SceneManager.LoadScene("LevelSelection");
     }
 

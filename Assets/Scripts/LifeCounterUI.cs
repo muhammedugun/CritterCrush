@@ -8,24 +8,31 @@ public class LifeCounterUI : MonoBehaviour
 
     private void Start()
     {
+        UpdateLifeCounterUI();
+
+        EventBus.Subscribe(EventType.LifeCountChanged, UpdateLifeCounterUI);
+    }
+
+    private void UpdateLifeCounterUI()
+    {
         if (_lives != null)
         {
-            if(_greyLifeSprite!=null)
+            if (_greyLifeSprite != null)
             {
                 for (int i = 1; i <= 5; i++)
                 {
                     _lives.GetChild(i).GetComponent<Image>().sprite = _greyLifeSprite;
                 }
             }
-            
+
             int lifeCount = LifeManager.GetLifeCount();
 
-            for (int i = 1; i < lifeCount+1; i++)
+            for (int i = 1; i < lifeCount + 1; i++)
             {
-                
+
                 _lives.GetChild(i).GetComponent<Image>().sprite = _lifeSprite;
             }
-            
+
         }
         else
         {

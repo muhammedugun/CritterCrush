@@ -21,7 +21,6 @@ namespace Match3
                 BoosterManager.AddBoosterCount(4, 7);
             }
 
-
             SceneManager.LoadScene(1, LoadSceneMode.Single);
         }
     }

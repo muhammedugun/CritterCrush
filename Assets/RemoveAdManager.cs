@@ -11,8 +11,6 @@ public class RemoveAdManager : MonoBehaviour
     {
         _buyingConsumables = FindObjectOfType<BuyingConsumables>();
         UpdateUI();
-
-
     }
 
     public void BuyRemoveAds()

@@ -1,7 +1,4 @@
-// Copyright (C) 2015-2019 ricimi - All rights reserved.
-// This code can only be used under the standard Unity Asset Store End User License Agreement.
-// A Copy of the Asset Store EULA is available at http://unity3d.com/company/legal/as_terms.
-
+using System.Collections;
 using UnityEngine;
 
 namespace Ricimi
@@ -30,12 +27,10 @@ namespace Ricimi
             popup.GetComponent<Popup>().Open();
         }
 
+
         public void ClosePopup()
         {
             popup.GetComponent<Popup>().RemoveBackground();
         }
-
-
-
     }
 }

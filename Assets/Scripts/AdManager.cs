@@ -38,6 +38,7 @@ public class AdManager : MonoBehaviour
 
     public void Start()
     {
+
         if(String.IsNullOrWhiteSpace(_interstitialId)  || String.IsNullOrWhiteSpace(_interstitialTestId) || 
            String.IsNullOrWhiteSpace(_rewardedId) || String.IsNullOrWhiteSpace(_rewardedTestId))
         {
@@ -66,7 +67,6 @@ public class AdManager : MonoBehaviour
         if(!GetIsAdsRemoved())
             EventBus.Subscribe(EventType.AllGoalCompleted, InterstitialAdShowControlInvoke);
 
-        
     }
 
     /// <summary>
@@ -119,7 +119,7 @@ public class AdManager : MonoBehaviour
         }
     }
 
-
+ 
     /// <summary>
     /// Reklamý yükle
     /// </summary>
@@ -163,8 +163,8 @@ public class AdManager : MonoBehaviour
                 // Ýsteðe baðlý callback çaðrýlýr
                 onAdLoaded?.Invoke(ad, null);
             });
-    }
-
+}
+ 
 
     /// <summary>
     /// Reklamý ekranda kullanýcýya göster
@@ -181,9 +181,9 @@ public class AdManager : MonoBehaviour
         {
             Debug.LogError("Interstitial ad is not ready yet.");
         }
-    }
+}
 
-
+ 
     /// <summary>
     /// Bir sonraki reklamý önceden yükleyin/hazýrlayýn
     /// </summary>
@@ -210,12 +210,14 @@ public class AdManager : MonoBehaviour
     }
 
 
+
     /// <summary>
     /// Reklam eventlerini dinleyin
     /// </summary>
     /// <param name="interstitialAd">Dinlemek istediðiniz reklam</param>
     private void RegisterEventHandlers(InterstitialAd interstitialAd)
     {
+
         // Raised when the ad is estimated to have earned money.
         interstitialAd.OnAdPaid += (AdValue adValue) =>
         {
@@ -249,6 +251,7 @@ public class AdManager : MonoBehaviour
             Debug.LogError("Interstitial ad failed to open full screen content " +
                            "with error : " + error);
         };
+
     }
 
 
@@ -258,6 +261,7 @@ public class AdManager : MonoBehaviour
     /// <param name="onAdLoaded">Ýsteðe baðlý callback fonksiyonu</param>
     public void LoadRewardedAd(Action<RewardedAd, LoadAdError> onAdLoaded = null)
     {
+
         // Clean up the old ad before loading a new one.
         if (rewardedAd != null)
         {
@@ -295,12 +299,13 @@ public class AdManager : MonoBehaviour
                 // Ýsteðe baðlý callback çaðrýlýr
                 onAdLoaded?.Invoke(ad, null);
             });
-    }
 
+    }
 
 
     public void ShowRewardedAd(Action<Reward> userRewardEarnedCallback)
     {
+
         //const string rewardMsg = "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
 
         if (rewardedAd != null && rewardedAd.CanShowAd())
@@ -317,10 +322,12 @@ public class AdManager : MonoBehaviour
 
             rewardedAd.Show(userRewardEarnedCallback);
         }
+
     }
 
     private void RegisterReloadHandler(RewardedAd ad)
     {
+
         // Raised when the ad closed full screen content.
         ad.OnAdFullScreenContentClosed += () =>
         {
@@ -376,6 +383,6 @@ public class AdManager : MonoBehaviour
                            "with error : " + error);
         };
     }
-
+ 
 
 }

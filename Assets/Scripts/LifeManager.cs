@@ -85,6 +85,8 @@ public class LifeManager : MonoBehaviour
 
         if(GetLifeCount() == 5)
             SetIsLoading(false);
+
+        EventBus.Publish(EventType.LifeCountChanged);
     }
 
 

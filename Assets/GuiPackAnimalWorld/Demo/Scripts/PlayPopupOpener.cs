@@ -43,10 +43,5 @@ namespace Ricimi
             
         }
 
-        public void ClosePopup()
-        {
-            playPopup.RemoveBackground();
-        }
-
     }
 }

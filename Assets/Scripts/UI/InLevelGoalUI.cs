@@ -50,7 +50,7 @@ public class InLevelGoalUI : MonoBehaviour
             var image = _goals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>();
             image.sprite = _leveldata.Goals[i].Gem.UISprite;
 
-            _goals.transform.GetChild(i).GetChild(2).GetComponent<Text>().text = "/" + _leveldata.levelGoalCounts[i].ToString();
+            _goals.transform.GetChild(i).GetChild(2).GetComponent<Text>().text = "/" + _leveldata.Goals[i].TargetCount.ToString();
             if (_isWinPopUp)
             {
                 _goals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text = _otherGoals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text;

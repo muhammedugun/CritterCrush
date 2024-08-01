@@ -9,6 +9,13 @@ public class StarCounterUI : MonoBehaviour
 
     private void Start()
     {
+        UpdateStarCountUI();
+
+        EventBus.Subscribe(EventType.StarCountChanged, UpdateStarCountUI);
+    }
+
+    private void UpdateStarCountUI()
+    {
         if (_starCountText != null)
         {
             _starCountText.text = StarManager.GetStarCount().ToString();
@@ -18,7 +25,5 @@ public class StarCounterUI : MonoBehaviour
             Debug.LogWarning("StarCountText atanmamýþ!");
         }
     }
-
-    
 
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085c154515191af40a56b1cb6f43db8e, type: 3}
   m_Name: HorizontalRocketBonusShopItem
   m_EditorClassIdentifier: 
-  ItemSprite: {fileID: 21300000, guid: a3c042e7079c8fc4b8d2ead6d6113868, type: 3}
+  ItemSprite: {fileID: 21300000, guid: 941bfac123b15de4a9ba7550aeaaf761, type: 3}
   ItemName: Bomb
   Price: 1
   BonusItem: {fileID: 11400000, guid: b37a5206a85e15440865697e559cf2b3, type: 2}

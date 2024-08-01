@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class LivesShopPopup : MonoBehaviour
 {
     [SerializeField] private GameObject _clockPrefab;
@@ -34,21 +33,9 @@ public class LivesShopPopup : MonoBehaviour
             _notificationSlider.value = 0;
         }
 
-        int lifeCount = LifeManager.GetLifeCount();
+        UpdateLiveCountUI();
 
-        for (int i = 0; i < lifeCount; i++)
-        {
-            _lives.transform.GetChild(i).GetComponent<Image>().sprite = _lifeSprite;
-        }
-        if(lifeCount<5)
-        {
-            var animator = _lives.transform.GetChild(lifeCount).AddComponent<Animator>();
-            animator.runtimeAnimatorController = _pulseAC;
-
-            Instantiate(_clockPrefab, _lives.transform.GetChild(lifeCount));
-        }
-        
-
+        EventBus.Subscribe(EventType.LifeCountChanged, UpdateLiveCountUI);
     }
 
     private void Update()
@@ -62,6 +49,23 @@ public class LivesShopPopup : MonoBehaviour
             {
                 _timeText.text = remainingMinutes.ToString() + ":" + remainingSeconds.ToString();
             }
+        }
+    }
+
+    private void UpdateLiveCountUI()
+    {
+        int lifeCount = LifeManager.GetLifeCount();
+
+        for (int i = 0; i < lifeCount; i++)
+        {
+            _lives.transform.GetChild(i).GetComponent<Image>().sprite = _lifeSprite;
+        }
+        if (lifeCount < 5)
+        {
+            var animator = _lives.transform.GetChild(lifeCount).AddComponent<Animator>();
+            animator.runtimeAnimatorController = _pulseAC;
+
+            Instantiate(_clockPrefab, _lives.transform.GetChild(lifeCount));
         }
     }
 
@@ -90,6 +94,8 @@ public class LivesShopPopup : MonoBehaviour
         {
             StarManager.AddStarCount(-livePrice);
         }
+
+        LifeManager.AddLifeCount(5);
     }
 
     

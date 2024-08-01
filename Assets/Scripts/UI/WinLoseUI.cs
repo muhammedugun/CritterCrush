@@ -13,20 +13,32 @@ public class WinLoseUI : MonoBehaviour
     void Start()
     {
         _popupOpener = GetComponent<PopupOpener>();
-        EventBus.Subscribe(EventType.MoveCountOver, OpenLosePopup);
-        EventBus.Subscribe(EventType.BoosterAndSwapsOverInLevel, OpenLosePopup);
-        EventBus.Subscribe(EventType.AllGoalCompleted, OpenWinPopup);
+        EventBus.Subscribe(EventType.MoveCountOver, OpenLosePopupInvoke);
+        EventBus.Subscribe(EventType.BoosterAndSwapsOverInLevel, OpenLosePopupInvoke);
+        EventBus.Subscribe(EventType.AllGoalCompleted, OpenWinPopupInvoke);
+    }
+
+    private void OpenWinPopupInvoke()
+    {
+        Invoke(nameof(OpenWinPopup), 1f);
+       
     }
 
     private void OpenWinPopup()
     {
         _popupOpener.popupPrefab = _winPopupPrefab;
-        if(_popupOpener.popup==null)
+        if (_popupOpener.popup == null)
         {
             _popupOpener.OpenPopup();
             DeactiveOtherObject();
         }
-       
+    }
+
+
+    private void OpenLosePopupInvoke()
+    {
+        Invoke(nameof(OpenLosePopup), 1f);
+
     }
 
     private void OpenLosePopup()
@@ -37,7 +49,6 @@ public class WinLoseUI : MonoBehaviour
             _popupOpener.OpenPopup();
             _deactiveObjects = DeactiveOtherObject();
         }
-            
     }
 
 

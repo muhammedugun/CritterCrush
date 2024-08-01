@@ -130,10 +130,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1109328734722123494, guid: c0d286e9bb4b9fd428ab8294a69e8db3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 179
-      objectReference: {fileID: 0}
     - target: {fileID: 1699768119269877908, guid: c0d286e9bb4b9fd428ab8294a69e8db3, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 36

@@ -11,6 +11,8 @@ public class StarManager : MonoBehaviour
         currentStarCount += count;
         PlayerPrefs.SetInt("StarCount", currentStarCount);
         PlayerPrefs.Save();
+
+        EventBus.Publish(EventType.StarCountChanged);
     }
 
     public static int GetStarCount()

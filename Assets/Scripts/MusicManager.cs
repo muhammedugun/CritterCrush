@@ -40,6 +40,8 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
+        AudioListener.volume = PlayerPrefs.GetFloat("SoundVolume", 1f);
+
         if (CheckMute())
         {
             MuteMusic();
