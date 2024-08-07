@@ -1,9 +1,12 @@
-using GoogleMobileAds.Api;
+#if UNITY_ANDROID 
+using GoogleMobileAds.Api; 
+#endif
 using Ricimi;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class LivesShopPopup : MonoBehaviour
 {
@@ -24,6 +27,7 @@ public class LivesShopPopup : MonoBehaviour
     private void Start()
     {
         LifeManager.LifeLoadControl();
+#if UNITY_ANDROID
         if(AndroidNotifications.CheckSendNotifications())
         {
             _notificationSlider.value = 1;
@@ -32,7 +36,7 @@ public class LivesShopPopup : MonoBehaviour
         {
             _notificationSlider.value = 0;
         }
-
+#endif
         UpdateLiveCountUI();
 
         EventBus.Subscribe(EventType.LifeCountChanged, UpdateLiveCountUI);
@@ -103,6 +107,7 @@ public class LivesShopPopup : MonoBehaviour
     {
         if(isInit)
         {
+#if UNITY_ANDROID
             isInit = false;
 
             if (_notificationSlider.value == 1)
@@ -117,9 +122,11 @@ public class LivesShopPopup : MonoBehaviour
                 _notificationImage.sprite = _disabledSprite;
                 Debug.Log("Bildirim kapatýldý");
             }
+#endif
         }
         else
         {
+#if UNITY_ANDROID
             if (AndroidNotifications.CheckSendNotifications())
             {
                 AndroidNotifications.DisableNotifications();
@@ -132,6 +139,7 @@ public class LivesShopPopup : MonoBehaviour
                 _notificationImage.sprite = _enabledSprite;
                 Debug.Log("Bildirim açýldý");
             }
+#endif
         }
         
     }
@@ -139,6 +147,7 @@ public class LivesShopPopup : MonoBehaviour
 
     public void FreeLiveButton()
     {
+#if UNITY_ANDROID
         var adManager = FindObjectOfType<AdManager>();
 
         if(adManager.rewardedAd!=null)
@@ -166,6 +175,13 @@ public class LivesShopPopup : MonoBehaviour
                 });
             });
         }
+#endif
+
+#if UNITY_WEBGL
+        YandexGame.Instance._RewardedShow(1);
+
+#endif
+
     }
-   
+
 }

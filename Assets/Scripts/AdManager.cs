@@ -1,12 +1,15 @@
+#if UNITY_ANDROID
 using GoogleMobileAds;
 using GoogleMobileAds.Api;
+#endif
 using System;
 using UnityEngine;
+using YG;
 
 public class AdManager : MonoBehaviour
 {
     public static AdManager Instance { get; private set; }
-
+#if UNITY_ANDROID
     [SerializeField] private bool _useTestAds;
 
     [SerializeField] private string _interstitialId;
@@ -18,8 +21,10 @@ public class AdManager : MonoBehaviour
     private string _interstitialIdUsed;
     private string _rewardedIdUsed;
 
+
     public InterstitialAd interstitialAd;
     public RewardedAd rewardedAd;
+#endif
 
     private float _lastAdShowTime = 0f;
 
@@ -38,7 +43,7 @@ public class AdManager : MonoBehaviour
 
     public void Start()
     {
-
+#if UNITY_ANDROID
         if(String.IsNullOrWhiteSpace(_interstitialId)  || String.IsNullOrWhiteSpace(_interstitialTestId) || 
            String.IsNullOrWhiteSpace(_rewardedId) || String.IsNullOrWhiteSpace(_rewardedTestId))
         {
@@ -57,15 +62,22 @@ public class AdManager : MonoBehaviour
             _interstitialIdUsed = _interstitialId;
             _rewardedIdUsed = _rewardedId;
         }
-            
+
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize((InitializationStatus initStatus) =>
         {
 
         });
-
-        if(!GetIsAdsRemoved())
+#endif
+        if (!GetIsAdsRemoved())
             EventBus.Subscribe(EventType.AllGoalCompleted, InterstitialAdShowControlInvoke);
+
+
+#if UNITY_WEBGL
+        YandexGame.RewardVideoEvent += StarManager.RewardStars;
+        YandexGame.RewardVideoEvent += LifeManager.RewardLives;
+        YandexGame.RewardVideoEvent += LosePopup.RewardMoves;
+#endif
 
     }
 
@@ -86,16 +98,23 @@ public class AdManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    /// <summary>
+    /// 1 saniye sonra geçiþ reklamýný baþlatýr
+    /// </summary>
     private void InterstitialAdShowControlInvoke()
     {
         if (!GetIsAdsRemoved())
-            Invoke(nameof(InterstitialAdShowControl), 2f);
+        {
+            Invoke(nameof(InterstitialAdShowControl), 1f);
+        }
+            
     }
 
     private void InterstitialAdShowControl()
     {
         if((_lastAdShowTime == 0f && Time.time >= 240f) || Time.time - _lastAdShowTime >= 240f)
         {
+        #if UNITY_ANDROID
             if (interstitialAd != null)
             {
                 ShowInterstitialAd();
@@ -116,10 +135,16 @@ public class AdManager : MonoBehaviour
 
                 });
             }
+        #endif
+
+        #if UNITY_WEBGL
+            YandexGame.Instance._FullscreenShow();
+        #endif
+
         }
     }
 
- 
+#if UNITY_ANDROID
     /// <summary>
     /// Reklamý yükle
     /// </summary>
@@ -163,9 +188,10 @@ public class AdManager : MonoBehaviour
                 // Ýsteðe baðlý callback çaðrýlýr
                 onAdLoaded?.Invoke(ad, null);
             });
-}
- 
+    }
+#endif
 
+#if UNITY_ANDROID
     /// <summary>
     /// Reklamý ekranda kullanýcýya göster
     /// </summary>
@@ -181,9 +207,9 @@ public class AdManager : MonoBehaviour
         {
             Debug.LogError("Interstitial ad is not ready yet.");
         }
-}
+    }
+    
 
- 
     /// <summary>
     /// Bir sonraki reklamý önceden yükleyin/hazýrlayýn
     /// </summary>
@@ -253,8 +279,9 @@ public class AdManager : MonoBehaviour
         };
 
     }
+#endif
 
-
+#if UNITY_ANDROID
     /// <summary>
     /// Loads the rewarded ad.
     /// </summary>
@@ -300,7 +327,7 @@ public class AdManager : MonoBehaviour
                 onAdLoaded?.Invoke(ad, null);
             });
 
-    }
+}
 
 
     public void ShowRewardedAd(Action<Reward> userRewardEarnedCallback)
@@ -322,8 +349,9 @@ public class AdManager : MonoBehaviour
 
             rewardedAd.Show(userRewardEarnedCallback);
         }
-
     }
+
+
 
     private void RegisterReloadHandler(RewardedAd ad)
     {
@@ -383,6 +411,7 @@ public class AdManager : MonoBehaviour
                            "with error : " + error);
         };
     }
- 
+    #endif
+
 
 }

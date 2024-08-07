@@ -20,4 +20,14 @@ public class StarManager : MonoBehaviour
         return PlayerPrefs.GetInt("StarCount", 0);
     }
 
+    public static void RewardStars(int ID)
+    {
+        // Reward Stars reklamý izlendiyse
+        if(ID==0)
+        {
+            AddStarCount(10);
+        }
+               
+    }
+
 }

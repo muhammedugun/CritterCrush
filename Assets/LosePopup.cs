@@ -1,9 +1,12 @@
+#if UNITY_ANDROID
 using GoogleMobileAds.Api;
+#endif
 using Match3;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class LosePopup : MonoBehaviour
 {
@@ -25,15 +28,14 @@ public class LosePopup : MonoBehaviour
 
     public void FreeMoveButton()
     {
+#if UNITY_ANDROID
         var adManager = FindObjectOfType<AdManager>();
 
         if (adManager.rewardedAd != null)
         {
             adManager.ShowRewardedAd((Reward reward) =>
             {
-                _levelDataProvider.levelData.RemainingMove = rewardedMoveCount;
-                var winLoseUI = FindObjectOfType<WinLoseUI>();
-                winLoseUI.CloseLosePopup();
+                RewardMoves();
             });
         }
         else
@@ -50,13 +52,34 @@ public class LosePopup : MonoBehaviour
 
                 adManager.ShowRewardedAd((Reward reward) =>
                 {
-                    _levelDataProvider.levelData.RemainingMove = rewardedMoveCount;
-                    var winLoseUI = FindObjectOfType<WinLoseUI>();
-                    winLoseUI.CloseLosePopup();
+                    RewardMoves();
                 });
             });
         }
+#endif
 
+#if UNITY_WEBGL
+        YandexGame.Instance._RewardedShow(2);
+#endif
+
+    }
+
+    private void RewardMoves()
+    {
+        _levelDataProvider.levelData.RemainingMove = rewardedMoveCount;
+        var winLoseUI = FindObjectOfType<WinLoseUI>();
+        winLoseUI.CloseLosePopup();
+    }
+
+    public static void RewardMoves(int ID)
+    {
+#if UNITY_WEBGL
+        if (ID == 2)
+        {
+            var losePopup = FindObjectOfType<LosePopup>();
+            losePopup.RewardMoves();
+        }
+#endif
     }
 
     public void RestartLevel()

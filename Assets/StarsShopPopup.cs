@@ -1,21 +1,30 @@
+#if UNITY_ANDROID
 using GoogleMobileAds.Api;
 using Samples.Purchasing.Core.BuyingConsumables;
+using UnityEngine.Purchasing;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Purchasing;
-
+#if UNITY_WEBGL
+using YG;
+#endif
 public class StarsShopPopup : MonoBehaviour
 {
+    #if UNITY_ANDROID
     private BuyingConsumables _buyingConsumables;
     private void Start()
     {
         _buyingConsumables = FindObjectOfType<BuyingConsumables>();
     }
+    #endif
 
     public void FreeStarsButton()
     {
+#if UNITY_ANDROID
         var adManager = FindObjectOfType<AdManager>();
+
+        
         if (adManager.rewardedAd != null)
         {
             adManager.ShowRewardedAd((Reward reward) =>
@@ -41,10 +50,23 @@ public class StarsShopPopup : MonoBehaviour
                 });
             });
         }
+
+#endif
+
+#if UNITY_WEBGL
+        YandexGame.Instance._RewardedShow(0);
+        
+#endif
+
     }
+
 
     public void BuyStars(int index)
     {
+#if UNITY_ANDROID
         _buyingConsumables.BuyConsumable(index);
+#endif
     }
+
+
 }

@@ -19199,7 +19199,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Free lives
+  m_Text: Free moves
 --- !u!114 &8978435521965159390
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+#if UNITY_ANDROID
 using Unity.Notifications.Android;
+#endif
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,8 +30,10 @@ public class LifeManager : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_ANDROID
         AndroidNotifications.RequestAuthorization();
         AndroidNotifications.RegisterNotificationChannel();
+#endif
     }
 
 
@@ -128,9 +132,10 @@ public class LifeManager : MonoBehaviour
         long rechargeTimeStamp = new DateTimeOffset(futureTime).ToUnixTimeSeconds();
         PlayerPrefs.SetString("NextLifeRechargeTime", rechargeTimeStamp.ToString());
         PlayerPrefs.Save();
-
+#if UNITY_ANDROID
         AndroidNotificationCenter.CancelAllNotifications();
         AndroidNotifications.SendNotification("A Life is Filled", "A your life is back now!", (int)minutes);
+#endif
     }
 
     /// <summary>
@@ -163,6 +168,16 @@ public class LifeManager : MonoBehaviour
             return timeLeft.Seconds; // Kalan sürenin sadece saniye kýsmýný verir
         }
         return 0;
+    }
+
+    public static void RewardLives(int ID)
+    {
+        // Reward Life reklamý izlendiyse
+        if (ID == 1)
+        {
+            AddLifeCount(3);
+        }
+
     }
 
 }

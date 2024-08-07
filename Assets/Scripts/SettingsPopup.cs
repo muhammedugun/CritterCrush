@@ -40,6 +40,7 @@ public class SettingsPopup : MonoBehaviour
 
     public void NotificationButton()
     {
+        #if UNITY_ANDROID
         if (AndroidNotifications.CheckSendNotifications())
         {
             AndroidNotifications.DisableNotifications();
@@ -52,6 +53,7 @@ public class SettingsPopup : MonoBehaviour
             _NotificationButtonImage.sprite = _NotificationEnableSprite;
             Debug.Log("Bildirim açýldý");
         }
+#endif
     }
 
     private bool CheckSoundMute()
@@ -107,10 +109,12 @@ public class SettingsPopup : MonoBehaviour
 
     private void UpdateNotificationButtonSprite()
     {
+        #if UNITY_ANDROID
         if (AndroidNotifications.CheckSendNotifications())
             _NotificationButtonImage.sprite = _NotificationEnableSprite;
         else
             _NotificationButtonImage.sprite = _NotificationDisableSprite;
+        #endif
     }
 
 
