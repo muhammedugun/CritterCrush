@@ -5,6 +5,8 @@ The purpose of making this game is to learn how to use and integrate mobile plug
 I implemented various topics such as mobile notifications, ad displays, in-app purchase integration on this game. 
 I verified that I was able to run all this work on a real game.
 
+Since my goal in making this game was to bring together a lot of different components while maintaining visual and functional consistency and learning how to integrate add-ons like mobile notifications, in-app purchases, and ads, I didn't build the core match-three mechanics myself, but took them from Unity's Gem Hunter Match asset.
+
 [Download Apk File](https://github.com/muhammedugun/CritterCrush/releases/tag/1.0.0)
 
 ![0828](https://github.com/user-attachments/assets/c23440d8-472e-4039-b4cc-b9e6c245d819)
@@ -74,7 +76,7 @@ I verified that I was able to run all this work on a real game.
 ## 🔧 **Development**
 
 - Tools used: Unity 2022.3, C#, Adobe Illustrator
-
+- Assets: Gui Pack Animal World, Gem Hunter Match
 ---
 
 ## 👥 **Contributors**
