@@ -5,28 +5,24 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-
 namespace Match3
 {
     /// <summary>
-    /// The GameManager is the interface between all the system in the game. It is either instantiated by the Loading scene
-    /// which is the first at the start of the game, or Loaded from the Resource Folder dynamically at first access in editor
-    /// so we can press play from any point of the game without having to add it to every scene and test if it already exist
+    /// GameManager, oyundaki tüm sistemler arasýnda arayüz saðlar. Oyun baþlarken Loading sahnesi tarafýndan baþlatýlýr
+    /// veya ilk eriþimde dinamik olarak kaynak klasöründen yüklenir. Bu sayede oyunun herhangi bir noktasýnda oynatýlabilir.
     /// </summary>
     [DefaultExecutionOrder(-9999)]
     public class GameManager : MonoBehaviour
     {
-        //This is set to true when the manager is deleted. This is useful as the manager can be deleted before other
-        //objects 
+        // Yönetici silindiðinde bu true olarak ayarlanýr. Diðer nesnelerden önce silinebildiði için kullanýþlýdýr.
         private static bool s_IsShuttingDown = false;
-        
+
         public static GameManager Instance
         {
             get
             {
-                
-                // In Editor, the instance can be crated on the fly so we can play any scene without setup to do.
-                // In a build, the first scene will Init all that so we are sure there will already be an instance.
+                // Editörde, örnek dinamik olarak oluþturulabilir, böylece herhangi bir sahneyi kurmadan oynatabiliriz.
+                // Bir yapýmda, ilk sahne her þeyi baþlatýr, bu nedenle bir örnek zaten mevcut olacaktýr.
 #if UNITY_EDITOR
                 if (s_Instance == null && !s_IsShuttingDown)
                 {
@@ -59,7 +55,7 @@ namespace Match3
             public int Amount;
             public BoosterItem Item;
         }
-    
+
         private static GameManager s_Instance;
 
         public Board Board;
@@ -76,16 +72,14 @@ namespace Match3
 
         public VFXPoolSystem PoolSystem { get; private set; } = new();
 
-        //we use two sources so we can crossfade
+        // Ýki ses kaynaðý kullanýyoruz, böylece geçiþ yapabiliriz
         private AudioSource MusicSourceActive;
         private AudioSource MusicSourceBackground;
         private Queue<AudioSource> m_SFXSourceQueue = new();
 
         private GameObject m_BoosterModePrefab;
-    
-        
-        public SoundData m_SoundData = new();
 
+        public SoundData m_SoundData = new();
 
         private void Awake()
         {
@@ -98,9 +92,9 @@ namespace Match3
             {
                 s_Instance = this;
                 DontDestroyOnLoad(gameObject);
-                
+
                 Application.targetFrameRate = 60;
-            
+
                 ClickAction.Enable();
                 ClickPosition.Enable();
 
@@ -122,7 +116,6 @@ namespace Match3
                     m_BoosterModePrefab.SetActive(false);
                 }
 
-
                 LoadSoundData();
             }
         }
@@ -138,15 +131,12 @@ namespace Match3
         }
 
         /// <summary>
-        /// Called by the LevelData when it awake, notify the GameManager we started a new level.
+        /// LevelData tarafýndan çaðrýlýr, yeni bir seviyeye baþlandýðýný GameManager'a bildirir.
         /// </summary>
         public void StartLevel()
         {
             GetReferences();
-          
-            
 
-            
             LevelData.Instance.OnAllGoalFinished += () =>
             {
                 Instance.Board.ToggleInput(false);
@@ -164,8 +154,7 @@ namespace Match3
                 SwitchMusic(LevelData.Instance.Music);
             }
 
-
-            //we delay the board init to leave enough time for all the tile to init
+            // Tahtanýn baþlatýlmasýný geciktiriyoruz, tüm karolarýn baþlatýlmasýna yeterli zaman býrakýyoruz
             StartCoroutine(DelayedInit());
         }
 
@@ -179,16 +168,16 @@ namespace Match3
 
         public void ComputeCamera()
         {
-            //setup the camera so it look at the center of the play area, and change its ortho setting so it perfectly frame
+            // Kamerayý oyun alanýnýn ortasýna bakacak þekilde ayarlar ve tam olarak kareye almak için ortografik ayarýný deðiþtirir
             var bounds = Board.Bounds;
             Vector3 center = Board.Grid.CellToLocalInterpolated(bounds.center) + new Vector3(0.5f, 0.5f, 0.0f);
             center = Board.transform.TransformPoint(center);
-            
-            //we offset of 1 up as the top bar is thicker, so this center it better between the top & bottom bar
+
+            // Üst çubuðun kalýnlýðý nedeniyle 1 yukarý kaydýrýyoruz, bu sayede merkez üst ve alt çubuðun arasýnda daha iyi olur
             Camera.main.transform.position = center + Vector3.back * 10.0f + Vector3.up * 0.75f;
 
             float halfSize = 0.0f;
-            
+
             if (Screen.height > Screen.width)
             {
                 float screenRatio = Screen.height / (float)Screen.width;
@@ -196,28 +185,27 @@ namespace Match3
             }
             else
             {
-                //On Wide screen, we fit vertically
+                // Geniþ ekranlarda, dikey olarak sýðdýrýyoruz
                 halfSize = (bounds.size.y + 3) * 0.5f + LevelData.Instance.BorderMargin;
             }
 
             halfSize += LevelData.Instance.BorderMargin;
-        
+
             Camera.main.orthographicSize = halfSize;
         }
 
         /// <summary>
-        /// Called by the Main Menu when it open, notify the GameManager we are back in the menu so need to hide the Game UI.
+        /// Ana Menü tarafýndan çaðrýlýr, GameManager'a menüde olduðumuzu bildirir, bu nedenle oyun UI'sýný gizlememiz gerekir.
         /// </summary>
         public void MainMenuOpened()
         {
             PoolSystem.Clean();
-            
+
             SwitchMusic(Instance.Settings.SoundSettings.MenuSound);
         }
 
         private void Update()
         {
-
             if (MusicSourceActive.volume < 1.0f)
             {
                 MusicSourceActive.volume = Mathf.MoveTowards(MusicSourceActive.volume, 1.0f, Time.deltaTime * 0.5f);
@@ -230,23 +218,23 @@ namespace Match3
             Stars += amount;
             if (Stars < 0)
                 Stars = 0;
-        
-       
         }
 
+        /// <summary>
+        /// Oyuncu seviyeyi tamamladýðýnda çaðrýlýr ve yýldýzlarý kazandýrýr.
+        /// </summary>
         public void WinStar()
         {
             string input = SceneManager.GetActiveScene().name;
             string levelNumber = input.Substring("Level".Length);
             int levelIndex = int.Parse(levelNumber) - 1;
-            int earnedStarCount=0;
+            int earnedStarCount = 0;
 
-            ScoreManager.SetLevelScore(levelIndex+1, LevelData.Instance.CurrentScore);
+            ScoreManager.SetLevelScore(levelIndex + 1, LevelData.Instance.CurrentScore);
 
             if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.33)
             {
                 earnedStarCount = 1;
-                
             }
             if (LevelData.Instance.CurrentScore >= LevelData.Instance.TargetScore * 0.66)
             {
@@ -261,21 +249,30 @@ namespace Match3
             LevelCompletion.CompleteLevel(levelIndex, earnedStarCount);
         }
 
+        /// <summary>
+        /// Yaþam sayýsýný artýrýr.
+        /// </summary>
         public void AddLive(int amount)
         {
             Lives += amount;
         }
 
+        /// <summary>
+        /// Yaþam sayýsýný azaltýr.
+        /// </summary>
         public void LoseLife()
         {
             Lives -= 1;
         }
 
+        /// <summary>
+        /// Ses ayarlarýný günceller.
+        /// </summary>
         public void UpdateVolumes()
         {
             Settings.SoundSettings.Mixer.SetFloat("MainVolume", Mathf.Log10(Mathf.Max(0.0001f, m_SoundData.MainVolume)) * 30.0f);
-            Settings.SoundSettings.Mixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(0.0001f, m_SoundData.SFXVolume)) * 30.0f);
             Settings.SoundSettings.Mixer.SetFloat("MusicVolume", Mathf.Log10(Mathf.Max(0.0001f, m_SoundData.MusicVolume)) * 30.0f);
+            Settings.SoundSettings.Mixer.SetFloat("SFXVolume", Mathf.Log10(Mathf.Max(0.0001f, m_SoundData.SFXVolume)) * 30.0f);
         }
 
         public void SaveSoundData()
@@ -287,16 +284,18 @@ namespace Match3
         {
             if (System.IO.File.Exists(Application.persistentDataPath + "/sounds.json"))
             {
-                JsonUtility.FromJsonOverwrite(System.IO.File.ReadAllText(Application.persistentDataPath+"/sounds.json"), m_SoundData);
+                JsonUtility.FromJsonOverwrite(System.IO.File.ReadAllText(Application.persistentDataPath + "/sounds.json"), m_SoundData);
             }
-            
+
             UpdateVolumes();
         }
 
+        /// <summary>
+        /// Booster item'ýný listeye ekler.
+        /// </summary>
         public void AddBoosterItem(BoosterItem item)
         {
             var existingItem = BoosterItems.Find(entry => entry.Item == item);
-
             if (existingItem != null)
             {
                 existingItem.Amount += 1;
@@ -309,10 +308,11 @@ namespace Match3
                     Item = item
                 });
             }
-            
-           
         }
 
+        /// <summary>
+        /// Booster item'ýný aktif eder.
+        /// </summary>
         public void ActivateBoosterItem(BoosterItem item)
         {
             LevelData.Instance.DarkenBackground(item != null);
@@ -320,23 +320,31 @@ namespace Match3
             Board.ActivateBoosterItem(item);
         }
 
+        /// <summary>
+        /// Booster item'ýný devre dýþý býrakýr.
+        /// </summary>
         public void DeactiveBoosterItem()
         {
             Board.DeactiveBoosterItem();
         }
 
+        /// <summary>
+        /// Booster item'ýný kullanýr ve listeden çýkarýr.
+        /// </summary>
         public void UseBoosterItem(BoosterItem item, Vector3Int cell)
         {
             var existingItem = BoosterItems.Find(entry => entry.Item == item);
-            if(existingItem == null) return;
-        
+            if (existingItem == null) return;
+
             existingItem.Item.Use(cell);
             existingItem.Amount -= 1;
-            
-            m_BoosterModePrefab?.SetActive(false);
 
+            m_BoosterModePrefab?.SetActive(false);
         }
 
+        /// <summary>
+        /// Ses efektlerini oynatýr.
+        /// </summary>
         public AudioSource PlaySFX(AudioClip clip)
         {
             var source = m_SFXSourceQueue.Dequeue();
@@ -348,6 +356,9 @@ namespace Match3
             return source;
         }
 
+        /// <summary>
+        /// Müziði deðiþtirir.
+        /// </summary>
         void SwitchMusic(AudioClip music)
         {
             MusicSourceBackground.clip = music;

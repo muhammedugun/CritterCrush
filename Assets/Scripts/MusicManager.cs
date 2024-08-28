@@ -1,11 +1,18 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Menü ve seviyeler için kullanýlan ses kaynaklarýný tanýmlar.
+/// </summary>
 public class MusicManager : MonoBehaviour
 {
     public AudioSource menuAudioSource, inLevelAudioSource;
 
     private static MusicManager instance;
+
+    /// <summary>
+    /// Singleton deseni kullanarak MusicManager örneðini alýr.
+    /// </summary>
     public static MusicManager Instance
     {
         get
@@ -23,7 +30,6 @@ public class MusicManager : MonoBehaviour
             return instance;
         }
     }
-
 
     private void Awake()
     {
@@ -50,23 +56,30 @@ public class MusicManager : MonoBehaviour
         {
             UnMuteMusic();
         }
-            
     }
 
+    /// <summary>
+    /// Müzik sesinin kapalý olup olmadýðýný kontrol eder.
+    /// </summary>
+    /// <returns>Müzik kapalýysa true, açýksa false döner.</returns>
     public static bool CheckMute()
     {
-        if (PlayerPrefs.GetFloat("MusicVolume", 1f) == 0f)
-            return true;
-        else
-            return false;
+        return PlayerPrefs.GetFloat("MusicVolume", 1f) == 0f;
     }
 
+    /// <summary>
+    /// Müzikleri kapalý duruma getirir.
+    /// </summary>
     public void MuteMusic()
     {
-         PlayerPrefs.SetFloat("MusicVolume", 0f);
-         menuAudioSource.volume = 0f;
-         inLevelAudioSource.volume = 0f;
+        PlayerPrefs.SetFloat("MusicVolume", 0f);
+        menuAudioSource.volume = 0f;
+        inLevelAudioSource.volume = 0f;
     }
+
+    /// <summary>
+    /// Müzikleri açýk duruma getirir.
+    /// </summary>
     public void UnMuteMusic()
     {
         PlayerPrefs.SetFloat("MusicVolume", 1f);
@@ -80,7 +93,7 @@ public class MusicManager : MonoBehaviour
         if (name == "Main" || name == "LevelSelection")
         {
             inLevelAudioSource.Stop();
-            if(!menuAudioSource.isPlaying)
+            if (!menuAudioSource.isPlaying)
                 menuAudioSource.Play();
         }
         else
@@ -90,5 +103,4 @@ public class MusicManager : MonoBehaviour
                 inLevelAudioSource.Play();
         }
     }
-
 }

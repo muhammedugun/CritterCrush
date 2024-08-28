@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Oyun içi hedeflerin UI'da yönetilmesini saðlayan sýnýf.
+/// </summary>
 public class InLevelGoalUI : MonoBehaviour
 {
     public GameObject _goals;
@@ -28,22 +31,22 @@ public class InLevelGoalUI : MonoBehaviour
         EventBus<Gem, int>.Subscribe(EventType.GoalCountChanged, OnMatch);
 
         UpdateGoalSprite();
-
-        
-        
     }
 
+    /// <summary>
+    /// Hedef sprite'larýný günceller.
+    /// </summary>
     public void UpdateGoalSprite()
     {
-
+        // Mevcut hedefleri gizle
         for (int i = 0; i < _goals.transform.childCount; i++)
         {
             _goals.transform.GetChild(i).gameObject.SetActive(false);
         }
 
-
         int length = _leveldata.Goals.Length;
 
+        // Hedefleri güncelle
         for (int i = 0; i < length; i++)
         {
             _goals.transform.GetChild(i).gameObject.SetActive(true);
@@ -59,28 +62,30 @@ public class InLevelGoalUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Hedef sayýsýný günceller.
+    /// </summary>
     public void UpdateGoalCount()
     {
         int length = _leveldata.Goals.Length;
 
         for (int i = 0; i < length; i++)
         {
-
             int currentCount = _leveldata.Goals[i].TargetCount - _leveldata.levelGoalCounts[i];
             _goals.transform.GetChild(i).GetChild(3).GetComponent<Text>().text = currentCount.ToString();
-
-
         }
     }
 
-    // Eþleþme olduðunda çaðrýlacak fonksiyon
+    /// <summary>
+    /// Eþleþme olduðunda çaðrýlan fonksiyon.
+    /// </summary>
     public void OnMatch(Gem gem, int matchCount)
     {
         Vector3 matchWorldPosition = gem.transform.position;
 
         Vector2 matchCanvasPosition;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, Camera.main.WorldToScreenPoint(matchWorldPosition), Camera.main, out matchCanvasPosition);
-        
+
         GameObject newItem = Instantiate(gemUIObject, canvas.transform);
         newItem.GetComponent<Image>().sprite = gem.UISprite;
 
@@ -92,13 +97,15 @@ public class InLevelGoalUI : MonoBehaviour
 
         float tweenDelay = Random.Range(0f, 0.5f);
         newItemRectTransform.DOAnchorPos(goalCanvasPosition, duration).SetDelay(tweenDelay);
-        newItemRectTransform.DOScale(Vector3.one*0.5f, duration).SetDelay(tweenDelay).OnComplete(() =>
+        newItemRectTransform.DOScale(Vector3.one * 0.5f, duration).SetDelay(tweenDelay).OnComplete(() =>
         {
             Destroy(newItem);
         });
-
     }
 
+    /// <summary>
+    /// Sprite için dünya pozisyonunu alýr.
+    /// </summary>
     Vector3 GetWorldPosition(Sprite sprite)
     {
         int length = _leveldata.Goals.Length;
@@ -108,7 +115,7 @@ public class InLevelGoalUI : MonoBehaviour
         for (int i = 0; i < length; i++)
         {
             var image = _goals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<Image>();
-            if(image.sprite == sprite)
+            if (image.sprite == sprite)
             {
                 rectTransform = _goals.transform.GetChild(i).GetChild(1).GetChild(0).GetComponent<RectTransform>();
                 break;
@@ -119,5 +126,4 @@ public class InLevelGoalUI : MonoBehaviour
         Vector3 worldPos = rectTransform.TransformPoint(rectTransform.rect.center);
         return worldPos;
     }
-
 }

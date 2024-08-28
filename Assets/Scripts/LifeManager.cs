@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 #if UNITY_ANDROID
 using Unity.Notifications.Android;
 #endif
@@ -9,13 +6,18 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO: Sahne her açýldýðýnda start çalýþmamasý için instance oluþturulacak
+/// <summary>
+/// Oyundaki yaþam sayýsýný yöneten sýnýf.
+/// </summary>
 public class LifeManager : MonoBehaviour
 {
     public static LifeManager Instance { get; private set; }
 
     private static readonly int _lifeLoadingTime = 25;
 
+    /// <summary>
+    /// Singleton desenini kullanarak tek bir LifeManager örneðini yönetir.
+    /// </summary>
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -28,6 +30,9 @@ public class LifeManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Android platformunda bildirim izinlerini ve kanallarý yapýlandýrýr.
+    /// </summary>
     private void Start()
     {
 #if UNITY_ANDROID
@@ -36,7 +41,9 @@ public class LifeManager : MonoBehaviour
 #endif
     }
 
-
+    /// <summary>
+    /// Hayat yükleme durumunu kontrol eder ve gerekli iþlemleri yapar.
+    /// </summary>
     public static void LifeLoadControl()
     {
         if (GetLifeCount() < 5)
@@ -66,19 +73,20 @@ public class LifeManager : MonoBehaviour
             {
                 SetNextLoadLifeTime(_lifeLoadingTime);
             }
-
-
         }
     }
 
     /// <summary>
-    /// Caný 1 azaltýr
+    /// Hayat sayýsýný 1 azaltýr.
     /// </summary>
     public static void DecreaseHealthOne()
     {
         AddLifeCount(-1);
     }
 
+    /// <summary>
+    /// Hayat sayýsýný belirtilen miktarda artýrýr.
+    /// </summary>
     public static void AddLifeCount(int count)
     {
         int currentLifeCount = GetLifeCount();
@@ -87,26 +95,32 @@ public class LifeManager : MonoBehaviour
         PlayerPrefs.SetInt("LifeCount", currentLifeCount);
         PlayerPrefs.Save();
 
-        if(GetLifeCount() == 5)
+        if (GetLifeCount() == 5)
             SetIsLoading(false);
 
         EventBus.Publish(EventType.LifeCountChanged);
     }
 
-
-
+    /// <summary>
+    /// Þu anki hayat sayýsýný getirir.
+    /// </summary>
     public static int GetLifeCount()
     {
         return PlayerPrefs.GetInt("LifeCount", 0);
     }
 
+    /// <summary>
+    /// Hayatýn yüklenip yüklenmediðini kontrol eder.
+    /// </summary>
     public static bool GetIsLoading()
     {
         if (PlayerPrefs.GetInt("IsLifeLoading", 0) == 1) return true;
         else return false;
-
     }
 
+    /// <summary>
+    /// Hayatýn yüklenme durumunu ayarlar.
+    /// </summary>
     public static void SetIsLoading(bool boolean)
     {
         if (boolean)
@@ -119,10 +133,11 @@ public class LifeManager : MonoBehaviour
         }
 
         PlayerPrefs.Save();
-
     }
 
-
+    /// <summary>
+    /// Sonraki yükleme zamanýný ayarlar ve bildirim gönderir.
+    /// </summary>
     public static void SetNextLoadLifeTime(double minutes)
     {
         SetIsLoading(true);
@@ -139,7 +154,7 @@ public class LifeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Kalan süreyi dakika cinsinden getir
+    /// Kalan süreyi dakika cinsinden getirir.
     /// </summary>
     public static int GetRemainingMinutes()
     {
@@ -155,7 +170,7 @@ public class LifeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Kalan sürenin saniye cinsinden kýsmýný getir
+    /// Kalan sürenin saniye cinsinden kýsmýný getirir.
     /// </summary>
     public static int GetRemainingSeconds()
     {
@@ -170,6 +185,9 @@ public class LifeManager : MonoBehaviour
         return 0;
     }
 
+    /// <summary>
+    /// Belirtilen ID'ye göre ödül hayatý verir.
+    /// </summary>
     public static void RewardLives(int ID)
     {
         // Reward Life reklamý izlendiyse
@@ -177,7 +195,5 @@ public class LifeManager : MonoBehaviour
         {
             AddLifeCount(3);
         }
-
     }
-
 }

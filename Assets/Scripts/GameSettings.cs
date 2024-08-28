@@ -5,14 +5,13 @@ using UnityEngine.VFX;
 namespace Match3
 {
     /// <summary>
-    /// Contains all the settings for the game so they can be found in a single place. This is stored on the GameManager
-    /// in the Resource folder if you need to edit it.
+    /// Oyunun tüm ayarlarýný içeren sýnýf. Bu ayarlar GameManager üzerinde, Resource klasöründe bulunur ve düzenlenebilir.
     /// </summary>
     [System.Serializable]
     public class GameSettings
     {
         public float InactivityBeforeHint = 2.0f;
-    
+
         public VisualSetting VisualSettings;
         public BonusSetting BonusSettings;
         public ShopSetting ShopSettings;
@@ -20,7 +19,7 @@ namespace Match3
     }
 
     /// <summary>
-    /// Visual Settings are all the parameters used in the Visual effect of the game like fall speed, bounce curve and vfx
+    /// Görsel efektlerle ilgili ayarlar. Düþme hýzý, zýplama eðrisi ve vfx gibi parametreleri içerir.
     /// </summary>
     [System.Serializable]
     public class VisualSetting
@@ -34,7 +33,7 @@ namespace Match3
         public AnimationCurve CoinFlyCurve;
 
         public GameObject BoosterModePrefab;
-        
+
         public GameObject HintPrefab;
 
         public VisualEffect WinEffect;
@@ -42,7 +41,7 @@ namespace Match3
     }
 
     /// <summary>
-    /// Setting related to bonus gem, list all the existing bonus gems. 
+    /// Bonus taþlarla ilgili ayarlar. Mevcut tüm bonus taþlarý listeler.
     /// </summary>
     [System.Serializable]
     public class BonusSetting
@@ -51,38 +50,50 @@ namespace Match3
     }
 
     /// <summary>
-    /// Settings related to the Shop, list all ShopItems.
+    /// Maðaza ile ilgili ayarlar. Tüm Maðaza Öðelerini listeler.
     /// </summary>
     [System.Serializable]
     public class ShopSetting
     {
+        /// <summary>
+        /// Maðaza öðelerinin temel sýnýfý. Her öðe için fiyat ve satýn alýnabilirlik bilgilerini içerir.
+        /// </summary>
         public abstract class ShopItem : ScriptableObject
-        { 
+        {
             public Sprite ItemSprite;
             public string ItemName;
             public int Price;
 
+            /// <summary>
+            /// Öðenin satýn alýnýp alýnamayacaðýný kontrol eder.
+            /// </summary>
             public virtual bool CanBeBought()
             {
-                return GameManager.Instance.Stars >= Price; 
+                return GameManager.Instance.Stars >= Price;
             }
-        
+
+            /// <summary>
+            /// Öðeyi satýn alýr. Abstrakt metod, alt sýnýflarda uygulanmalýdýr.
+            /// </summary>
             public abstract void Buy();
         }
 
         public ShopItem[] Items;
     }
 
+    /// <summary>
+    /// Ses ayarlarýyla ilgili sýnýf. Ses kaynaklarý, efektler ve müzik ayarlarýný içerir.
+    /// </summary>
     [System.Serializable]
     public class SoundSetting
     {
         public AudioMixer Mixer;
-        
+
         public AudioSource SFXSourcePrefab;
         public AudioSource MusicSourcePrefab;
 
         public AudioClip MenuSound;
-        
+
         public AudioClip SwipSound;
         public AudioClip FallSound;
 
