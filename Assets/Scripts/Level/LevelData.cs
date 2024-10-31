@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 namespace Match3
 {
     /// <summary>
-    /// Bu sýnýf, seviyenin tüm verilerini içerir: hedefler ve maksimum hamle sayýsý. Ayrýca, bir seviyenin yüklendiðini
+    /// Bu snf, seviyenin tm verilerini ierir: hedefler ve maksimum hamle says. Ayrca, bir seviyenin yklendiini
     /// GameManager'a bildirir.
     /// </summary>
     public class LevelData : MonoBehaviour
@@ -95,7 +96,7 @@ namespace Match3
 
         void Update()
         {
-            // Ekran boyutunda bir deðiþiklik olup olmadýðýný kontrol ederiz ve kamera yakýnlaþtýrmasýný yeniden hesaplarýz
+            // Ekran boyutunda bir deiiklik olup olmadn kontrol ederiz ve kamera yaknlatrmasn yeniden hesaplarz
             if (Screen.width != m_StartingWidth || Screen.height != m_StartingHeight)
             {
                 GameManager.Instance.ComputeCamera();
@@ -103,11 +104,11 @@ namespace Match3
         }
 
         /// <summary>
-        /// Hedeflerle eþleþip eþleþmediðini kontrol eder ve puaný günceller.
+        /// Hedeflerle eleip elemediini kontrol eder ve puan gnceller.
         /// </summary>
-        /// <param name="gem">Eþleþen taþ</param>
-        /// <param name="matchCount">Eþleþme sayýsý</param>
-        /// <returns>Eþleþme var mý?</returns>
+        /// <param name="gem">Eleen ta</param>
+        /// <param name="matchCount">Eleme says</param>
+        /// <returns>Eleme var m?</returns>
         public bool Matched(Gem gem, int matchCount = 0)
         {
             CurrentScore += gem.GemScore;
@@ -132,7 +133,7 @@ namespace Match3
                         GoalLeft -= 1;
                         if (GoalLeft == 0)
                         {
-                            // Elinde kalan hamle sayýsýna göre ekstra puan kazandýrýr
+                            // Elinde kalan hamle saysna gÃ¶re ekstra puan kazandrr
                             CurrentScore += RemainingMove * 30;
                             EventBus<int>.Publish(EventType.ScoreChanged, CurrentScore);
 
@@ -142,8 +143,9 @@ namespace Match3
 
                             string levelName = SceneManager.GetActiveScene().name;
                             int levelNumber = int.Parse(levelName.Substring(5, levelName.Length - 5)) + 1;
-                            PlayerPrefs.SetInt("isLevel" + levelNumber + "Active", 1);
-
+                            
+                            YandexGame.savesData.openLevels[levelNumber] = true;
+                            YandexGame.SaveProgress();
                             OnAllGoalFinished?.Invoke();
                         }
                     }
@@ -157,9 +159,9 @@ namespace Match3
         }
 
         /// <summary>
-        /// Arka planý karartýr veya açar
+        /// Arka plan karartr veya aar
         /// </summary>
-        /// <param name="darken">Karartýlacak mý?</param>
+        /// <param name="darken">Karartlacak m?</param>
         public void DarkenBackground(bool darken)
         {
             if (Background == null)
@@ -169,7 +171,7 @@ namespace Match3
         }
 
         /// <summary>
-        /// Hamle yapýldýðýnda kalan hamle sayýsýný günceller
+        /// Hamle yapldnda kalan hamle saysn gnceller
         /// </summary>
         public void Moved()
         {

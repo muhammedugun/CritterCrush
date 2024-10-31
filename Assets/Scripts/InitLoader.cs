@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 namespace Match3
 {
@@ -10,9 +11,11 @@ namespace Match3
             QualitySettings.vSyncCount = 0;
             Application.targetFrameRate = 60;
 
-            if (PlayerPrefs.GetInt("isPlayingFirstTime", 1) == 1)
+            if (YandexGame.savesData.isPlayingFirstTime)
             {
-                PlayerPrefs.SetInt("isPlayingFirstTime", 0);
+                YandexGame.savesData.isPlayingFirstTime = false;
+                YandexGame.SaveProgress();
+                
                 LifeManager.AddLifeCount(5);
                 BoosterManager.AddBoosterCount(0, 2);
                 BoosterManager.AddBoosterCount(1, 5);
@@ -20,8 +23,6 @@ namespace Match3
                 BoosterManager.AddBoosterCount(3, 2);
                 BoosterManager.AddBoosterCount(4, 7);
             }
-
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
         }
     }
 }

@@ -1,10 +1,9 @@
-using GoogleMobileAds.Api;
 using Match3;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Reklam izleyerek kazanýlacak serbest hamle sayýsýný ve metinleri tanýmlar.
+/// Reklam izleyerek kazanï¿½lacak serbest hamle sayï¿½sï¿½nï¿½ ve metinleri tanï¿½mlar.
 /// </summary>
 public class LosePopup : MonoBehaviour
 {
@@ -24,10 +23,11 @@ public class LosePopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Reklam izleyerek serbest hamle kazanma iþlemini baþlatýr.
+    /// Reklam izleyerek serbest hamle kazanma iï¿½lemini baï¿½latï¿½r.
     /// </summary>
     public void FreeMoveButton()
     {
+        /*
         var adManager = FindObjectOfType<AdManager>();
 
         if (adManager.rewardedAd != null)
@@ -54,11 +54,11 @@ public class LosePopup : MonoBehaviour
                     RewardMoves();
                 });
             });
-        }
+        }*/
     }
 
     /// <summary>
-    /// Ödül olarak serbest hamle ekler ve kaybetme pop-up'ýný kapatýr.
+    /// ï¿½dï¿½l olarak serbest hamle ekler ve kaybetme pop-up'ï¿½nï¿½ kapatï¿½r.
     /// </summary>
     private void RewardMoves()
     {
@@ -68,7 +68,7 @@ public class LosePopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Seviye baþtan baþlatýlýr.
+    /// Seviye baï¿½tan baï¿½latï¿½lï¿½r.
     /// </summary>
     public void RestartLevel()
     {

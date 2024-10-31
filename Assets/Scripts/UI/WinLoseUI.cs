@@ -1,4 +1,3 @@
-using GoogleMobileAds.Api;
 using Match3;
 using Ricimi;
 using System.Collections.Generic;
@@ -27,7 +26,7 @@ public class WinLoseUI : MonoBehaviour
     private void OpenWinPopup()
     {
         _popupOpener.popupPrefab = _winPopupPrefab;
-        if (_popupOpener.popup == null)
+        if (_popupOpener.popupPrefab)
         {
             _popupOpener.OpenPopup();
             DeactiveOtherObject();
@@ -44,7 +43,7 @@ public class WinLoseUI : MonoBehaviour
     private void OpenLosePopup()
     {
         _popupOpener.popupPrefab = _losePopupPrefab;
-        if (_popupOpener.popup == null)
+        if (_popupOpener.popupPrefab == null)
         {
             _popupOpener.OpenPopup();
             _deactiveObjects = DeactiveOtherObject();
@@ -55,31 +54,30 @@ public class WinLoseUI : MonoBehaviour
     public void CloseLosePopup()
     {
         _popupOpener.ClosePopup();
-        _popupOpener.popup.SetActive(false);
         ActiveOtherObject(_deactiveObjects);
 
     }
 
     /// <summary>
-    /// Popupýn görülmesini engelleyen objeleri deactive eder
+    /// Popupï¿½n gï¿½rï¿½lmesini engelleyen objeleri deactive eder
     /// </summary>
     public static List<GameObject> DeactiveOtherObject()
     {
-        // Tüm `Gem` türündeki objeleri bul
+        // Tï¿½m `Gem` tï¿½rï¿½ndeki objeleri bul
         var objects = FindObjectsByType<Gem>(FindObjectsSortMode.None);
         var result = new List<GameObject>();
 
-        // `Gem` türündeki objelerin hepsini devre dýþý býrak ve listeye ekle
+        // `Gem` tï¿½rï¿½ndeki objelerin hepsini devre dï¿½ï¿½ï¿½ bï¿½rak ve listeye ekle
         foreach (var obj in objects)
         {
             obj.gameObject.SetActive(false);
             result.Add(obj.gameObject);
         }
 
-        // `Grid` türündeki objeyi bul
+        // `Grid` tï¿½rï¿½ndeki objeyi bul
         var gridObject = FindObjectOfType<Grid>();
 
-        // `Grid` objesini devre dýþý býrak ve listeye ekle
+        // `Grid` objesini devre dï¿½ï¿½ï¿½ bï¿½rak ve listeye ekle
         if (gridObject != null)
         {
             gridObject.gameObject.SetActive(false);
@@ -93,7 +91,7 @@ public class WinLoseUI : MonoBehaviour
             result.Add(hintLight.gameObject);
         }
             
-        // Devre dýþý býrakýlan tüm objeleri içeren listeyi döndür
+        // Devre dï¿½ï¿½ï¿½ bï¿½rakï¿½lan tï¿½m objeleri iï¿½eren listeyi dï¿½ndï¿½r
         return result;
     }
 

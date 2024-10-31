@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 /// <summary>
-/// Menü ve seviyeler için kullanýlan ses kaynaklarýný tanýmlar.
+/// Menï¿½ ve seviyeler iï¿½in kullanï¿½lan ses kaynaklarï¿½nï¿½ tanï¿½mlar.
 /// </summary>
 public class MusicManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class MusicManager : MonoBehaviour
     private static MusicManager instance;
 
     /// <summary>
-    /// Singleton deseni kullanarak MusicManager örneðini alýr.
+    /// Singleton deseni kullanarak MusicManager ï¿½rneï¿½ini alï¿½r.
     /// </summary>
     public static MusicManager Instance
     {
@@ -46,7 +47,7 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("SoundVolume", 1f);
+        AudioListener.volume = YandexGame.savesData.soundOn ? 1f : 0f;
 
         if (CheckMute())
         {
@@ -59,30 +60,34 @@ public class MusicManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Müzik sesinin kapalý olup olmadýðýný kontrol eder.
+    /// Mï¿½zik sesinin kapalï¿½ olup olmadï¿½ï¿½ï¿½nï¿½ kontrol eder.
     /// </summary>
-    /// <returns>Müzik kapalýysa true, açýksa false döner.</returns>
+    /// <returns>Mï¿½zik kapalï¿½ysa true, aï¿½ï¿½ksa false dï¿½ner.</returns>
     public static bool CheckMute()
     {
-        return PlayerPrefs.GetFloat("MusicVolume", 1f) == 0f;
+        return !YandexGame.savesData.musicOn;
     }
 
     /// <summary>
-    /// Müzikleri kapalý duruma getirir.
+    /// Mï¿½zikleri kapalï¿½ duruma getirir.
     /// </summary>
     public void MuteMusic()
     {
-        PlayerPrefs.SetFloat("MusicVolume", 0f);
+        YandexGame.savesData.musicOn = false;
+        YandexGame.SaveProgress();
+      
         menuAudioSource.volume = 0f;
         inLevelAudioSource.volume = 0f;
     }
 
     /// <summary>
-    /// Müzikleri açýk duruma getirir.
+    /// Mï¿½zikleri aï¿½ï¿½k duruma getirir.
     /// </summary>
     public void UnMuteMusic()
     {
-        PlayerPrefs.SetFloat("MusicVolume", 1f);
+        YandexGame.savesData.musicOn = true;
+        YandexGame.SaveProgress();
+        
         menuAudioSource.volume = 1f;
         inLevelAudioSource.volume = 1f;
     }

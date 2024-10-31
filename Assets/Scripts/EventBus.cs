@@ -3,23 +3,23 @@ using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>
-/// Oyun içi olaylarý tanýmlayan enum.
+/// Oyun iï¿½i olaylarï¿½ tanï¿½mlayan enum.
 /// </summary>
 public enum EventType
 {
     ScoreChanged, Moved, GoalCountChanged, MoveCountOver, AllGoalCompleted, BoosterAndSwapsOverInLevel, BoosterUsed,
-    LifeCountChanged, StarCountChanged
+    LifeCountChanged, StarCountChanged, AnyBoosterCountChanged
 }
 
 /// <summary>
-/// Oyun içindeki olaylarý yönetmek için kullanýlan EventBus sýnýfý. Olaylarý dinleyici ekleme, kaldýrma ve yayma iþlevlerini saðlar.
+/// Oyun iï¿½indeki olaylarï¿½ yï¿½netmek iï¿½in kullanï¿½lan EventBus sï¿½nï¿½fï¿½. Olaylarï¿½ dinleyici ekleme, kaldï¿½rma ve yayma iï¿½levlerini saï¿½lar.
 /// </summary>
 public class EventBus
 {
     private readonly static IDictionary<EventType, UnityEvent> Events = new Dictionary<EventType, UnityEvent>();
 
     /// <summary>
-    /// Belirli bir olay türü için dinleyici ekler.
+    /// Belirli bir olay tï¿½rï¿½ iï¿½in dinleyici ekler.
     /// </summary>
     public static void Subscribe(EventType eventType, UnityAction listener)
     {
@@ -37,7 +37,7 @@ public class EventBus
     }
 
     /// <summary>
-    /// Belirli bir olay türü için dinleyiciyi kaldýrýr.
+    /// Belirli bir olay tï¿½rï¿½ iï¿½in dinleyiciyi kaldï¿½rï¿½r.
     /// </summary>
     public static void Unsubscribe(EventType type, UnityAction listener)
     {
@@ -49,7 +49,7 @@ public class EventBus
     }
 
     /// <summary>
-    /// Belirli bir olay türü için tüm dinleyicileri temizler.
+    /// Belirli bir olay tï¿½rï¿½ iï¿½in tï¿½m dinleyicileri temizler.
     /// </summary>
     public static void Clear(EventType type)
     {
@@ -61,7 +61,7 @@ public class EventBus
     }
 
     /// <summary>
-    /// Belirli bir olay türünü yayar ve tüm dinleyicileri tetikler.
+    /// Belirli bir olay tï¿½rï¿½nï¿½ yayar ve tï¿½m dinleyicileri tetikler.
     /// </summary>
     public static void Publish(EventType type)
     {
@@ -74,15 +74,15 @@ public class EventBus
 }
 
 /// <summary>
-/// Oyun içindeki olaylarý yönetmek için kullanýlan EventBus sýnýfýnýn generic versiyonu. Tek bir parametre ile olaylarý yönetir.
+/// Oyun iï¿½indeki olaylarï¿½ yï¿½netmek iï¿½in kullanï¿½lan EventBus sï¿½nï¿½fï¿½nï¿½n generic versiyonu. Tek bir parametre ile olaylarï¿½ yï¿½netir.
 /// </summary>
-/// <typeparam name="T0">Olay parametresi türü</typeparam>
+/// <typeparam name="T0">Olay parametresi tï¿½rï¿½</typeparam>
 public class EventBus<T0>
 {
     private readonly static IDictionary<EventType, UnityEvent<T0>> Events = new Dictionary<EventType, UnityEvent<T0>>();
 
     /// <summary>
-    /// Belirli bir olay türü için dinleyici ekler.
+    /// Belirli bir olay tï¿½rï¿½ iï¿½in dinleyici ekler.
     /// </summary>
     public static void Subscribe(EventType eventType, UnityAction<T0> listener)
     {
@@ -100,7 +100,7 @@ public class EventBus<T0>
     }
 
     /// <summary>
-    /// Belirli bir olay türü için dinleyiciyi kaldýrýr.
+    /// Belirli bir olay tï¿½rï¿½ iï¿½in dinleyiciyi kaldï¿½rï¿½r.
     /// </summary>
     public static void Unsubscribe(EventType type, UnityAction<T0> listener)
     {
@@ -112,7 +112,7 @@ public class EventBus<T0>
     }
 
     /// <summary>
-    /// Belirli bir olay türünü yayar ve tüm dinleyicileri tetikler.
+    /// Belirli bir olay tï¿½rï¿½nï¿½ yayar ve tï¿½m dinleyicileri tetikler.
     /// </summary>
     public static void Publish(EventType type, T0 arg0)
     {
@@ -125,16 +125,16 @@ public class EventBus<T0>
 }
 
 /// <summary>
-/// Oyun içindeki olaylarý yönetmek için kullanýlan EventBus sýnýfýnýn generic versiyonu. Ýki parametre ile olaylarý yönetir.
+/// Oyun iï¿½indeki olaylarï¿½ yï¿½netmek iï¿½in kullanï¿½lan EventBus sï¿½nï¿½fï¿½nï¿½n generic versiyonu. ï¿½ki parametre ile olaylarï¿½ yï¿½netir.
 /// </summary>
-/// <typeparam name="T0">Birinci olay parametresi türü</typeparam>
-/// <typeparam name="T1">Ýkinci olay parametresi türü</typeparam>
+/// <typeparam name="T0">Birinci olay parametresi tï¿½rï¿½</typeparam>
+/// <typeparam name="T1">ï¿½kinci olay parametresi tï¿½rï¿½</typeparam>
 public class EventBus<T0, T1>
 {
     private readonly static IDictionary<EventType, UnityEvent<T0, T1>> Events = new Dictionary<EventType, UnityEvent<T0, T1>>();
 
     /// <summary>
-    /// Belirli bir olay türü için dinleyici ekler.
+    /// Belirli bir olay tï¿½rï¿½ iï¿½in dinleyici ekler.
     /// </summary>
     public static void Subscribe(EventType eventType, UnityAction<T0, T1> listener)
     {
@@ -152,7 +152,7 @@ public class EventBus<T0, T1>
     }
 
     /// <summary>
-    /// Belirli bir olay türü için dinleyiciyi kaldýrýr.
+    /// Belirli bir olay tï¿½rï¿½ iï¿½in dinleyiciyi kaldï¿½rï¿½r.
     /// </summary>
     public static void Unsubscribe(EventType type, UnityAction<T0, T1> listener)
     {
@@ -164,7 +164,7 @@ public class EventBus<T0, T1>
     }
 
     /// <summary>
-    /// Belirli bir olay türünü yayar ve tüm dinleyicileri tetikler.
+    /// Belirli bir olay tï¿½rï¿½nï¿½ yayar ve tï¿½m dinleyicileri tetikler.
     /// </summary>
     public static void Publish(EventType type, T0 arg0, T1 arg1)
     {

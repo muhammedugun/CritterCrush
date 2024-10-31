@@ -3,8 +3,11 @@
 // A Copy of the Asset Store EULA is available at http://unity3d.com/company/legal/as_terms.
 
 using System.Collections;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 namespace Ricimi
 {
@@ -43,7 +46,7 @@ namespace Ricimi
             Destroy(m_background);
             Destroy(gameObject);
         }
-
+        
         private void AddBackground()
         {
             var bgTex = new Texture2D(1, 1);

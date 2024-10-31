@@ -4,6 +4,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 namespace Ricimi
 {
@@ -16,7 +17,8 @@ namespace Ricimi
         private void Start()
         {
             m_musicSlider = GetComponent<Slider>();
-            m_musicSlider.value = PlayerPrefs.GetInt("music_on");
+            m_musicSlider.value = YandexGame.savesData.musicOn ? 1 : 0;
+            YandexGame.SaveProgress();
             m_musicButton = GameObject.Find("MusicButton/Button");
         }
 
@@ -24,7 +26,13 @@ namespace Ricimi
         {
             var backgroundAudioSource = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
             backgroundAudioSource.volume = m_musicSlider.value;
-            PlayerPrefs.SetInt("music_on", (int)m_musicSlider.value);
+            if ((int)m_musicSlider.value == 1)
+                YandexGame.savesData.musicOn = true;
+            else
+                YandexGame.savesData.musicOn = false;
+            
+            YandexGame.SaveProgress();
+            
             if (m_musicButton != null)
                 m_musicButton.GetComponent<MusicButton>().ToggleSprite();
         }

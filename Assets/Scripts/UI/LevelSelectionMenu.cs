@@ -3,9 +3,10 @@ using Ricimi;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 /// <summary>
-/// Seviye seçim menüsündeki bileþenleri tanýmlar.
+/// Seviye seÃ§im menÃ¼sÃ¼ndeki bileÅŸenleri tanÄ±mlar.
 /// </summary>
 public class LevelSelectionMenu : MonoBehaviour
 {
@@ -19,8 +20,9 @@ public class LevelSelectionMenu : MonoBehaviour
     private void Start()
     {
         LifeManager.LifeLoadControl();
-
-        PlayerPrefs.SetInt("isLevel" + 1 + "Active", 1);
+        
+        YandexGame.savesData.openLevels[1] = true;
+        YandexGame.SaveProgress();
 
         UpdateActiveLevels();
         UpdateLastActiveLevel();
@@ -39,7 +41,7 @@ public class LevelSelectionMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Her seviyenin yýldýz sayýsýný günceller.
+    /// Her seviyenin yÄ±ldÄ±z say s n  g nceller.
     /// </summary>
     private void UpdateLevelStars()
     {
@@ -49,20 +51,18 @@ public class LevelSelectionMenu : MonoBehaviour
         {
             if (IsLevelActive(i))
             {
-                Debug.LogWarning("Level " + i + "Active");
                 levelStarCount = LevelStars.GetStars(i);
-                Debug.LogWarning("levelStarCount " + levelStarCount);
                 for (int j = 0; j < levelStarCount; j++)
                 {
-                    _levels.transform.GetChild(i).GetChild(1).GetChild(j + 1).GetChild(3).gameObject.SetActive(true);
-                    _levels.transform.GetChild(i).GetChild(1).GetChild(j + 1).GetChild(2).gameObject.SetActive(false);
+                    _levels.transform.GetChild(i).GetChild(1).GetChild(j + 1).GetChild(2).gameObject.SetActive(true);
+                    _levels.transform.GetChild(i).GetChild(1).GetChild(j + 1).GetChild(1).gameObject.SetActive(false);
                 }
             }
         }
     }
 
     /// <summary>
-    /// Aktif seviyeleri günceller.
+    /// Aktif seviyeleri g nceller.
     /// </summary>
     private void UpdateActiveLevels()
     {
@@ -83,7 +83,7 @@ public class LevelSelectionMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Her seviyenin numarasýný ayarlar.
+    /// Her seviyenin numaras n  ayarlar.
     /// </summary>
     private void SetLevelNumber()
     {
@@ -97,27 +97,16 @@ public class LevelSelectionMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Bir seviyenin aktif olup olmadýðýný kontrol eder.
+    /// Bir seviyenin aktif olup olmad   n  kontrol eder.
     /// </summary>
-    /// <param name="levelIndex">Seviye indeksi.</param>
-    /// <returns>Seviyenin aktif olup olmadýðýný belirtir.</returns>
+    /// <returns>Seviyenin aktif olup olmad   n  belirtir.</returns>
     private bool IsLevelActive(int levelIndex)
     {
-        int boolValue = PlayerPrefs.GetInt("isLevel" + (levelIndex + 1) + "Active", 0);
-
-        if (boolValue == 1)
-            return true;
-        else if (boolValue == 0)
-            return false;
-        else
-        {
-            Debug.LogWarning("Geçersiz Deðer!");
-            return false;
-        }
+        return YandexGame.savesData.openLevels[levelIndex + 1];
     }
 
     /// <summary>
-    /// Son aktif seviyeyi günceller.
+    /// Son aktif seviyeyi g nceller.
     /// </summary>
     private void UpdateLastActiveLevel()
     {
@@ -145,14 +134,14 @@ public class LevelSelectionMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Son aktif seviye numarasýný alýr.
+    /// Son aktif seviye numaras n  al r.
     /// </summary>
-    /// <returns>Son aktif seviye numarasý.</returns>
+    /// <returns>Son aktif seviye numaras .</returns>
     private int GetLastActiveLevelNumber()
     {
         for (int i = 1; i <= _levelList.SceneCount; i++)
         {
-            if (PlayerPrefs.GetInt("isLevel" + i + "Active", 0) == 0)
+            if (!YandexGame.savesData.openLevels[i])
                 return i - 1;
         }
         return _levelList.SceneCount;

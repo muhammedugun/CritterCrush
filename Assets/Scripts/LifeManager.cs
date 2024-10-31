@@ -1,13 +1,10 @@
 using System;
-#if UNITY_ANDROID
-using Unity.Notifications.Android;
-#endif
-using Unity.VisualScripting;
+using Match3;
+using YG;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
-/// Oyundaki yaþam sayýsýný yöneten sýnýf.
+/// Oyundaki yaï¿½am sayï¿½sï¿½nï¿½ yï¿½neten sï¿½nï¿½f.
 /// </summary>
 public class LifeManager : MonoBehaviour
 {
@@ -16,7 +13,7 @@ public class LifeManager : MonoBehaviour
     private static readonly int _lifeLoadingTime = 25;
 
     /// <summary>
-    /// Singleton desenini kullanarak tek bir LifeManager örneðini yönetir.
+    /// Singleton desenini kullanarak tek bir LifeManager ï¿½rneï¿½ini yï¿½netir.
     /// </summary>
     private void Awake()
     {
@@ -30,19 +27,18 @@ public class LifeManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Android platformunda bildirim izinlerini ve kanallarý yapýlandýrýr.
-    /// </summary>
-    private void Start()
+    private void OnEnable()
     {
-#if UNITY_ANDROID
-        AndroidNotifications.RequestAuthorization();
-        AndroidNotifications.RegisterNotificationChannel();
-#endif
+        YandexGame.RewardVideoEvent += AddLivesForReward;
+    }
+    
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= AddLivesForReward;
     }
 
     /// <summary>
-    /// Hayat yükleme durumunu kontrol eder ve gerekli iþlemleri yapar.
+    /// Hayat yï¿½kleme durumunu kontrol eder ve gerekli iï¿½lemleri yapar.
     /// </summary>
     public static void LifeLoadControl()
     {
@@ -77,23 +73,30 @@ public class LifeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Hayat sayýsýný 1 azaltýr.
+    /// Hayat sayï¿½sï¿½nï¿½ 1 azaltï¿½r.
     /// </summary>
     public static void DecreaseHealthOne()
     {
         AddLifeCount(-1);
     }
 
+    private void AddLivesForReward(int adID)
+    {
+        if(adID == (int)AdManager.RewardID.Live)
+            AddLifeCount(+3);
+    }
+
     /// <summary>
-    /// Hayat sayýsýný belirtilen miktarda artýrýr.
+    /// Hayat sayï¿½sï¿½nï¿½ belirtilen miktarda artï¿½rï¿½r.
     /// </summary>
     public static void AddLifeCount(int count)
     {
         int currentLifeCount = GetLifeCount();
         currentLifeCount += count;
         currentLifeCount = Mathf.Clamp(currentLifeCount, 0, 5);
-        PlayerPrefs.SetInt("LifeCount", currentLifeCount);
-        PlayerPrefs.Save();
+        
+        YandexGame.savesData.lifeCount = currentLifeCount;
+        YandexGame.SaveProgress();
 
         if (GetLifeCount() == 5)
             SetIsLoading(false);
@@ -102,95 +105,89 @@ public class LifeManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Þu anki hayat sayýsýný getirir.
+    /// ï¿½u anki hayat sayï¿½sï¿½nï¿½ getirir.
     /// </summary>
     public static int GetLifeCount()
     {
-        return PlayerPrefs.GetInt("LifeCount", 0);
+        return YandexGame.savesData.lifeCount;
     }
 
     /// <summary>
-    /// Hayatýn yüklenip yüklenmediðini kontrol eder.
+    /// Hayatï¿½n yï¿½klenip yï¿½klenmediï¿½ini kontrol eder.
     /// </summary>
     public static bool GetIsLoading()
     {
-        if (PlayerPrefs.GetInt("IsLifeLoading", 0) == 1) return true;
+        if (YandexGame.savesData.isLifeLoading) return true;
         else return false;
     }
 
     /// <summary>
-    /// Hayatýn yüklenme durumunu ayarlar.
+    /// Hayatï¿½n yï¿½klenme durumunu ayarlar.
     /// </summary>
     public static void SetIsLoading(bool boolean)
     {
         if (boolean)
-        {
-            PlayerPrefs.SetInt("IsLifeLoading", 1);
-        }
+            YandexGame.savesData.isLifeLoading = true;
         else
-        {
-            PlayerPrefs.SetInt("IsLifeLoading", 0);
-        }
-
-        PlayerPrefs.Save();
+            YandexGame.savesData.isLifeLoading = false;
+        
+        YandexGame.SaveProgress();
     }
 
     /// <summary>
-    /// Sonraki yükleme zamanýný ayarlar ve bildirim gönderir.
+    /// Sonraki yï¿½kleme zamanï¿½nï¿½ ayarlar ve bildirim gï¿½nderir.
     /// </summary>
     public static void SetNextLoadLifeTime(double minutes)
     {
         SetIsLoading(true);
-        DateTime now = DateTime.UtcNow; // UTC zamanýný kullan
+        DateTime now = DateTime.UtcNow; // UTC zamanï¿½nï¿½ kullan
         DateTime futureTime = now.AddMinutes(minutes);
 
         long rechargeTimeStamp = new DateTimeOffset(futureTime).ToUnixTimeSeconds();
-        PlayerPrefs.SetString("NextLifeRechargeTime", rechargeTimeStamp.ToString());
-        PlayerPrefs.Save();
-#if UNITY_ANDROID
-        AndroidNotificationCenter.CancelAllNotifications();
-        AndroidNotifications.SendNotification("A Life is Filled", "A your life is back now!", (int)minutes);
-#endif
+        YandexGame.savesData.NextLifeRechargeTime = rechargeTimeStamp.ToString();
+        YandexGame.SaveProgress();
     }
 
     /// <summary>
-    /// Kalan süreyi dakika cinsinden getirir.
+    /// Kalan sï¿½reyi dakika cinsinden getirir.
     /// </summary>
     public static int GetRemainingMinutes()
     {
-        string futureTimestampString = PlayerPrefs.GetString("NextLifeRechargeTime");
+        string futureTimestampString = YandexGame.savesData.NextLifeRechargeTime;
+           
         if (long.TryParse(futureTimestampString, out long futureTimestamp))
         {
             DateTime futureTime = DateTimeOffset.FromUnixTimeSeconds(futureTimestamp).UtcDateTime;
-            TimeSpan timeLeft = futureTime - DateTime.UtcNow; // UTC zamanýný kullan
+            TimeSpan timeLeft = futureTime - DateTime.UtcNow; // UTC zamanï¿½nï¿½ kullan
 
-            return (int)timeLeft.TotalMinutes; // Toplam dakika cinsinden kalan süreyi verir
+            return (int)timeLeft.TotalMinutes; // Toplam dakika cinsinden kalan sï¿½reyi verir
         }
         return 0;
     }
 
     /// <summary>
-    /// Kalan sürenin saniye cinsinden kýsmýný getirir.
+    /// Kalan sï¿½renin saniye cinsinden kï¿½smï¿½nï¿½ getirir.
     /// </summary>
     public static int GetRemainingSeconds()
     {
-        string futureTimestampString = PlayerPrefs.GetString("NextLifeRechargeTime");
+        string futureTimestampString = YandexGame.savesData.NextLifeRechargeTime;
+          
         if (long.TryParse(futureTimestampString, out long futureTimestamp))
         {
             DateTime futureTime = DateTimeOffset.FromUnixTimeSeconds(futureTimestamp).UtcDateTime;
-            TimeSpan timeLeft = futureTime - DateTime.UtcNow; // UTC zamanýný kullan
+            TimeSpan timeLeft = futureTime - DateTime.UtcNow; // UTC zamanï¿½nï¿½ kullan
 
-            return timeLeft.Seconds; // Kalan sürenin sadece saniye kýsmýný verir
+            return timeLeft.Seconds; // Kalan sï¿½renin sadece saniye kï¿½smï¿½nï¿½ verir
         }
         return 0;
     }
 
     /// <summary>
-    /// Belirtilen ID'ye göre ödül hayatý verir.
+    /// Belirtilen ID'ye gï¿½re ï¿½dï¿½l hayatï¿½ verir.
     /// </summary>
     public static void RewardLives(int ID)
     {
-        // Reward Life reklamý izlendiyse
+        // Reward Life reklamï¿½ izlendiyse
         if (ID == 1)
         {
             AddLifeCount(3);

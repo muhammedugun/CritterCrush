@@ -3,16 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 /// <summary>
-/// Müzik, SFX ve bildirim butonlarýnýn görsellerini ve durumlarýný tanýmlar.
+/// Mï¿½zik, SFX ve bildirim butonlarï¿½nï¿½n gï¿½rsellerini ve durumlarï¿½nï¿½ tanï¿½mlar.
 /// </summary>
 public class SettingsPopup : MonoBehaviour
 {
-    [SerializeField] private Image _musicButtonImage, _SFXButtonImage, _NotificationButtonImage;
+    [SerializeField] private Image _musicButtonImage, _SFXButtonImage;
     [SerializeField] private Sprite _musicMuteSprite, _musicUnMuteSprite;
     [SerializeField] private Sprite _SFXMuteSprite, _SFXUnMuteSprite;
-    [SerializeField] private Sprite _NotificationEnableSprite, _NotificationDisableSprite;
 
     private MusicManager _musicManager;
 
@@ -21,11 +21,10 @@ public class SettingsPopup : MonoBehaviour
         _musicManager = FindObjectOfType<MusicManager>();
         UpdateSFXButtonSprite();
         UpdateMusicButtonSprite();
-        UpdateNotificationButtonSprite();
     }
 
     /// <summary>
-    /// Müzik butonuna týklanma durumuna göre müziði açar veya kapatýr.
+    /// Mï¿½zik butonuna tï¿½klanma durumuna gï¿½re mï¿½ziï¿½i aï¿½ar veya kapatï¿½r.
     /// </summary>
     public void MusicButton()
     {
@@ -36,7 +35,7 @@ public class SettingsPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// SFX butonuna týklanma durumuna göre ses efektlerini açar veya kapatýr.
+    /// SFX butonuna tï¿½klanma durumuna gï¿½re ses efektlerini aï¿½ar veya kapatï¿½r.
     /// </summary>
     public void SFXButton()
     {
@@ -45,39 +44,19 @@ public class SettingsPopup : MonoBehaviour
         else
             MuteSFX();
     }
+    
 
     /// <summary>
-    /// Bildirim butonuna týklanma durumuna göre Android bildirimlerini açar veya kapatýr.
+    /// Sesin kapalï¿½ olup olmadï¿½ï¿½ï¿½nï¿½ kontrol eder.
     /// </summary>
-    public void NotificationButton()
-    {
-#if UNITY_ANDROID
-        if (AndroidNotifications.CheckSendNotifications())
-        {
-            AndroidNotifications.DisableNotifications();
-            _NotificationButtonImage.sprite = _NotificationDisableSprite;
-            Debug.Log("Bildirim kapatýldý");
-        }
-        else
-        {
-            AndroidNotifications.EnableNotifications();
-            _NotificationButtonImage.sprite = _NotificationEnableSprite;
-            Debug.Log("Bildirim açýldý");
-        }
-#endif
-    }
-
-    /// <summary>
-    /// Sesin kapalý olup olmadýðýný kontrol eder.
-    /// </summary>
-    /// <returns>Ses kapalýysa true, açýksa false döner.</returns>
+    /// <returns>Ses kapalï¿½ysa true, aï¿½ï¿½ksa false dï¿½ner.</returns>
     private bool CheckSoundMute()
     {
-        return PlayerPrefs.GetFloat("SoundVolume", 1f) == 0f;
+        return !YandexGame.savesData.soundOn;
     }
 
     /// <summary>
-    /// Müzikleri kapalý duruma getirir ve buton görselini günceller.
+    /// Mï¿½zikleri kapalï¿½ duruma getirir ve buton gï¿½rselini gï¿½nceller.
     /// </summary>
     private void MuteMusic()
     {
@@ -86,7 +65,7 @@ public class SettingsPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Müzikleri açýk duruma getirir ve buton görselini günceller.
+    /// Mï¿½zikleri aï¿½ï¿½k duruma getirir ve buton gï¿½rselini gï¿½nceller.
     /// </summary>
     private void UnMuteMusic()
     {
@@ -95,27 +74,31 @@ public class SettingsPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Ses efektlerini kapalý duruma getirir ve buton görselini günceller.
+    /// Ses efektlerini kapalï¿½ duruma getirir ve buton gï¿½rselini gï¿½nceller.
     /// </summary>
     private void MuteSFX()
     {
-        PlayerPrefs.SetFloat("SoundVolume", 0f);
+        YandexGame.savesData.soundOn = false;
+        YandexGame.SaveProgress();
+
         AudioListener.volume = 0f;
         UpdateSFXButtonSprite();
     }
 
     /// <summary>
-    /// Ses efektlerini açýk duruma getirir ve buton görselini günceller.
+    /// Ses efektlerini aï¿½ï¿½k duruma getirir ve buton gï¿½rselini gï¿½nceller.
     /// </summary>
     private void UnMuteSFX()
     {
-        PlayerPrefs.SetFloat("SoundVolume", 1f);
+        YandexGame.savesData.soundOn = true;
+        YandexGame.SaveProgress();
+
         AudioListener.volume = 1f;
         UpdateSFXButtonSprite();
     }
 
     /// <summary>
-    /// Müzik butonunun görselini günceller.
+    /// Mï¿½zik butonunun gï¿½rselini gï¿½nceller.
     /// </summary>
     private void UpdateMusicButtonSprite()
     {
@@ -126,26 +109,11 @@ public class SettingsPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// SFX butonunun görselini günceller.
+    /// SFX butonunun gï¿½rselini gï¿½nceller.
     /// </summary>
     private void UpdateSFXButtonSprite()
     {
-        if (CheckSoundMute())
-            _SFXButtonImage.sprite = _SFXMuteSprite;
-        else
-            _SFXButtonImage.sprite = _SFXUnMuteSprite;
+        _SFXButtonImage.sprite = CheckSoundMute() ? _SFXMuteSprite : _SFXUnMuteSprite;
     }
-
-    /// <summary>
-    /// Bildirim butonunun görselini günceller.
-    /// </summary>
-    private void UpdateNotificationButtonSprite()
-    {
-#if UNITY_ANDROID
-        if (AndroidNotifications.CheckSendNotifications())
-            _NotificationButtonImage.sprite = _NotificationEnableSprite;
-        else
-            _NotificationButtonImage.sprite = _NotificationDisableSprite;
-#endif
-    }
+    
 }

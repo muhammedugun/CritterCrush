@@ -1,36 +1,38 @@
 using UnityEngine;
+using YG;
 
 /// <summary>
-/// ProfilePopupUI ve MainMenuUI bileþenlerini bulur.
+/// ProfilePopupUI ve MainMenuUI bileï¿½enlerini bulur.
 /// </summary>
 public class AvatarSelectionUI : MonoBehaviour
 {
     private ProfilePopupUI _profilePopupUI;
-    private MainMenuUI _mainMenuUI;
+    private AvatarUpdater _avatarUpdater;
 
     private void Start()
     {
         _profilePopupUI = FindObjectOfType<ProfilePopupUI>();
-        _mainMenuUI = FindObjectOfType<MainMenuUI>();
+        _avatarUpdater = FindObjectOfType<AvatarUpdater>();
     }
 
     /// <summary>
-    /// Seçilen avatar indeksini PlayerPrefs'te saklar ve ilgili UI bileþenlerini günceller.
+    /// Seï¿½ilen avatar indeksini PlayerPrefs'te saklar ve ilgili UI bileï¿½enlerini gï¿½nceller.
     /// </summary>
-    /// <param name="avatarIndex">Seçilen avatarýn indeks numarasý.</param>
+    /// <param name="avatarIndex">Seï¿½ilen avatarï¿½n indeks numarasï¿½.</param>
     public void SetAvatar(int avatarIndex)
     {
-        PlayerPrefs.SetInt("CurrentAvatarIndex", avatarIndex);
+        YandexGame.savesData.currentAvatarIndex = avatarIndex;
+        YandexGame.SaveProgress();
         _profilePopupUI.UpdateAvatar();
-        _mainMenuUI.UpdateAvatar();
+        _avatarUpdater.UpdateAvatar();
     }
 
     /// <summary>
-    /// Mevcut avatar indeksini alýr.
+    /// Mevcut avatar indeksini alï¿½r.
     /// </summary>
-    /// <returns>Mevcut avatarýn indeks numarasý.</returns>
+    /// <returns>Mevcut avatarï¿½n indeks numarasï¿½.</returns>
     public static int GetCurrentAvatar()
     {
-        return PlayerPrefs.GetInt("CurrentAvatarIndex", 0);
+        return YandexGame.savesData.currentAvatarIndex;
     }
 }

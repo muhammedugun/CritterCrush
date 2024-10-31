@@ -24,7 +24,6 @@ namespace Ricimi
             {
                 if(LifeManager.GetLifeCount() > 0)
                 {
-                    Debug.LogWarning("Hayat " + LifeManager.GetLifeCount());
                     Transition.LoadLevel(scene, duration, color);
                 }
                 else
@@ -33,7 +32,6 @@ namespace Ricimi
                     {
                         _popupOpener.OpenPopup();
                     }
-                    Debug.LogWarning("Hayat yok");
                 }
             }
             else
@@ -44,7 +42,7 @@ namespace Ricimi
         }
 
         /// <summary>
-        /// Gidilecek olan sahnenin bir Level sahnesi olup olmadýðýný kontrol eder.
+        /// Gidilecek olan sahnenin bir Level sahnesi olup olmadï¿½ï¿½ï¿½nï¿½ kontrol eder.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>

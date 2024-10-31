@@ -1,9 +1,11 @@
+using System;
 using Match3;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 /// <summary>
-/// Profil popup'ýný yöneten UI sýnýfý.
+/// Profil popup'ï¿½nï¿½ yï¿½neten UI sï¿½nï¿½fï¿½.
 /// </summary>
 public class ProfilePopupUI : MonoBehaviour
 {
@@ -27,14 +29,12 @@ public class ProfilePopupUI : MonoBehaviour
         {
             boosterCount = BoosterManager.GetBoosterCount(i);
 
-            if (boosterCount > 0)
-            {
-                var inventoryBooster = Instantiate(_inventoryBoosterPrefab) as GameObject;
-                inventoryBooster.transform.SetParent(_Boosters.transform.GetChild(0).GetChild(boosterAddCount).transform, false);
-                inventoryBooster.transform.GetChild(4).GetChild(2).GetComponent<Text>().text = boosterCount.ToString();
-                inventoryBooster.transform.GetChild(2).GetComponent<Image>().sprite = _boosterSprites[i];
-                boosterAddCount++;
-            }
+            var inventoryBooster = Instantiate(_inventoryBoosterPrefab) as GameObject;
+            inventoryBooster.transform.SetParent(_Boosters.transform.GetChild(0).GetChild(boosterAddCount).transform, false);
+            inventoryBooster.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = boosterCount.ToString();
+            inventoryBooster.transform.GetChild(1).GetComponent<Image>().sprite = _boosterSprites[i];
+            boosterAddCount++;
+            
         }
         UpdateLastLevel();
         UpdateScore();
@@ -42,8 +42,33 @@ public class ProfilePopupUI : MonoBehaviour
         UpdateName();
     }
 
+    private void OnEnable()
+    {
+        EventBus.Subscribe(EventType.AnyBoosterCountChanged, UpdateBoostersCounts);
+    }
+    
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(EventType.AnyBoosterCountChanged, UpdateBoostersCounts);
+    }
+
+    private void UpdateBoostersCounts()
+    {
+        int boosterCount;
+        int boosterAddCount = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            boosterCount = BoosterManager.GetBoosterCount(i);
+
+            var inventoryBooster = _Boosters.transform.GetChild(0).GetChild(boosterAddCount).GetChild(2).transform;
+            inventoryBooster.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = boosterCount.ToString();
+            boosterAddCount++;
+            
+        }
+    }
+
     /// <summary>
-    /// Avatar'ý günceller.
+    /// Avatar'ï¿½ gï¿½nceller.
     /// </summary>
     public void UpdateAvatar()
     {
@@ -51,20 +76,20 @@ public class ProfilePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Son aktif seviyeyi alýr.
+    /// Son aktif seviyeyi alï¿½r.
     /// </summary>
     private int GetLastActiveLevelNumber()
     {
         for (int i = 1; i <= _levelList.SceneCount; i++)
         {
-            if (PlayerPrefs.GetInt("isLevel" + i + "Active", 0) == 0)
+            if (YandexGame.savesData.openLevels[i])
                 return i - 1;
         }
         return _levelList.SceneCount;
     }
 
     /// <summary>
-    /// Son seviyeyi UI'da günceller.
+    /// Son seviyeyi UI'da gï¿½nceller.
     /// </summary>
     void UpdateLastLevel()
     {
@@ -73,7 +98,7 @@ public class ProfilePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Skoru UI'da günceller.
+    /// Skoru UI'da gï¿½nceller.
     /// </summary>
     void UpdateScore()
     {
@@ -81,7 +106,7 @@ public class ProfilePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Seviye yüzdesini UI'da günceller.
+    /// Seviye yï¿½zdesini UI'da gï¿½nceller.
     /// </summary>
     private void UpdateLevelPercentile()
     {
@@ -91,19 +116,22 @@ public class ProfilePopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Kullanýcýnýn adýný kaydeder.
+    /// Kullanï¿½cï¿½nï¿½n adï¿½nï¿½ kaydeder.
     /// </summary>
     public void SaveName()
     {
         if (!string.IsNullOrWhiteSpace(_nameInputField.text))
-            PlayerPrefs.SetString("Name", _nameInputField.text);
+        {
+            YandexGame.savesData.playerName = _nameInputField.text;
+            YandexGame.SaveProgress();
+        }
     }
 
     /// <summary>
-    /// Kullanýcýnýn adýný UI'da günceller.
+    /// Kullanï¿½cï¿½nï¿½n adï¿½nï¿½ UI'da gï¿½nceller.
     /// </summary>
     private void UpdateName()
     {
-        _nameInputField.text = PlayerPrefs.GetString("Name", _nameInputField.text);
+        _nameInputField.text = YandexGame.savesData.playerName;
     }
 }

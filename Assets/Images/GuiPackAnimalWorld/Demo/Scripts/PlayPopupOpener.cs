@@ -34,9 +34,7 @@ namespace Ricimi
 
             playPopup = popup.GetComponent<PlayPopup>();
             playPopup.playButton.scene = "Level" + (levelIndex+1).ToString();
-            Debug.LogWarning("levelIndex" + levelIndex);
             playPopup.Open();
-            Debug.LogWarning("starsObtained" + starsObtained);
             playPopup.SetAchievedStars(starsObtained);
             playPopup.UpdateGoals(levelIndex);
             playPopup.levelIndex = levelIndex;

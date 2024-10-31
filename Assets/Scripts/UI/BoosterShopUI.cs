@@ -9,9 +9,11 @@ namespace Assets.Scripts
 
         [SerializeField] private PopupOpener _popupOpener;
         [SerializeField] private GameObject _areYouSureBuyShop;
-        public void CheckStarCount(int price)
+        public void BuyBooster(int boosterIndex)
         {
             int starCount = StarManager.GetStarCount();
+            int price = BoosterManager.GetBoosterPrice(boosterIndex);
+            
             if (starCount<price)
             {
                 _popupOpener.popupPrefab = _areYouSureBuyShop;
@@ -20,7 +22,7 @@ namespace Assets.Scripts
             else
             {
                 StarManager.AddStarCount(-price);
-                Debug.LogWarning("Booster satın alındı ve yıldız sayısı güncellendi");
+                BoosterManager.AddBoosterCount(boosterIndex, 1);
             }
         }
     }

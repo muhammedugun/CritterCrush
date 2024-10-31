@@ -8,9 +8,9 @@ namespace Ricimi
     public class PopupOpener : MonoBehaviour
     {
         public GameObject popupPrefab;
-
-        [HideInInspector]public GameObject popup;
-
+        
+        private GameObject popup;
+        
         protected Canvas m_canvas;
 
         protected virtual void Start()
@@ -20,10 +20,9 @@ namespace Ricimi
 
         public virtual void OpenPopup()
         {
-            popup = Instantiate(popupPrefab) as GameObject;
+            popup = Instantiate(popupPrefab, m_canvas.transform, false) as GameObject;
             popup.SetActive(true);
             popup.transform.localScale = Vector3.zero;
-            popup.transform.SetParent(m_canvas.transform, false);
             popup.GetComponent<Popup>().Open();
         }
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using YG;
 
 namespace Match3
 {
@@ -7,14 +8,15 @@ namespace Match3
         // Bir seviyeyi açar ve bu bilgiyi saklar
         public static void UnlockLevel(int levelIndex)
         {
-            PlayerPrefs.SetInt($"Level_{levelIndex}_Unlocked", 1);
+            YandexGame.savesData.openLevels[levelIndex+1] = true;
+            YandexGame.SaveProgress();
         }
 
         // Bir seviyenin açık olup olmadığını kontrol eder
         public static bool IsLevelUnlocked(int levelIndex)
         {
             if (levelIndex == 0) return true; // İlk seviye her zaman açık
-            return PlayerPrefs.GetInt($"Level_{levelIndex}_Unlocked", 0) == 1;
+            return YandexGame.savesData.openLevels[levelIndex+1] == true;
         }
     }
 }

@@ -1,13 +1,12 @@
-#if UNITY_ANDROID 
-using GoogleMobileAds.Api;
-#endif
+using Match3;
 using Ricimi;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 /// <summary>
-/// Yaþam dükkanýnýn pop-up arayüzü için kullanýlan bileþenleri tanýmlar.
+/// Yaï¿½am dï¿½kkanï¿½nï¿½n pop-up arayï¿½zï¿½ iï¿½in kullanï¿½lan bileï¿½enleri tanï¿½mlar.
 /// </summary>
 public class LivesShopPopup : MonoBehaviour
 {
@@ -16,30 +15,15 @@ public class LivesShopPopup : MonoBehaviour
     [SerializeField] private Sprite _lifeSprite;
     [SerializeField] private GameObject _lives;
 
-    [SerializeField] private Text _buyButtonText, _timeText;
-    [SerializeField] private PopupOpener _starShopPopupOpener;
-
-    [SerializeField] private Sprite _enabledSprite;
-    [SerializeField] private Sprite _disabledSprite;
-    [SerializeField] private Image _notificationImage;
-    [SerializeField] private Slider _notificationSlider;
+    [SerializeField] private Text _buyButtonText, _timeText; 
+    [SerializeField] private PopupOpener _popupOpener;
+    [SerializeField, Tooltip("Prefab atamasÄ± yap")] private GameObject _livesIsFullPopup, _starsIsNotEnoughPopup;
 
     private bool isInit = true;
 
     private void Start()
     {
         LifeManager.LifeLoadControl();
-
-#if UNITY_ANDROID
-        if (AndroidNotifications.CheckSendNotifications())
-        {
-            _notificationSlider.value = 1;
-        }
-        else
-        {
-            _notificationSlider.value = 0;
-        }
-#endif
         UpdateLiveCountUI();
 
         EventBus.Subscribe(EventType.LifeCountChanged, UpdateLiveCountUI);
@@ -60,7 +44,7 @@ public class LivesShopPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Yaþam sayýsýný günceller ve eksik yaþamlarý göstermek için animasyon ekler.
+    /// Yaï¿½am sayï¿½sï¿½nï¿½ gï¿½nceller ve eksik yaï¿½amlarï¿½ gï¿½stermek iï¿½in animasyon ekler.
     /// </summary>
     private void UpdateLiveCountUI()
     {
@@ -80,7 +64,7 @@ public class LivesShopPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Bir yaþam sayýsýný azaltýr.
+    /// Bir yaï¿½am sayï¿½sï¿½nï¿½ azaltï¿½r.
     /// </summary>
     public void DecreaseHealthOne()
     {
@@ -89,9 +73,9 @@ public class LivesShopPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Yaþam sayýsýný belirtilen miktarda artýrýr.
+    /// Yaï¿½am sayï¿½sï¿½nï¿½ belirtilen miktarda artï¿½rï¿½r.
     /// </summary>
-    /// <param name="count">Artýrýlacak yaþam sayýsý.</param>
+    /// <param name="count">Artï¿½rï¿½lacak yaï¿½am sayï¿½sï¿½.</param>
     public void AddLifeCount(int count)
     {
         LifeManager.AddLifeCount(count);
@@ -99,101 +83,46 @@ public class LivesShopPopup : MonoBehaviour
     }
 
     /// <summary>
-    /// Yaþam satýn alýr ve yýldýz sayýsýný günceller.
+    /// Yaï¿½am satï¿½n alï¿½r ve yï¿½ldï¿½z sayï¿½sï¿½nï¿½ gï¿½nceller.
     /// </summary>
     public void BuyLive()
     {
         int starCount = StarManager.GetStarCount();
         int livePrice = int.Parse(_buyButtonText.text);
 
+        int lifeCount = LifeManager.GetLifeCount();
+        
         if (livePrice > starCount)
         {
-            _starShopPopupOpener.OpenPopup();
+            _popupOpener.popupPrefab = _starsIsNotEnoughPopup;
+            _popupOpener.OpenPopup();
+        }
+        else if (lifeCount >= 5)
+        {
+            _popupOpener.popupPrefab = _livesIsFullPopup;
+            _popupOpener.OpenPopup();
         }
         else
         {
             StarManager.AddStarCount(-livePrice);
+            LifeManager.AddLifeCount(5);
         }
-
-        LifeManager.AddLifeCount(5);
+        
     }
 
     /// <summary>
-    /// Bildirim ayarlarýný yönetir.
-    /// </summary>
-    public void NotificationButton()
-    {
-        if (isInit)
-        {
-#if UNITY_ANDROID
-            isInit = false;
-
-            if (_notificationSlider.value == 1)
-            {
-                AndroidNotifications.EnableNotifications();
-                _notificationImage.sprite = _enabledSprite;
-                Debug.Log("Bildirim açýldý");
-            }
-            else
-            {
-                AndroidNotifications.DisableNotifications();
-                _notificationImage.sprite = _disabledSprite;
-                Debug.Log("Bildirim kapatýldý");
-            }
-#endif
-        }
-        else
-        {
-#if UNITY_ANDROID
-            if (AndroidNotifications.CheckSendNotifications())
-            {
-                AndroidNotifications.DisableNotifications();
-                _notificationImage.sprite = _disabledSprite;
-                Debug.Log("Bildirim kapatýldý");
-            }
-            else
-            {
-                AndroidNotifications.EnableNotifications();
-                _notificationImage.sprite = _enabledSprite;
-                Debug.Log("Bildirim açýldý");
-            }
-#endif
-        }
-    }
-
-    /// <summary>
-    /// Reklam izleyerek bedava yaþam kazandýrýr.
+    /// Reklam izleyerek bedava live kazandÄ±rÄ±r.
     /// </summary>
     public void FreeLiveButton()
     {
-#if UNITY_ANDROID
-        var adManager = FindObjectOfType<AdManager>();
-
-        if (adManager.rewardedAd != null)
+        int lifeCount = LifeManager.GetLifeCount();
+        if (lifeCount >= 5)
         {
-            adManager.ShowRewardedAd((Reward reward) =>
-            {
-                LifeManager.AddLifeCount(+3);
-            });
+            _popupOpener.popupPrefab = _livesIsFullPopup;
+            _popupOpener.OpenPopup();
         }
         else
-        {
-            adManager.LoadRewardedAd((RewardedAd ad, LoadAdError error) =>
-            {
-                if (error != null)
-                {
-                    Debug.LogError("Rewarded ad failed to load: " + error);
-                    return;
-                }
-
-                Debug.Log("Rewarded ad loaded successfully!");
-
-                adManager.ShowRewardedAd((Reward reward) =>
-                {
-                    LifeManager.AddLifeCount(+3);
-                });
-            });
-        }
-#endif
+            AdManager.OpenLivesRewardAd();
+        
     }
 }

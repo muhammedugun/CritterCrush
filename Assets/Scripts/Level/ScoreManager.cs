@@ -1,41 +1,46 @@
 using UnityEngine;
+using YG;
 
 public class ScoreManager : MonoBehaviour
 {
     /// <summary>
-    /// Verilen seviye numarasý için skoru döndürür.
+    /// Verilen seviye numarasï¿½ iï¿½in skoru dï¿½ndï¿½rï¿½r.
     /// </summary>
-    /// <param name="levelNumber">Seviye numarasý</param>
+    /// <param name="levelNumber">Seviye numarasï¿½</param>
     /// <returns>Seviyenin skoru</returns>
     public static int GetLevelScore(int levelNumber)
     {
-        return PlayerPrefs.GetInt("Level" + levelNumber + "Score", 0);
+        return YandexGame.savesData.levelScores[levelNumber];
     }
 
     /// <summary>
-    /// Verilen seviye numarasý için skoru ayarlar.
-    /// Eðer yeni skor mevcut skordan yüksekse, skoru günceller.
+    /// Verilen seviye numarasï¿½ iï¿½in skoru ayarlar.
+    /// Eï¿½er yeni skor mevcut skordan yï¿½ksekse, skoru gï¿½nceller.
     /// </summary>
-    /// <param name="levelNumber">Seviye numarasý</param>
+    /// <param name="levelNumber">Seviye numarasï¿½</param>
     /// <param name="score">Yeni skor</param>
     public static void SetLevelScore(int levelNumber, int score)
     {
-        int maxScore = PlayerPrefs.GetInt("Level" + levelNumber + "Score", 0);
-        if (score > maxScore)
-            PlayerPrefs.SetInt("Level" + levelNumber + "Score", score);
+        int currentScore = YandexGame.savesData.levelScores[levelNumber];
+        if (score > currentScore)
+        {
+            YandexGame.savesData.levelScores[levelNumber] = score;
+            YandexGame.SaveProgress();
+        }
+            
     }
 
     /// <summary>
-    /// Verilen seviye sayýsýna kadar olan tüm seviyelerin skorlarýný toplar.
+    /// Verilen seviye sayï¿½sï¿½na kadar olan tï¿½m seviyelerin skorlarï¿½nï¿½ toplar.
     /// </summary>
-    /// <param name="levelCount">Toplanacak seviyelerin sayýsý</param>
+    /// <param name="levelCount">Toplanacak seviyelerin sayï¿½sï¿½</param>
     /// <returns>Toplam skor</returns>
     public static int GetTotalScore(int levelCount)
     {
         int totalScore = 0;
         for (int i = 1; i <= levelCount; i++)
         {
-            totalScore += PlayerPrefs.GetInt("Level" + i + "Score", 0);
+            totalScore += YandexGame.savesData.levelScores[i];
         }
         return totalScore;
     }

@@ -3,6 +3,7 @@
 // A Copy of the Asset Store EULA is available at http://unity3d.com/company/legal/as_terms.
 
 using UnityEngine;
+using YG;
 
 namespace Ricimi
 {
@@ -17,7 +18,8 @@ namespace Ricimi
         private void Start()
         {
             m_spriteSwapper = GetComponent<SpriteSwapper>();
-            m_on = PlayerPrefs.GetInt("music_on") == 1;
+            m_on = YandexGame.savesData.musicOn == true;
+            YandexGame.SaveProgress();
             if (!m_on)
                 m_spriteSwapper.SwapSprite();
         }
@@ -27,7 +29,8 @@ namespace Ricimi
             m_on = !m_on;
             var backgroundAudioSource = GameObject.Find("BackgroundMusic").GetComponent<AudioSource>();
             backgroundAudioSource.volume = m_on ? 1 : 0;
-            PlayerPrefs.SetInt("music_on", m_on ? 1 : 0);
+            YandexGame.savesData.musicOn = m_on ? true : false;
+            YandexGame.SaveProgress();
         }
 
         public void ToggleSprite()

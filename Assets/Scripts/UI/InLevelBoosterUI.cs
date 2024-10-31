@@ -45,7 +45,7 @@ public class InLevelBoosterUI : MonoBehaviour
 
     public void UpdateBoosterCount(int index)
     {
-        _boosters.GetChild(index).GetChild(2).GetChild(2).GetComponent<Text>().text = "x" + BoosterManager.GetBoosterCount(index).ToString();
+        _boosters.GetChild(index).GetChild(2).GetChild(1).GetComponent<Text>().text = "x" + BoosterManager.GetBoosterCount(index).ToString();
     }
 
     

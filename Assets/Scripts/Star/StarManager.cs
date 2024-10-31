@@ -1,47 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
+using Match3;
 using UnityEngine;
-using UnityEngine.UI;
-#if UNITY_WEBGL
 using YG;
-#endif
 
 public class StarManager : MonoBehaviour
 {
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += AddStarsForReward;
+    }
+    
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= AddStarsForReward;
+    }
+    
     /// <summary>
-    /// Yýldýz sayýsýný belirtilen miktarda artýrýr ve güncellenen yýldýz sayýsýný kaydeder.
+    /// Yï¿½ldï¿½z sayï¿½sï¿½nï¿½ belirtilen miktarda artï¿½rï¿½r ve gï¿½ncellenen yï¿½ldï¿½z sayï¿½sï¿½nï¿½ kaydeder.
     /// </summary>
-    /// <param name="count">Eklemek istenen yýldýz miktarý.</param>
+    /// <param name="count">Eklemek istenen yï¿½ldï¿½z miktarï¿½.</param>
     public static void AddStarCount(int count)
     {
         int currentStarCount = GetStarCount();
         currentStarCount += count;
-        PlayerPrefs.SetInt("StarCount", currentStarCount);
-        PlayerPrefs.Save();
 
-        // Yýldýz sayýsý deðiþtiðinde EventBus'e bildirim gönderir.
+        YandexGame.savesData.starCount = currentStarCount;
+        YandexGame.SaveProgress();
+
+        // Yï¿½ldï¿½z sayï¿½sï¿½ deï¿½iï¿½tiï¿½inde EventBus'e bildirim gï¿½nderir.
         EventBus.Publish(EventType.StarCountChanged);
     }
 
     /// <summary>
-    /// Mevcut yýldýz sayýsýný alýr.
+    /// Mevcut yï¿½ldï¿½z sayï¿½sï¿½nï¿½ alï¿½r.
     /// </summary>
-    /// <returns>Mevcut yýldýz sayýsý.</returns>
+    /// <returns>Mevcut yï¿½ldï¿½z sayï¿½sï¿½.</returns>
     public static int GetStarCount()
     {
-        return PlayerPrefs.GetInt("StarCount", 0);
+        return YandexGame.savesData.starCount;
     }
-
-    /// <summary>
-    /// Belirtilen ID'ye göre ödül yýldýzlarýný ekler.
-    /// </summary>
-    /// <param name="ID">Rekabet ID'si, eðer 0 ise ödül yýldýzlarý eklenir.</param>
-    public static void RewardStars(int ID)
+    
+    private void AddStarsForReward(int adID)
     {
-        // Ödül yýldýzlarý reklamý izlendiyse
-        if (ID == 0)
+        if (adID == (int)AdManager.RewardID.Star)
         {
-            AddStarCount(10);
+            AddStarCount(20);
         }
     }
 }
