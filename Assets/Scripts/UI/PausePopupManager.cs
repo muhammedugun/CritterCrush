@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Ricimi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -21,6 +22,7 @@ public class PausePopupManager : MonoBehaviour
     public void ResumeLevel()
     {
         GameSceneManager.ResumeLevel(ref deactivedObjects);
+        GetComponent<Popup>()?.Close();
     }
 
     public void RestartLevel()

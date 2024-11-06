@@ -546,7 +546,6 @@ GameObject:
   - component: {fileID: 6432472591215183366}
   - component: {fileID: 1949488126786889104}
   - component: {fileID: 2782279134104332162}
-  - component: {fileID: 6014639748783276171}
   m_Layer: 5
   m_Name: LevelName
   m_TagString: Untagged
@@ -615,26 +614,6 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Level  #
---- !u!114 &6014639748783276171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348365003434695252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbd49ba5bf0564f4db8b5141a4a63407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _defaultText: Level  #
-  _translations:
-  - LanguageCode: en
-    Text: Level  #
-  - LanguageCode: ru
-    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C #"
-  - LanguageCode: tr
-    Text: Seviye #
 --- !u!1 &559200768642904570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2830,6 +2809,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8297835163061803249}
+  - component: {fileID: 3111432448911388739}
   m_Layer: 0
   m_Name: LevelStandarts
   m_TagString: Untagged
@@ -2861,6 +2841,18 @@ Transform:
   - {fileID: 5210275458207152456}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3111432448911388739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2442065845458685927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2f9071261c4091817a5fb3d8967d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2524234194727218077
 GameObject:
   m_ObjectHideFlags: 0
@@ -5249,7 +5241,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -2, y: 87}
-  m_SizeDelta: {x: 215.76, y: 30}
+  m_SizeDelta: {x: 242.38, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4454044621683827220
 CanvasRenderer:
@@ -5281,15 +5273,15 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 82cc91725ab2f0c41920038a250d768b, type: 3}
-    m_FontSize: 55
+    m_FontSize: 43
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 4
     m_MaxSize: 55
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Moves
@@ -5310,9 +5302,9 @@ MonoBehaviour:
   - LanguageCode: en
     Text: Moves
   - LanguageCode: ru
-    Text: "\u041F\u0435\u0440\u0435\u0435\u0437\u0434\u044B"
+    Text: "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0445\u043E\u0434\u043E\u0432"
   - LanguageCode: tr
-    Text: Hareket
+    Text: Hamleler
 --- !u!1 &6336553952906435751
 GameObject:
   m_ObjectHideFlags: 0
@@ -7261,6 +7253,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3111432448911388739}
+        m_TargetAssemblyTypeName: Match3.AdManager, Assembly-CSharp
+        m_MethodName: OpenFullscreenAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8569661852655166281}
         m_TargetAssemblyTypeName: 
         m_MethodName: OpenPopup

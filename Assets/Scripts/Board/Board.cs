@@ -112,6 +112,7 @@ namespace Match3
 
         private void Start()
         {
+
 #if !UNITY_EDITOR
         //In a built player, the tilemap data are not refreshed, and the edit time one are the one used. We need to
         //to refresh it as otherwise the edit time preview sprite would still be used.
@@ -169,7 +170,7 @@ namespace Match3
 
             GenerateBoard();
             FindAllPossibleMatch();
-        
+            
             m_HintIndicator = Instantiate(GameManager.Instance.Settings.VisualSettings.HintPrefab);
             m_HintIndicator.SetActive(false);
         
@@ -188,10 +189,7 @@ namespace Match3
             }
 
             ToggleInput(true);
-
         }
-
-
 
         //Called by Gem Placer to create a placement cell
         public static void RegisterCell(Vector3Int cellPosition, Gem startingGem = null)
@@ -287,6 +285,33 @@ namespace Match3
 
             s_Instance.SpawnerPosition.Add(cell);
         }
+        
+        void ClearAllGems()
+        {
+            foreach (var cell in CellContent.Values)
+            {
+                // H√ºcredeki gem nesnesi varsa yok et
+                bool isTieBlocker = cell.ContainingGem.gameObject.TryGetComponent<TieBlocker>(out var tieBlocker);
+                if (cell.ContainingGem != null && cell.ContainingGem.GemType !=99 && !isTieBlocker)
+                {
+                    // G√∂rsel objeyi yok et
+                    Destroy(cell.ContainingGem.gameObject);
+                    // Mantƒ±ksal olarak gemi temizle
+                    cell.ContainingGem = null;
+                }
+            }
+            
+            GenerateBoard();
+
+            FindAllPossibleMatch();
+            // H√ºcrelerde hala olasƒ± hamle yoksa
+            if (m_PossibleSwaps.Count == 0 && m_PickedSwap > m_PossibleSwaps.Count)
+            {
+                ClearAllGems();
+            }
+        }
+
+
 
         //generate a gem in every cell, making sure we don't have any match 
         void GenerateBoard()
@@ -313,14 +338,16 @@ namespace Match3
                     m_BoundsInt.yMin = content.y;
             }
 
+            // H√ºcrelerin i√ßeriƒüini for d√∂ng√ºleri ile kontrol ediyor
             for (int y = m_BoundsInt.yMin; y <= m_BoundsInt.yMax; ++y)
             {
                 for (int x = m_BoundsInt.xMin; x <= m_BoundsInt.xMax; ++x)
                 {
                     var idx = new Vector3Int(x, y, 0);
-                
+                    
+                    // idx kordinatƒ±nda herhangi bir h√ºcre yoksa ya da var olan h√ºcrede herhangi bir gem varsa
                     if(!CellContent.TryGetValue(idx, out var current) || current.ContainingGem != null)
-                        continue;
+                        continue; // d√∂ng√ºn√ºn bu adƒ±mƒ±nƒ± atlayarak sonraki kordinatƒ± kontrol et.
                 
                     var availableGems = m_GemLookup.Keys.ToList();
 
@@ -449,6 +476,7 @@ namespace Match3
             }
         }
 
+
         private void Update()
         {
             if(!m_BoardWasInit)
@@ -554,6 +582,7 @@ namespace Match3
                 if (m_BoardChanged)
                 {
                     FindAllPossibleMatch();
+                    
                     m_BoardChanged = false;
                 }
 
@@ -564,11 +593,9 @@ namespace Match3
                     match = m_PossibleSwaps[m_PickedSwap];
                 }
 
-                //HiÁbir olas˝ hamle yoksa
+                //Hi√ßbir olasƒ± hamle yoksa
                 else
                 {
-                    Debug.LogWarning("m_PossibleSwaps.Count: " + m_PossibleSwaps.Count + "    m_PickedSwap value: " + m_PickedSwap);
-
                     bool isThereBoosterInGrid = false;
                     foreach (var cell in CellContent.Values)
                     {
@@ -577,12 +604,11 @@ namespace Match3
                             isThereBoosterInGrid = true;
                         }
                     }
-                    //Booster kalmad˝ysa
-                    if(!isThereBoosterInGrid && !BoosterManager.IsThereAnyBooster())
+                    
+                    //Booster kalmadÔøΩysa
+                    if(!isThereBoosterInGrid)
                     {
-                        Debug.LogWarning("HiÁbir olas˝ hamle ve booster (Hem gridte hem a˛a˝da) kalmad˝˝ iÁin oyun bitti");
-                        EventBus.Publish(EventType.BoosterAndSwapsOverInLevel);
-
+                        ClearAllGems();
                     }
 
                 }
@@ -612,6 +638,11 @@ namespace Match3
                 m_HintIndicator.SetActive(false);
                 m_SinceLastHint = 0.0f;
             }
+        }
+
+        private void DebugMessege()
+        {
+            Debug.Log(m_InputEnabled);
         }
 
         void MoveGems()
@@ -781,6 +812,7 @@ namespace Match3
 
             }
         }
+        
 
         void MatchTicking()
         {

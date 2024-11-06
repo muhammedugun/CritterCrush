@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2510389767388530346}
   - component: {fileID: 4379020107929550603}
+  - component: {fileID: 5690417541434758921}
   m_Layer: 5
   m_Name: LastActiveLevel
   m_TagString: Untagged
@@ -65,6 +66,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: da266ea4448be46529f28d3d511e0dfb, type: 3}
   - {fileID: 21300000, guid: 739de52e4e8994b9c8af513bee678708, type: 3}
   _avatarImage: {fileID: 1806932675328212795}
+--- !u!114 &5690417541434758921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630231730952294052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2f9071261c4091817a5fb3d8967d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &805355532460573400
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +193,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 5690417541434758921}
+        m_TargetAssemblyTypeName: Match3.AdManager, Assembly-CSharp
+        m_MethodName: OpenFullscreenAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 2549788486605839101}
         m_TargetAssemblyTypeName: 
         m_MethodName: OpenPopup

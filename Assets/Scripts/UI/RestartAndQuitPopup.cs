@@ -16,7 +16,6 @@ public class RestartAndQuitPopup : MonoBehaviour
     public void ResumeLevel()
     {
         _pausePopupManager.ResumeLevel();
-        _pausePopupManager.gameObject.GetComponent<Popup>().Close();
     }
 
     public void RestartLevel()

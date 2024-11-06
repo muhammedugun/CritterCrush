@@ -10143,6 +10143,7 @@ GameObject:
   - component: {fileID: 7416311285051197618}
   - component: {fileID: 5391289848307579357}
   - component: {fileID: 2758655464421894336}
+  - component: {fileID: 3449228274298393982}
   m_Layer: 5
   m_Name: WinPopupPortrait
   m_TagString: Untagged
@@ -10277,6 +10278,18 @@ MonoBehaviour:
   gemUIObject: {fileID: 0}
   duration: 0
   canvas: {fileID: 0}
+--- !u!114 &3449228274298393982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2f9071261c4091817a5fb3d8967d85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &114558
 GameObject:
   m_ObjectHideFlags: 0
@@ -17163,6 +17176,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3449228274298393982}
+        m_TargetAssemblyTypeName: Match3.AdManager, Assembly-CSharp
+        m_MethodName: OpenFullscreenAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8252580}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play
@@ -18383,6 +18408,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3449228274298393982}
+        m_TargetAssemblyTypeName: Match3.AdManager, Assembly-CSharp
+        m_MethodName: OpenFullscreenAd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8284870}
         m_TargetAssemblyTypeName: 
         m_MethodName: Play

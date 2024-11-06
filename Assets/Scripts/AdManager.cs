@@ -7,7 +7,8 @@ namespace Match3
     {
         public enum RewardID{
             Live=1,
-            Star
+            Star,
+            Move
         }
         
         public static void OpenLivesRewardAd()
@@ -18,6 +19,11 @@ namespace Match3
         public static void OpenStarsRewardAd()
         {
             OpenRewardAd((int)RewardID.Star);
+        }
+
+        public static void OpenMoveRewardAd()
+        {
+            OpenRewardAd((int)RewardID.Move);
         }
         
         public static void OpenFullscreenAd()

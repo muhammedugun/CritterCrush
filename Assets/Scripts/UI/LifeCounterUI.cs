@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,16 @@ public class LifeCounterUI : MonoBehaviour
     private void Start()
     {
         UpdateLifeCounterUI();
+    }
 
+    private void OnEnable()
+    {
         EventBus.Subscribe(EventType.LifeCountChanged, UpdateLifeCounterUI);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(EventType.LifeCountChanged, UpdateLifeCounterUI);
     }
 
     private void UpdateLifeCounterUI()
@@ -36,7 +45,7 @@ public class LifeCounterUI : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Lives atanmamýþ!");
+            Debug.LogWarning("Lives atanmamï¿½ï¿½!");
         }
     }
 }

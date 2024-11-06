@@ -1,3 +1,4 @@
+using System;
 using Match3;
 using Ricimi;
 using System.Collections.Generic;
@@ -12,9 +13,18 @@ public class WinLoseUI : MonoBehaviour
     void Start()
     {
         _popupOpener = GetComponent<PopupOpener>();
+    }
+
+    private void OnEnable()
+    {
         EventBus.Subscribe(EventType.MoveCountOver, OpenLosePopupInvoke);
-        EventBus.Subscribe(EventType.BoosterAndSwapsOverInLevel, OpenLosePopupInvoke);
         EventBus.Subscribe(EventType.AllGoalCompleted, OpenWinPopupInvoke);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(EventType.MoveCountOver, OpenLosePopupInvoke);
+        EventBus.Unsubscribe(EventType.AllGoalCompleted, OpenWinPopupInvoke);
     }
 
     private void OpenWinPopupInvoke()
@@ -43,7 +53,7 @@ public class WinLoseUI : MonoBehaviour
     private void OpenLosePopup()
     {
         _popupOpener.popupPrefab = _losePopupPrefab;
-        if (_popupOpener.popupPrefab == null)
+        if (_popupOpener.popupPrefab)
         {
             _popupOpener.OpenPopup();
             _deactiveObjects = DeactiveOtherObject();
@@ -53,9 +63,7 @@ public class WinLoseUI : MonoBehaviour
 
     public void CloseLosePopup()
     {
-        _popupOpener.ClosePopup();
         ActiveOtherObject(_deactiveObjects);
-
     }
 
     /// <summary>

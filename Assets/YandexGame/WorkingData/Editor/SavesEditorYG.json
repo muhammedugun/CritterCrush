@@ -1,15 +1,15 @@
 {
-    "idSave": 378,
+    "idSave": 922,
     "isFirstSession": false,
-    "language": "ru",
+    "language": "en",
     "promptDone": false,
     "levelScores": [
         0,
-        870,
+        1560,
         2190,
         2190,
         2820,
-        0,
+        2910,
         0,
         0,
         0,
@@ -28,11 +28,11 @@
     ],
     "levelStars": [
         0,
-        2,
+        3,
         3,
         1,
         1,
-        0,
+        1,
         0,
         0,
         0,
@@ -50,11 +50,11 @@
         0
     ],
     "boosterCounts": [
-        0,
-        3,
+        2,
         3,
         1,
-        6
+        2,
+        1
     ],
     "boosterPrices": [
         5,
@@ -63,11 +63,11 @@
         3,
         2
     ],
-    "starCount": 7,
+    "starCount": 1,
     "currentAvatarIndex": 2,
-    "lifeCount": 5,
+    "lifeCount": 4,
     "playerName": "Player",
-    "NextLifeRechargeTime": "1730320428",
+    "NextLifeRechargeTime": "1730666326",
     "openLevels": [
         false,
         true,
@@ -75,7 +75,7 @@
         true,
         true,
         true,
-        false,
+        true,
         false,
         false,
         false,
@@ -94,5 +94,5 @@
     "musicOn": false,
     "soundOn": true,
     "isPlayingFirstTime": false,
-    "isLifeLoading": false
+    "isLifeLoading": true
 }

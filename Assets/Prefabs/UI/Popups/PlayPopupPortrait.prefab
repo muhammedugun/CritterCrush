@@ -466,7 +466,6 @@ MonoBehaviour:
   levelIndex: 0
   _levelList: {fileID: 11400000, guid: cc433e188d8e43c47ba845bac2a704e4, type: 2}
   _goals: {fileID: 111426}
-  _headlineText: {fileID: 11458516}
 --- !u!95 &9597026
 Animator:
   serializedVersion: 5
@@ -6607,7 +6606,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Play level #
+  m_Text: Play the level
 --- !u!114 &6441349671429935849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6620,14 +6619,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd49ba5bf0564f4db8b5141a4a63407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultText: Play level #
+  _defaultText: Play the level
   _translations:
   - LanguageCode: en
-    Text: Play level #
+    Text: Play the level
   - LanguageCode: ru
-    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C \u0438\u0433\u0440\u044B #"
+    Text: "\u0418\u0433\u0440\u0430\u0442\u044C \u043D\u0430 \u0443\u0440\u043E\u0432\u043D\u0435"
   - LanguageCode: tr
-    Text: Seviye #
+    Text: Seviyeyi oyna
 --- !u!1 &143470
 GameObject:
   m_ObjectHideFlags: 0

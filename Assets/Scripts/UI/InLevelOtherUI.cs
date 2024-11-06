@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
 public class InLevelOtherUI : MonoBehaviour
 {
@@ -13,6 +14,18 @@ public class InLevelOtherUI : MonoBehaviour
     private void Start()
     {
         string sceneName = SceneManager.GetActiveScene().name;
-        _levelName.text = sceneName.Substring(0, 5) + " " + sceneName.Substring(5, sceneName.Length-5);
+        if (YandexGame.lang == "ru")
+        {
+            _levelName.text = "Уровень " + sceneName.Substring(5, sceneName.Length-5);
+        }
+        else if (YandexGame.lang == "tr")
+        {
+            _levelName.text = "Seviye " + sceneName.Substring(5, sceneName.Length-5);
+        }
+        else
+        {
+            _levelName.text = "Level " + sceneName.Substring(5, sceneName.Length-5);
+        }
+        
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 /// </summary>
 public enum EventType
 {
-    ScoreChanged, Moved, GoalCountChanged, MoveCountOver, AllGoalCompleted, BoosterAndSwapsOverInLevel, BoosterUsed,
+    ScoreChanged, Moved, GoalCountChanged, MoveCountOver, AllGoalCompleted, BoosterUsed,
     LifeCountChanged, StarCountChanged, AnyBoosterCountChanged
 }
 

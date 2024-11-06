@@ -55,10 +55,10 @@ MonoBehaviour:
   - Goals:
     - Gem: {fileID: 6307004918233370529, guid: 35f15072bcb3d3e41bf28a8a56bc6749, type: 3}
       Count: 10
-      TargetCount: 0
+      TargetCount: 10
     - Gem: {fileID: 4895668700877159741, guid: 43d36d7d927fcb64dbb4058c6d88becd, type: 3}
       Count: 10
-      TargetCount: 0
+      TargetCount: 10
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 6
@@ -66,7 +66,7 @@ MonoBehaviour:
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 4
-      TargetCount: 0
+      TargetCount: 4
   - Goals:
     - Gem: {fileID: 2206938031270595392, guid: 0a54b5a0014ab394c8acc998e5cec84b, type: 3}
       Count: 3

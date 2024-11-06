@@ -1,11 +1,13 @@
+using System;
 using DG.Tweening;
 using Match3;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /// <summary>
-/// Oyun içi hedeflerin UI'da yönetilmesini saðlayan sýnýf.
+/// Oyun iï¿½i hedeflerin UI'da yï¿½netilmesini saï¿½layan sï¿½nï¿½f.
 /// </summary>
 public class InLevelGoalUI : MonoBehaviour
 {
@@ -16,7 +18,7 @@ public class InLevelGoalUI : MonoBehaviour
 
     public GameObject gemUIObject;
     public float duration;
-    public Canvas canvas; // Eklemeniz gereken Canvas referansý
+    public Canvas canvas; // Eklemeniz gereken Canvas referansï¿½
 
     private void Start()
     {
@@ -27,14 +29,24 @@ public class InLevelGoalUI : MonoBehaviour
 
         _leveldata = FindObjectOfType<LevelDataProvider>().levelData;
 
-        EventBus.Subscribe(EventType.GoalCountChanged, UpdateGoalCount);
+        
         EventBus<Gem, int>.Subscribe(EventType.GoalCountChanged, OnMatch);
 
         UpdateGoalSprite();
     }
 
+    private void OnEnable()
+    {
+        EventBus.Subscribe(EventType.GoalCountChanged, UpdateGoalCount);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(EventType.GoalCountChanged, UpdateGoalCount);
+    }
+
     /// <summary>
-    /// Hedef sprite'larýný günceller.
+    /// Hedef sprite'larï¿½nï¿½ gï¿½nceller.
     /// </summary>
     public void UpdateGoalSprite()
     {
@@ -46,7 +58,7 @@ public class InLevelGoalUI : MonoBehaviour
 
         int length = _leveldata.Goals.Length;
 
-        // Hedefleri güncelle
+        // Hedefleri gï¿½ncelle
         for (int i = 0; i < length; i++)
         {
             _goals.transform.GetChild(i).gameObject.SetActive(true);
@@ -63,7 +75,7 @@ public class InLevelGoalUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Hedef sayýsýný günceller.
+    /// Hedef sayï¿½sï¿½nï¿½ gï¿½nceller.
     /// </summary>
     public void UpdateGoalCount()
     {
@@ -77,7 +89,7 @@ public class InLevelGoalUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Eþleþme olduðunda çaðrýlan fonksiyon.
+    /// Eï¿½leï¿½me olduï¿½unda ï¿½aï¿½rï¿½lan fonksiyon.
     /// </summary>
     public void OnMatch(Gem gem, int matchCount)
     {
@@ -104,7 +116,7 @@ public class InLevelGoalUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Sprite için dünya pozisyonunu alýr.
+    /// Sprite iï¿½in dï¿½nya pozisyonunu alï¿½r.
     /// </summary>
     Vector3 GetWorldPosition(Sprite sprite)
     {
@@ -122,7 +134,7 @@ public class InLevelGoalUI : MonoBehaviour
             }
         }
 
-        // RectTransform'un pivot pozisyonunu dünya koordinatlarýna çevir
+        // RectTransform'un pivot pozisyonunu dï¿½nya koordinatlarï¿½na ï¿½evir
         Vector3 worldPos = rectTransform.TransformPoint(rectTransform.rect.center);
         return worldPos;
     }

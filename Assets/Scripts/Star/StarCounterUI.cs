@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,20 +7,28 @@ using UnityEngine.UI;
 public class StarCounterUI : MonoBehaviour
 {
     /// <summary>
-    /// Yýldýz sayýsýný gösteren UI metin bileþeni.
+    /// Yï¿½ldï¿½z sayï¿½sï¿½nï¿½ gï¿½steren UI metin bileï¿½eni.
     /// </summary>
     [SerializeField] private Text _starCountText;
 
     private void Start()
     {
         UpdateStarCountUI();
+    }
 
-        // Yýldýz sayýsý deðiþtiðinde UI'yi güncellemek için EventBus'e abone olunur.
+    private void OnEnable()
+    {
+        // Yï¿½ldï¿½z sayï¿½sï¿½ deï¿½iï¿½tiï¿½inde UI'yi gï¿½ncellemek iï¿½in EventBus'e abone olunur.
         EventBus.Subscribe(EventType.StarCountChanged, UpdateStarCountUI);
     }
 
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(EventType.StarCountChanged, UpdateStarCountUI);
+    }
+
     /// <summary>
-    /// Yýldýz sayýsýný günceller ve UI'yi günceller.
+    /// Yï¿½ldï¿½z sayï¿½sï¿½nï¿½ gï¿½nceller ve UI'yi gï¿½nceller.
     /// </summary>
     private void UpdateStarCountUI()
     {
@@ -29,7 +38,7 @@ public class StarCounterUI : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("StarCountText atanmamýþ!");
+            Debug.LogWarning("StarCountText atanmamï¿½ï¿½!");
         }
     }
 }

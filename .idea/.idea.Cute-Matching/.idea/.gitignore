@@ -2,10 +2,10 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.CritterCrush.iml
-/modules.xml
 /contentModel.xml
 /projectSettingsUpdater.xml
+/.idea.Cute-Matching.iml
+/modules.xml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files

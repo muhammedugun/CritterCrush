@@ -1,3 +1,4 @@
+using System;
 using Match3;
 using Ricimi;
 using Unity.VisualScripting;
@@ -25,8 +26,16 @@ public class LivesShopPopup : MonoBehaviour
     {
         LifeManager.LifeLoadControl();
         UpdateLiveCountUI();
+    }
 
+    private void OnEnable()
+    {
         EventBus.Subscribe(EventType.LifeCountChanged, UpdateLiveCountUI);
+    }
+
+    private void OnDisable()
+    {
+        EventBus.Unsubscribe(EventType.LifeCountChanged, UpdateLiveCountUI);
     }
 
     private void Update()
